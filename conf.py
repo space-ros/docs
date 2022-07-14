@@ -127,7 +127,7 @@ smv_branch_whitelist = r'^(rolling)$'
 
 smv_released_pattern = r'^refs/(heads|remotes/[^/]+)/(humble).*$'
 smv_remote_whitelist = r'^(origin)$'
-smv_latest_version = 'humble'
+smv_latest_version = 'rolling'
 smv_eol_versions = []
 
 distro_full_names = {
