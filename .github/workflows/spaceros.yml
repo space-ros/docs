@@ -1,0 +1,55 @@
+name: Build Space ROS docs
+
+on:
+  push:
+    branches:
+      - rolling
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+
+      - name: Install dependencies with pip
+        run: |
+          pip install --no-warn-script-location --user --upgrade -r requirements.txt
+
+      - name: Build
+        run: make html
+      - name: Test
+        run: make test
+
+  deploy:
+    runs-on: ubuntu-20.04
+    permissions:
+      contents: write
+    needs: test
+    if: ${{ github.event_name == 'push' }}
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+
+      - name: Install dependencies with pip
+        run: |
+          pip install --no-warn-script-location --user --upgrade -r requirements.txt
+
+      - name: Build
+        run: make html
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: build/html
