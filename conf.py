@@ -158,7 +158,7 @@ html_sourcelink_suffix = ''
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'space_ros_docsdoc'
 
-#html_baseurl = 'https://space-ros.github.io/docs'
+html_baseurl = 'https://space-ros.github.io/docs'
 
 class RedirectFrom(Directive):
 
