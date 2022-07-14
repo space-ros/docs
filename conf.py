@@ -122,7 +122,7 @@ html_context = {
 
 # smv_tag_whitelist = None
 
-smv_branch_whitelist = r'^(rolling|humble)$'
+smv_branch_whitelist = r'^(rolling)$'
 
 
 smv_released_pattern = r'^refs/(heads|remotes/[^/]+)/(humble).*$'
