@@ -272,7 +272,7 @@ def smv_rewrite_configs(app, config):
         app.config.html_baseurl = app.config.html_baseurl + '/' + app.config.smv_current_version
         app.config.project = project + ': ' + app.config.smv_current_version.title()
 
-        app.config.html_logo = 'source/Releases/' + app.config.smv_current_version + '-small.png'
+        app.config.html_logo = 'source/spaceros_black_on_transparent.png'
 
         # Override default values
         distro = app.config.smv_current_version
