@@ -140,7 +140,7 @@ macros = {
     'DISTRO': 'rolling',
     'DISTRO_TITLE': 'Rolling',
     'DISTRO_TITLE_FULL': 'Rolling Ridley',
-    'REPOS_FILE_BRANCH': 'master',
+    'REPOS_FILE_BRANCH': 'main',
 }
 
 #html_favicon = 'favicon.ico'
