@@ -47,7 +47,7 @@ jobs:
           pip install --no-warn-script-location --user --upgrade -r requirements.txt
 
       - name: Build
-        run: make html
+        run: make multiversion
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
