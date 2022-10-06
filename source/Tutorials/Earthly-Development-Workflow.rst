@@ -1,4 +1,4 @@
-.. _Earthly-Development-Workflow
+.. _Earthly-Development-Workflow:
 
 Earthly Development Workflow
 ============================
