@@ -20,7 +20,7 @@ Prerequisites
 -------------
 
 * `git installation <https://git-scm.com/book/en/v2/Getting-Started-Installing-Git>`__
-* `earthly installation <https://earthly.dev/get-earthly>`__
+* `earthly installation <https://earthly.dev/get-earthly>`__ which requires `Docker <https://docker.com>`__ (recommended) or `Podman <https://podman.io>`__.
 * Understanding of basic terminal commands (`here’s a guide for Linux <http://www.ee.surrey.ac.uk/Teaching/Unix/>`__)
 * Text editor of your choice
 
