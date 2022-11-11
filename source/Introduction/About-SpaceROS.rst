@@ -1,5 +1,5 @@
-Introduction to Space ROS
-=========================
+About Space ROS
+===============
 
 TODO:
 

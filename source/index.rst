@@ -10,12 +10,14 @@ Space ROS Documentation
    :maxdepth: 2
    :hidden:
 
-   Background
+   Introduction
    Getting-Started
+   Demos
    Tutorials
    How-To-Guides
    Related-Projects
    The-Space-ROS-Project/Contributing
+   The-Space-ROS-Project/Governance
 
 **The Robot Operating System (ROS) is a set of software libraries and tools for building robot applications.**
 From drivers and state-of-the-art algorithms to powerful developer tools, ROS has the open source tools you need for your next robotics project.
@@ -29,7 +31,7 @@ If you are looking for ROS 2 documentation, check out the `ROS 2 Humble document
 Getting Started
 ---------------
 
-* :doc:`Background <Background>`
+* :doc:`Introduction <Introduction>`
 
   - Instructions to set up a Space ROS build environment for the first time.
 

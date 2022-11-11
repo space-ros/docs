@@ -13,12 +13,11 @@ If you are new and looking to learn the ropes, start with the :doc:`Tutorials <T
 .. toctree::
    :maxdepth: 1
 
+   How-To-Guides/Use-Custom-Allocator
    How-To-Guides/Use-Earthly
    How-To-Guides/Use-Cobra
    How-To-Guides/MC-DC-Testing-Tool
    How-To-Guides/Use-VSCode-With-Docker
    How-To-Guides/Use-The-Dashboard
-   How-To-Guides/Use-Custom-Allocator
-   How-To-Guides/Run-Sample-Applications
    How-To-Guides/Run-On-RTEMS
    How-To-Guides/Use-Simulation-Assets

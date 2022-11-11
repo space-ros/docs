@@ -137,9 +137,9 @@ distro_full_names = {
 
 # These default values will be overridden when building multiversion
 macros = {
-    'DISTRO': 'humble',
-    'DISTRO_TITLE': 'Humble',
-    'DISTRO_TITLE_FULL': 'Humble Hawksbill',
+    'DISTRO': 'rolling',
+    'DISTRO_TITLE': 'Rolling',
+    'DISTRO_TITLE_FULL': 'Rolling Ridley',
     'REPOS_FILE_BRANCH': 'main',
 }
 

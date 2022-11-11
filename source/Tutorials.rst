@@ -8,18 +8,10 @@ There is a collection of ROS 2 tutorials with step-by-step instructions meant to
 
 Space ROS-specific tutorials may be added here in time.
 
-Demos
------
-
-There are some demo applications showing the status of Space ROS.
-
-* `Mars Rover <https://github.com/space-ros/demo>`_. (This demo is still a work in progress.)
-
-
 .. toctree::
    :titlesonly:
    :maxdepth: 2
 
+   Tutorials/Eventing-And-Telemetry
    Tutorials/Requirements-Tools-And-Processes
    Tutorials/Back-Porting-Requirements
-   Tutorials/Eventing-And-Telemetry
