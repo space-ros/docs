@@ -9,4 +9,4 @@ Building Space ROS from source requires following the `ROS 2 Ubuntu Development 
    :maxdepth: 2
 
    Getting-Started/Docker-Images
-   Getting-Started/Builds-And-CI
+   Getting-Started/Building-From-Source

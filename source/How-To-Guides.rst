@@ -19,5 +19,4 @@ If you are new and looking to learn the ropes, start with the :doc:`Tutorials <T
    How-To-Guides/MC-DC-Testing-Tool
    How-To-Guides/Use-VSCode-With-Docker
    How-To-Guides/Use-The-Dashboard
-   How-To-Guides/Run-On-RTEMS
    How-To-Guides/Use-Simulation-Assets
