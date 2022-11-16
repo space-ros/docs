@@ -3,6 +3,9 @@ Related Projects
 
 TODO:
 
+This page will give a brief overview of the related projects. 
+The sub-pages will go into more detail on each project.
+
 .. toctree::
    :titlesonly:
    :maxdepth: 2

@@ -3,4 +3,4 @@ Building Space ROS from Source
 
 TODO:
 
-* Building Space ROS from source using Earthly
+Describe how to build Space ROS from source code (presumably using Earthly).

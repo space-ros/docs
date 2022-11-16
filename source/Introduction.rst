@@ -3,8 +3,9 @@
 Introduction
 ============
 
-Space ROS does not currently have a binary distribution.
-Building Space ROS from source requires following the `ROS 2 Ubuntu Development Setup <https://docs.ros.org/en/ros2_documentation/rolling/Installation/Alternatives/Ubuntu-Development-Setup.html>`_ with a few Space ROS specific differences.
+TODO:
+
+This page will provide a quick intro to Space ROS and describe the sub-pages linked in the following table:
 
 .. toctree::
    :titlesonly:

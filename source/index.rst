@@ -19,34 +19,74 @@ Space ROS Documentation
    The-Space-ROS-Project/Contributing
    The-Space-ROS-Project/Governance
 
-**The Robot Operating System (ROS) is a set of software libraries and tools for building robot applications.**
-From drivers and state-of-the-art algorithms to powerful developer tools, ROS has the open source tools you need for your next robotics project.
+TODO:
 
-..
-  [TODO] Say something cool about space ros here.
+Provide an overview of the Space ROS documentation site.
 
-This site contains documentation for Space ROS, a variation of ROS 2.
-If you are looking for ROS 2 documentation, check out the `ROS 2 Humble documentation <https://docs.ros.org/en/humble/>`__.
+
+.. The Space ROS is a set of software libraries and tools for building robot applications.
+.. This site contains documentation for Space ROS, a variation of ROS 2.
+.. If you are looking for ROS 2 documentation, check out the `ROS 2 Humble documentation <https://docs.ros.org/en/humble/>`__.
+
+Introduction
+---------------
+
+TODO:
+
+* :doc:`Introduction <Introduction>`
+
 
 Getting Started
 ---------------
 
-* :doc:`Introduction <Introduction>`
-
-  - Instructions to set up a Space ROS build environment for the first time.
+TODO:
 
 * :doc:`Getting Started <Getting-Started>`
 
+
+Demos
+-----
+
+TODO:
+
+
+Tutorials
+------------
+
+TODO:
+
+If you are new to ROS 2, it is recommended to start with the `ROS 2 tutorials <https://docs.ros.org/en/humble/Tutorials.html>`__
+
+This site has a few Space ROS-specific tutorials.
+
 * :doc:`Tutorials <Tutorials>`
 
-  - If you are new to ROS 2, it is recommended to start with the `ROS 2 tutorials <https://docs.ros.org/en/humble/Tutorials.html>`__
-  - There are not currently any Space-ROS specific tutorials.
+
+How-To Guides
+-------------
+
+TODO:
 
 * :doc:`How-to Guides<How-To-Guides>`
 
-The Space ROS project
----------------------
+
+Related Projects
+----------------
+
+TODO:
+
+
+Contributing
+------------
+
+TODO:
 
 If you're interested in the advancement of the Space ROS project:
 
 * :doc:`Contributing <The-Space-ROS-Project/Contributing>`
+
+
+Project Governance
+------------------
+
+TODO:

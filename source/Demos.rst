@@ -1,7 +1,10 @@
 Demos
 =====
 
-There are some demo applications showing the status of Space ROS.
+TODO:
+
+This page will describe the demos available in Space ROS, as listed in the following bullets:
+Each of the sub-pages will go into detail on running the demo.
 
  .. toctree::
    :titlesonly:

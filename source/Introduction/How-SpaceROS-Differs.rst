@@ -3,6 +3,10 @@ How Space ROS Differs from ROS 2
 
 TODO:
 
+Provide a high-level overview of the various features of Space ROS and describe how Space ROS is different from ROS 2.
+
+Some example topics:
+
 * Space ROS website (and domain names)
 * Space ROS documentation site (this site)
 * Space ROS github organization
