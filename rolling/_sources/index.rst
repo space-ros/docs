@@ -2,42 +2,91 @@
 
   Docs-Guide
 
-ROS 2 Documentation
-===================
+Space ROS Documentation
+=======================
 
 .. toctree::
    :titlesonly:
-   :maxdepth: 1
+   :maxdepth: 2
    :hidden:
 
-   Installation
+   Introduction
+   Getting-Started
+   Demos
    Tutorials
+   How-To-Guides
+   Related-Projects
    The-Space-ROS-Project/Contributing
+   The-Space-ROS-Project/Governance
 
-**The Robot Operating System (ROS) is a set of software libraries and tools for building robot applications.**
-From drivers and state-of-the-art algorithms to powerful developer tools, ROS has the open source tools you need for your next robotics project.
+Space ROS is an open-source spacecraft flight software framework for developing robotic applications for space.
+It is designed to be platform independent, portable and project independent.
+Space ROS, derived from the ROS 2 framework and conforming to the ROS 2 Application Programming Interface (API), will be hardened to be compatible with the demands of safety-critical space robotics applications.
+The intent is Space ROS is to provide a robust framework for space robotic applications where ROS 2 applications can be reused with little to no modification enabling the space community to take advantage of the innovation of the ROS community.
+This will shorten the time for development of novel space robotics capabilities, enable reuse of capabilities between missions, and lower the life-cycle cost of new robotic missions.
 
-..
-  [TODO] Say something cool about space ros here.
+This site provides the documentation for Space ROS.
+If you are looking for ROS 2 documentation, please refer to the `ROS 2 Humble documentation <https://docs.ros.org/en/humble/>`__.
 
-This site contains documentation for Space ROS, a variation of ROS 2.
-If you are looking for ROS 2 documentation, check out the `ROS 2 Humble documentation <https://docs.ros.org/en/humble/>`__.
-
-Getting started
+Introduction
 ---------------
 
-* :doc:`Installation <Installation>`
+TODO:
 
-  - Instructions to set up a Space ROS build environment for the first time.
+* :doc:`Introduction <Introduction>`
+
+
+Getting Started
+---------------
+
+TODO:
+
+* :doc:`Getting Started <Getting-Started>`
+
+
+Demos
+-----
+
+TODO:
+
+
+Tutorials
+------------
+
+TODO:
+
+If you are new to ROS 2, it is recommended to start with the `ROS 2 tutorials <https://docs.ros.org/en/humble/Tutorials.html>`__
+
+This site has a few Space ROS-specific tutorials.
 
 * :doc:`Tutorials <Tutorials>`
 
-  - If you are new to ROS 2, it is recommended to start with the `ROS 2 tutorials <https://docs.ros.org/en/humble/Tutorials.html>`__
-  - There are not currently any Space-ROS specific tutorials.
 
-The Space ROS project
----------------------
+How-To Guides
+-------------
+
+TODO:
+
+* :doc:`How-to Guides<How-To-Guides>`
+
+
+Related Projects
+----------------
+
+TODO:
+
+
+Contributing
+------------
+
+TODO:
 
 If you're interested in the advancement of the Space ROS project:
 
 * :doc:`Contributing <The-Space-ROS-Project/Contributing>`
+
+
+Project Governance
+------------------
+
+TODO:
