@@ -143,12 +143,13 @@ macros = {
     'REPOS_FILE_BRANCH': 'main',
 }
 
-#html_favicon = 'favicon.ico'
+html_favicon = 'favicon.ico'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-# html_static_path = ['_static']
+html_static_path = ['_static']
+html_css_files = ['custom.css']
 
 # Drop any source link suffix
 html_sourcelink_suffix = ''
@@ -271,8 +272,7 @@ def smv_rewrite_configs(app, config):
     if app.config.smv_current_version != '':
         app.config.html_baseurl = app.config.html_baseurl + '/' + app.config.smv_current_version
         app.config.project = project + ': ' + app.config.smv_current_version.title()
-
-        app.config.html_logo = 'source/spaceros_black_on_transparent.png'
+        app.config.html_logo = '_static/logo.svg'
 
         # Override default values
         distro = app.config.smv_current_version
@@ -282,6 +282,8 @@ def smv_rewrite_configs(app, config):
             'DISTRO_TITLE_FULL': distro_full_names[distro],
             'REPOS_FILE_BRANCH' : 'master' if distro == 'rolling' else distro,
         }
+    else:
+        app.config.html_logo = '_static/logo.svg'
 
 def github_link_rewrite_branch(app, pagename, templatename, context, doctree):
     if app.config.smv_current_version != '':
