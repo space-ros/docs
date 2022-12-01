@@ -48,13 +48,13 @@ and included a Dashboard interface to view the output of the tools.
      - Description
    * - Cobra static analyzer
      - The `Cobra static analyzer <https://spinroot.com/cobra/>`_ was developed at NASA's Jet Propulsion Labratory (JPL) in 2015.
-       It supports multiple code analysis rule sets, including P10 and CWE. 
+       It supports multiple code analysis rule sets, including P10 and CWE.
        Cobra can perform interactive analyses of code bases with up to millions of lines of code, using a rich query scripting language.
    * - IKOS static analyzer
      - The `IKOS static analyzer <https://software.nasa.gov/software/ARC-16789-1>`_ is a NASA tool based on the theory of abstract interpretation.
        IKOS is scalable to large complex computer programs and presents a sound approach to verification of such programs.
    * - MC/DC testing tool
-     - Modified Condition/Decision Coverage (MC/DC) is required by some safety-critical standards. 
+     - Modified Condition/Decision Coverage (MC/DC) is required by some safety-critical standards.
        We have integrated MC/DC analysis according to `this approach <https://gtd-gmbh.gitlab.io/mcdc-checker/mcdc-checker/_downloads/bde6b1b30b75c07c02f00abd96208cfa/MCDC_for_Space_DASIA_2021.pdf>`_ that utilizes open source tools.
    * - SARIF output
      - For Space ROS, all of the static analyzers provide output in the `SARIF file format <http://docs.oasis-open.org/sarif/sarif/v2.0/csprd01/sarif-v2.0-csprd01.html>`_, a standard, JSON-based format for the output of static analysis tools.
