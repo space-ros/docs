@@ -3,6 +3,7 @@ Reproducing CI Results Locally
 
 The Space ROS project uses the `Earthly <https://earthly.dev>`_ utility to provide consistent builds between various infrastructure providers and local developer workstations.
 
+Space ROS has periodic CI running in the `space-ros/docker <https://github.com/space-ros/docker>`_ repository.
 Space ROS CI runs on a daily basis using GitHub Actions and builds all packages included in the `Space ROS repos file <https://github.com/space-ros/space-ros/blob/main/ros2.repos>`_.
 Two artifacts are produced from these builds: an OCI-compliant container image published to Docker Hub as ``osrf/space-ros``, and a `build results archive <https://github.com/space-ros/process_sarif/blob/main/docs/build-results-archive.md>`_ available as a GitHub Actions artifact.
 
