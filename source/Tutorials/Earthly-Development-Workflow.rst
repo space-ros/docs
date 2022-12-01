@@ -34,6 +34,9 @@ Trade-offs
 Earthly does not modify your host system outside of running containers and the local workspace directory.
 This has the advantage of setting up relatively quickly but it also means that working within earthly will not make setting up a standard ROS 2 development setup any easier.
 
+If you are new to building ROS, this tutorial is a good place to start in order to allow you to get up and running quickly.
+If you are familiar with the ROS development workflow and building ROS 2 from source, it is recommended that you follow the ROS 2 development instructions using the Space ROS repos file rather than this guide.
+
 The configured ``+build-testing`` target is comprehensive and always builds and tests the entire workspace.
 Even on a powerful workstation this process can take a long time.
 This tutorial does not cover iterating on an individual package or set of packages at this time.
