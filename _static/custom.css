@@ -3,3 +3,21 @@
 .wy-side-nav-search {
   background-color: #2c3553;
 }
+
+.wy-nav-top {
+  background-color: #2c3553;
+}
+
+.guidance {
+  color: red;
+  font-style: italic;
+}
+
+.image-subtitle {
+  font-size: 0.8em;
+  border-top: 1px solid black;
+}
+
+.wy-table-responsive table td {
+  white-space: normal;
+}
