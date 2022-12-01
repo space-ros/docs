@@ -24,6 +24,7 @@ Before you can build artifacts locally, Space ROS sources must be checked out.
 To check out the default sources you can use Earthly
 
 .. code-block:: bash
+
    earthly +sources
 
 Once the default sources are checked out you can modify them by making changes to the contents of the ``src`` directory on your local machine.
@@ -35,6 +36,7 @@ Building the Space ROS container image locally
 The ``osrf/space-ros`` container image can be built by running the ``+image`` earthly target.
 
 .. code-block:: bash
+
    earthly +image
 
 Once this process completes, your local docker registry should contain an image tagged ``osrf/space-ros:latest``.
@@ -47,6 +49,7 @@ To generate a build results archive locally you can use the ``+build-testing`` t
 This will run a complete build of Space ROS and can take several hours depending on your hardware!
 
 .. code-block:: bash
+
    earthly +build-testing
 
 The ``+build-testing`` target will build all packages in ``src`` and place the resulting ``install`` directory as well as a build results archive in ``log/build_results_archives``.
