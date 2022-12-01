@@ -80,6 +80,7 @@ The ``+sources`` target will use ``vcs`` to clone repositories from the Space RO
 If you want to check that Space ROS builds in its default configuration, you can jump to step 5 below and return after to verify that Space ROS's default configuration is currently building.
 
 At this point you can make any modifications or additions to the repositories in src before continuing with the build.
+Editing the sources now will allow you to test Space ROS builds with additional packages or with modifications to an existing package which could be used to test in progress development branches before they are merged.
 None of the later steps of this tutorial will modify the contents of ``src``.
 
 
