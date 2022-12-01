@@ -8,7 +8,6 @@ First Time Building Space ROS
    :local:
 
 **Goal:** Create a workspace using Earthly for development and testing.
-
 **Tutorial level:** Beginner
 
 **Time:** 10 minutes (not including build time)
@@ -17,7 +16,7 @@ Prerequisites
 -------------
 
 * `git installation <https://git-scm.com/book/en/v2/Getting-Started-Installing-Git>`__
-* `Earthly installation <https://earthly.dev/get-earthly>`__ which requires `Docker <https://docker.com>`__ (recommended) or `Podman <https://podman.io>`__.
+* `Earthly installation <https://earthly.dev/get-earthly>`__ which requires `Docker <https://docker.com>`__.
 * Understanding of basic terminal commands (`here’s a guide for Linux <http://www.ee.surrey.ac.uk/Teaching/Unix/>`__)
 
 Introduction
