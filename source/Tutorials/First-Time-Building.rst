@@ -86,7 +86,7 @@ None of the later steps of this tutorial will modify the contents of ``src``.
 5 Building and testing Space ROS
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``+build-testing`` target will build all packages in ``src`` and place the resulting ``install`` directory as well as a build_resuilts archive in ``log/build_results_archives``.
+The ``+build-testing`` target will build all packages in ``src`` and place the resulting ``install`` directory as well as a build results archive in ``log/build_results_archives``.
 Any changes you make to the repositories in ``src`` will be reflected in each build.
 It isn't currently possible to change the build arguments or limit which packages are built and tested without modifying the target directly.
 
