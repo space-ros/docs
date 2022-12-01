@@ -118,8 +118,52 @@
              
   <div class="section" id="reproducing-ci-results-locally">
 <h1>Reproducing CI Results Locally<a class="headerlink" href="#reproducing-ci-results-locally" title="Permalink to this headline"></a></h1>
-<p>TODO:</p>
-<p>How to reproduce CI results locally using Earthly.</p>
+<p>Space ROS has periodic CI running in the <a class="reference external" href="https://github.com/space-ros/docker">space-ros/docker</a> repository.
+Space ROS CI runs on a daily basis using GitHub Actions and builds all packages included in the <a class="reference external" href="https://github.com/space-ros/space-ros/blob/main/ros2.repos">Space ROS repos file</a>.
+Two artifacts are produced from these builds: an OCI-compliant container image published to Docker Hub as <code class="docutils literal notranslate"><span class="pre">osrf/space-ros</span></code>, and a <a class="reference external" href="https://github.com/space-ros/process_sarif/blob/main/docs/build-results-archive.md">build results archive</a> available as a GitHub Actions artifact.</p>
+<p>The Space ROS project uses the <a class="reference external" href="https://earthly.dev">Earthly</a> utility to provide consistent builds between various infrastructure providers and local developer workstations.</p>
+<p>Reproducing CI results locally can help you with testing new changes, such as bug fixes or feature implementation, on your local machine before submitting changes to the upstream project.</p>
+<div class="section" id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline"></a></h2>
+<p>In order to reproduce these artifacts locally, you will need the following:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://earthly.dev/get-earthly">earthly installation</a> which requires <a class="reference external" href="https://docker.com">Docker</a>.</p></li>
+<li><p>Understanding of basic terminal commands (<a class="reference external" href="http://www.ee.surrey.ac.uk/Teaching/Unix/">here’s a guide for Linux</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="setting-up-your-local-sources">
+<h2>Setting up your local sources<a class="headerlink" href="#setting-up-your-local-sources" title="Permalink to this headline"></a></h2>
+<p>Before you can build artifacts locally, Space ROS sources must be checked out.
+To check out the default sources you can use Earthly</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>earthly +sources
+</pre></div>
+</div>
+<p>Once the default sources are checked out you can modify them by making changes to the contents of the <code class="docutils literal notranslate"><span class="pre">src</span></code> directory on your local machine.
+If you have a complete custom repos file you can use any custom commands to populate the <code class="docutils literal notranslate"><span class="pre">src</span></code> directory.</p>
+</div>
+<div class="section" id="building-the-space-ros-container-image-locally">
+<h2>Building the Space ROS container image locally<a class="headerlink" href="#building-the-space-ros-container-image-locally" title="Permalink to this headline"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">osrf/space-ros</span></code> container image can be built by running the <code class="docutils literal notranslate"><span class="pre">+image</span></code> earthly target.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>earthly +image
+</pre></div>
+</div>
+<p>Once this process completes, your local docker registry should contain an image tagged <code class="docutils literal notranslate"><span class="pre">osrf/space-ros:latest</span></code>.
+You can re-tag this image and publish it to a container registry or use it locally instead of the published image.</p>
+</div>
+<div class="section" id="generating-build-results-locally">
+<h2>Generating build results locally<a class="headerlink" href="#generating-build-results-locally" title="Permalink to this headline"></a></h2>
+<p>To generate a build results archive locally you can use the <code class="docutils literal notranslate"><span class="pre">+build-testing</span></code> target.
+This will run a complete build of Space ROS and can take several hours depending on your hardware!</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>earthly +build-testing
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">+build-testing</span></code> target will build all packages in <code class="docutils literal notranslate"><span class="pre">src</span></code> and place the resulting <code class="docutils literal notranslate"><span class="pre">install</span></code> directory as well as a build results archive in <code class="docutils literal notranslate"><span class="pre">log/build_results_archives</span></code>.
+Any changes you make to the repositories in <code class="docutils literal notranslate"><span class="pre">src</span></code> will be reflected in each build.
+It isn’t currently possible to change the build arguments or limit which packages are built and tested without modifying the target directly.</p>
+<p>This can be used to test changes to Space ROS packages or the introduction of new packages before submitting those changes to the upstream project repositories.
+Each successful run of <code class="docutils literal notranslate"><span class="pre">earthly</span> <span class="pre">+build-testing</span></code> will generate a new results archive.
+It may be helpful to upload that archive when contributing pull requests to Space ROS projects to demonstrate that your changes have successfully undergone local testing.</p>
+</div>
 </div>
 
 

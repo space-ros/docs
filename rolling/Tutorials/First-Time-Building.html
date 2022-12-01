@@ -117,9 +117,95 @@
            <div itemprop="articleBody">
              
   <div class="section" id="first-time-building-space-ros">
-<h1>First Time Building Space ROS<a class="headerlink" href="#first-time-building-space-ros" title="Permalink to this headline"></a></h1>
-<p>TODO:</p>
-<p>A tutorial on building Space ROS for the first time.</p>
+<span id="id1"></span><h1>First Time Building Space ROS<a class="headerlink" href="#first-time-building-space-ros" title="Permalink to this headline"></a></h1>
+<div class="contents local topic" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#prerequisites" id="id2">Prerequisites</a></p></li>
+<li><p><a class="reference internal" href="#introduction" id="id3">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#tasks" id="id4">Tasks</a></p></li>
+<li><p><a class="reference internal" href="#summary-and-conclusion" id="id5">Summary and conclusion</a></p></li>
+</ul>
+</div>
+<p><strong>Goal:</strong> Create a workspace using Earthly for development and testing.
+<strong>Tutorial level:</strong> Beginner</p>
+<p><strong>Time:</strong> 10 minutes (not including build time)</p>
+<div class="section" id="prerequisites">
+<h2><a class="toc-backref" href="#id2">Prerequisites</a><a class="headerlink" href="#prerequisites" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">git installation</a></p></li>
+<li><p><a class="reference external" href="https://earthly.dev/get-earthly">Earthly installation</a> which requires <a class="reference external" href="https://docker.com">Docker</a>.</p></li>
+<li><p>Understanding of basic terminal commands (<a class="reference external" href="http://www.ee.surrey.ac.uk/Teaching/Unix/">here’s a guide for Linux</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="introduction">
+<h2><a class="toc-backref" href="#id3">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline"></a></h2>
+<p>Space ROS, like ROS 2, is composed of a number of independent software projects each maintained in its own repositories.
+The ROS community has a number of tools to help organize and improve working with multiple repositories.
+Earthly is an automation tool where each target is run in a dedicated container with the ability to share artifacts between targets and the local host.
+The Space ROS project primarily uses Earthly to create automation that runs consistently in local development, and in hosted infrastructure such as GitHub Actions.</p>
+<div class="section" id="trade-offs">
+<h3>Trade-offs<a class="headerlink" href="#trade-offs" title="Permalink to this headline"></a></h3>
+<p>Earthly does not modify your host system outside of running containers and the local workspace directory.
+This has the advantage of setting up relatively quickly but it also means that working within Earthly will not make setting up a standard ROS 2 development setup any easier.</p>
+<p>If you are new to building ROS, this tutorial is a good place to start in order to allow you to get up and running quickly.
+If you are familiar with the ROS development workflow and building ROS 2 from source, it is recommended that you follow the ROS 2 development instructions using the Space ROS repos file rather than this guide.</p>
+<p>The configured <code class="docutils literal notranslate"><span class="pre">+build-testing</span></code> target is comprehensive and always builds and tests the entire workspace.
+Even on a powerful workstation this process can take a long time.
+This tutorial does not cover iterating on an individual package or set of packages at this time.</p>
+</div>
+</div>
+<div class="section" id="tasks">
+<h2><a class="toc-backref" href="#id4">Tasks</a><a class="headerlink" href="#tasks" title="Permalink to this headline"></a></h2>
+<div class="section" id="create-a-local-workspace-directory">
+<h3>1 Create a local workspace directory<a class="headerlink" href="#create-a-local-workspace-directory" title="Permalink to this headline"></a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">mkdir spaceros_ws</span>
+<span class="go">cd spaceros_ws</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="bootstrap-the-earthly-configuration-file">
+<h3>2 Bootstrap the Earthly configuration file.<a class="headerlink" href="#bootstrap-the-earthly-configuration-file" title="Permalink to this headline"></a></h3>
+<p>Configuration for Earthly is stored in an <code class="docutils literal notranslate"><span class="pre">Earthfile</span></code> at the top level directory.
+If you inspect the contents, you’ll find a file which looks like a hybrid of a <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code>/<code class="docutils literal notranslate"><span class="pre">Containerfile</span></code> and a <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>.
+It is not necessary to understand the contents of this file in order to complete this tutorial or use Earthly for Space ROS development but you can read the <a class="reference external" href="https://docs.earthly.dev/docs/earthfile">Earthfile reference</a> if interested.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">earthly --artifact github.com/space-ros/docker/spaceros:nuclearsandwich/earthly-prototyping+earthfile/Earthfile</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="clone-space-ros-sources">
+<h3>3 Clone Space ROS sources<a class="headerlink" href="#clone-space-ros-sources" title="Permalink to this headline"></a></h3>
+<p>In a typical ROS 2 or Space ROS development setup, you would need to configure the ROS repositories on your host system and install the <code class="docutils literal notranslate"><span class="pre">vcs</span></code> utility.
+With Earthly this utility and the others required for ROS development are installed and used within containers, avoiding this requirement.
+The <code class="docutils literal notranslate"><span class="pre">+sources</span></code> target will use <code class="docutils literal notranslate"><span class="pre">vcs</span></code> to clone repositories from the Space ROS repos file and save the results to the <code class="docutils literal notranslate"><span class="pre">src</span></code> subdirectory of your host workspace.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">earthly +sources</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="optionally-update-space-ros-sources">
+<h3>4 Optionally update Space ROS sources<a class="headerlink" href="#optionally-update-space-ros-sources" title="Permalink to this headline"></a></h3>
+<p>If you want to check that Space ROS builds in its default configuration, you can jump to step 5 below and return after to verify that Space ROS’s default configuration is currently building.</p>
+<p>At this point you can make any modifications or additions to the repositories in src before continuing with the build.
+Editing the sources now will allow you to test Space ROS builds with additional packages or with modifications to an existing package which could be used to test in progress development branches before they are merged.
+None of the later steps of this tutorial will modify the contents of <code class="docutils literal notranslate"><span class="pre">src</span></code>.</p>
+</div>
+<div class="section" id="building-and-testing-space-ros">
+<h3>5 Building and testing Space ROS<a class="headerlink" href="#building-and-testing-space-ros" title="Permalink to this headline"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">+build-testing</span></code> target will build all packages in <code class="docutils literal notranslate"><span class="pre">src</span></code> and place the resulting <code class="docutils literal notranslate"><span class="pre">install</span></code> directory as well as a build results archive in <code class="docutils literal notranslate"><span class="pre">log/build_results_archives</span></code>.
+Any changes you make to the repositories in <code class="docutils literal notranslate"><span class="pre">src</span></code> will be reflected in each build.
+It isn’t currently possible to change the build arguments or limit which packages are built and tested without modifying the target directly.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">earthly +build-testing</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="summary-and-conclusion">
+<h2><a class="toc-backref" href="#id5">Summary and conclusion</a><a class="headerlink" href="#summary-and-conclusion" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Earthly can help you get started by quickly setting up a container environment for building Space ROS yourself and replicating the periodic builds running on Space ROS infrastructure.</p></li>
+<li><p>Earthly does not help set up your host computer to develop or run Space ROS directly.</p></li>
+</ul>
+</div>
 </div>
 
 
