@@ -80,7 +80,6 @@ If you want to check that Space ROS builds in its default configuration, you can
 
 At this point you can make any modifications or additions to the repositories in src before continuing with the build.
 Editing the sources now will allow you to test Space ROS builds with additional packages or with modifications to an existing package which could be used to test in progress development branches before they are merged.
-The `Reproducing-CI-Results-Locally`_ article contains additional information regarding local modification of sources.
 None of the later steps of this tutorial will modify the contents of ``src``.
 
 

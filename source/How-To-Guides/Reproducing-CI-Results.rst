@@ -1,5 +1,3 @@
-.. Reproducing-CI-Results-Locally
-
 Reproducing CI Results Locally
 ==============================
 
