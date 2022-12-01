@@ -17,7 +17,7 @@ Prerequisites
 -------------
 
 * `git installation <https://git-scm.com/book/en/v2/Getting-Started-Installing-Git>`__
-* `earthly installation <https://earthly.dev/get-earthly>`__ which requires `Docker <https://docker.com>`__ (recommended) or `Podman <https://podman.io>`__.
+* `Earthly installation <https://earthly.dev/get-earthly>`__ which requires `Docker <https://docker.com>`__ (recommended) or `Podman <https://podman.io>`__.
 * Understanding of basic terminal commands (`here’s a guide for Linux <http://www.ee.surrey.ac.uk/Teaching/Unix/>`__)
 
 Introduction
@@ -26,13 +26,13 @@ Introduction
 Space ROS, like ROS 2, is composed of a number of independent software projects each maintained in its own repositories.
 The ROS community has a number of tools to help organize and improve working with multiple repositories.
 Earthly is an automation tool where each target is run in a dedicated container with the ability to share artifacts between targets and the local host.
-The Space ROS project primarily uses earthly to create automation that runs consistently in local development, and in hosted infrastructure such as GitHub Actions.
+The Space ROS project primarily uses Earthly to create automation that runs consistently in local development, and in hosted infrastructure such as GitHub Actions.
 
 Trade-offs
 ^^^^^^^^^^
 
 Earthly does not modify your host system outside of running containers and the local workspace directory.
-This has the advantage of setting up relatively quickly but it also means that working within earthly will not make setting up a standard ROS 2 development setup any easier.
+This has the advantage of setting up relatively quickly but it also means that working within Earthly will not make setting up a standard ROS 2 development setup any easier.
 
 If you are new to building ROS, this tutorial is a good place to start in order to allow you to get up and running quickly.
 If you are familiar with the ROS development workflow and building ROS 2 from source, it is recommended that you follow the ROS 2 development instructions using the Space ROS repos file rather than this guide.
@@ -52,12 +52,12 @@ Tasks
   mkdir spaceros_ws
   cd spaceros_ws
 
-2 Bootstrap the earthly configuration file.
+2 Bootstrap the Earthly configuration file.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Configuration for earthly is stored in an ``Earthfile`` at the top level directory.
+Configuration for Earthly is stored in an ``Earthfile`` at the top level directory.
 If you inspect the contents, you'll find a file which looks like a hybrid of a ``Dockerfile``/``Containerfile`` and a ``Makefile``.
-It is not necessary to understand the contents of this file in order to complete this tutorial or use earthly for Space ROS development but you can read the `Earthfile reference <https://docs.earthly.dev/docs/earthfile>`__ if interested.
+It is not necessary to understand the contents of this file in order to complete this tutorial or use Earthly for Space ROS development but you can read the `Earthfile reference <https://docs.earthly.dev/docs/earthfile>`__ if interested.
 
 .. code-block:: console
 
@@ -67,7 +67,7 @@ It is not necessary to understand the contents of this file in order to complete
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In a typical ROS 2 or Space ROS development setup, you would need to configure the ROS repositories on your host system and install the ``vcs`` utility.
-With earthly this utility and the others required for ROS development are installed and used within containers, avoiding this requirement.
+With Earthly this utility and the others required for ROS development are installed and used within containers, avoiding this requirement.
 The ``+sources`` target will use ``vcs`` to clone repositories from the Space ROS repos file and save the results to the ``src`` subdirectory of your host workspace.
 
 .. code-block:: console
