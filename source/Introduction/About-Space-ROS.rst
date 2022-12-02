@@ -41,21 +41,14 @@ Today, writing custom software for each mission is no longer a viable option as 
 
 The result is that there is an increasing demand for software re-use in space systems.
 
-..
-    In fact, the space community has been moving in the direction of re-usable software for some time, with flight software frameworks like FPrime and cFS, as well as mission control software, like Yamcs and OpenMCT.
-    There are also smaller open source projects, like AprilTag, that have been used on space missions.
-    In the picture here you can see the tags on the Perserverence rover, for example.
-    These tags can be used as a point of reference or can be scanned to provide information, kind of like a QR code.
-    The trend towards using open source software and reuse, in general, for space systems is clear.
-
 .. image:: /images/ros_logo.png
     :width: 125
 
 Meanwhile, back here on Earth, the broader robotics community has standardized on ROS, an open source platform for building robotics applications.
 ROS includes communications middleware, drivers that interface to hardware, state-of-the-art algorithms, and a wide range of developer tools.
 Implementing a robot for space applications can be greatly simplified by incorporating a robotics framework like ROS.
-For example, ROS packages like `MoveIt2 <https://github.com/ros-planning/moveit2>`_ can plan and execute motion for manipulators, like the Canadarm or the Robonaut with its hands and fingers.
-Other packages like `Navigation2 <https://github.com/ros-planning/navigation2>`_ provide the means for robots to perform dynamic path planning and navigation from point A to point B, while avoiding obstacles.
+For example, ROS packages like `MoveIt2 <https://moveit.ros.org>`_ can plan and execute motion for manipulators, like the Canadarm or the Robonaut with its hands and fingers.
+Other packages like `Navigation2 <https://navigation.ros.org>`_ provide the means for robots to perform dynamic path planning and navigation from point A to point B, while avoiding obstacles.
 
 .. image:: /images/ros-robots.png
 
@@ -85,9 +78,6 @@ Space ROS will be an open source, space-certifiable robotics framework that is d
 It will begin as a subset of ROS 2 and will be aligned with aerospace and NASA standards, such as `DO-178C <https://en.wikipedia.org/wiki/DO-178C>`_ and `NPR7150.2 <https://nodis3.gsfc.nasa.gov/displayDir.cfm?t=NPR&c=7150&s=2>`_, so that it can be adopted for high assurance missions.
 Space ROS will also provide space-specific modules and interface with existing flight software tools and frameworks.
 Space ROS will address the demand for software reuse in space robotics while bringing the benefits of ROS to space.
-
-..
-    We hope to integrate contributions from various companies and organizations to bring the benefits of the ROS community to space.
 
 .. image:: /images/curiosity.jpeg
 

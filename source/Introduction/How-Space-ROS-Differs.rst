@@ -7,10 +7,8 @@ The following sections list the differences between Space ROS and the standard R
 
 Builds and Infrastructure
 -------------------------
-..
-  Space ROS builds include a subset of ROS 2 packages.
 
-There are several new infrastructure elements for Space ROS, including  information resources and regular builds provided to the Space ROS community.
+There are several new infrastructure elements for Space ROS, including information resources and regular builds provided to the Space ROS community.
 
 .. list-table::
    :widths: 25 75
@@ -19,16 +17,16 @@ There are several new infrastructure elements for Space ROS, including  informat
    * - Item
      - Description
    * - Website
-     - The `Space ROS website <https://space-ros.github.io/spaceros.org/>`_ has high-level information about Space ROS as well as a searchable set of related articles and videos.
+     - The `Space ROS website <https://space.ros.org/>`_ has high-level information about Space ROS as well as a searchable set of related articles and videos.
    * - Documentation site
      - The Space ROS documentation site (this site) contains information about Space ROS, without duplicating the standard ROS 2 documentation.
        For standard ROS 2 topics, one can refer to the `ROS 2 Humble documentation <https://docs.ros.org/en/humble/index.html>`_.
-   * - Github organization
-     - There is a `github organization <https://github.com/space-ros>`_ for all of the Space ROS projects.
+   * - GitHub organization
+     - There is a `github organization <https://github.com/space-ros>`_ for many of the Space ROS projects.
    * - Docker images
      - Pre-built Docker images are available from the `OSRF Space ROS page <https://hub.docker.com/r/osrf/space-ros>`_ on Docker Hub.
    * - Earthly builds
-     - Space ROS builds use the `Earthly build tool <https://earthly.dev/>`_.
+     - Space ROS builds use the `Earthly CI/CD tool <https://earthly.dev/>`_.
        This allows local developer builds to use the identical system as the CI builds.
 
 
@@ -113,6 +111,6 @@ The Space ROS project also incorporates space-specific functionality, such as a 
      - `RTEMS <https://www.rtems.org/>`_ is an open source real-time operating system that supports open standard application programming interfaces such as POSIX and is used in space flight, medical, networking and many more embedded devices.
        To further support flight software systems we build Space ROS for RTEMS and have a demonstration application that runs on RTEMS.
    * - cFS/ROS 2 Bridge
-     - There is an active projects the `BRASH Integration Toolkit for ROS2 and Flight Software Interoperability	<https://sbir.nasa.gov/SBIR/abstracts/20/sttr/phase2/STTR-20-2-T4.01-5037.html>`_ that promises to bridge the gap between Space ROS and legacy flight software systems.
+     - There is an active project, the `BRASH Integration Toolkit for ROS2 and Flight Software Interoperability	<https://sbir.nasa.gov/SBIR/abstracts/20/sttr/phase2/STTR-20-2-T4.01-5037.html>`_, that promises to bridge the gap between Space ROS and legacy flight software systems.
        We hope to work with this project to integrate some of the core functionality into Space ROS.
 
