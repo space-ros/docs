@@ -4,7 +4,6 @@ Tutorials
 =========
 
 If you're new to ROS 2, we recommend first reviewing the `ROS 2 tutorials <https://docs.ros.org/en/humble/Tutorials.html>`_, which are a collection tutorials on specific topics with step-by-step instructions meant to steadily build skills in ROS 2.
-
 The following tutorials are specific to Space ROS.
 
 .. toctree::
