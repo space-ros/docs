@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How Space ROS Differs from ROS 2 &mdash; Space ROS Documentation: Rolling  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://space-ros.github.io/docs/rolling/Introduction/How-Space-ROS-Differs.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="The Space ROS Development and Release Model" href="Dev-And-Release-Model.html" />
+    <link rel="prev" title="About Space ROS" href="About-Space-ROS.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Space ROS Documentation: Rolling
+            <img src="../_static/logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../Introduction.html">Introduction</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="About-Space-ROS.html">About Space ROS</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">How Space ROS Differs from ROS 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Dev-And-Release-Model.html">The Space ROS Development and Release Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Getting-Started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Getting-Started/Docker-Images.html">The Space ROS Docker Images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Getting-Started/Building-From-Source.html">Building Space ROS from Source</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Demos.html">Demos</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Demos/Canadarm.html">Canadarm Demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Demos/Mars-Rover.html">Mars Rover Demo</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Tutorials.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Tutorials/First-Time-Building.html">First Time Building Space ROS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Tutorials/Eventing-And-Telemetry.html">The Eventing and Telemetry Subsystem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Tutorials/Requirements-Tools-And-Processes.html">Requirements Tools and Processes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Tutorials/Back-Porting-Requirements.html">Back-Porting Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Tutorials/Run-On-RTEMS.html">Running Space ROS on RTEMS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../How-To-Guides.html">How-to Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../How-To-Guides/Use-Custom-Allocator.html">Using a Custom Memory Allocator with Space ROS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../How-To-Guides/Reproducing-CI-Results.html">Reproducing CI Results Locally</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../How-To-Guides/Use-Cobra.html">Using the Cobra Static Analyzer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../How-To-Guides/MC-DC-Testing-Tool.html">Using the MC/DC Testing Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../How-To-Guides/Use-VSCode-With-Docker.html">Using VSCode with the Space ROS Docker Images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../How-To-Guides/Use-The-Dashboard.html">Using use the Space ROS Dashboard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../How-To-Guides/Use-Simulation-Assets.html">Using Space-Related Simulation Assets</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Related-Projects.html">Related Projects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Related-Projects/Doorstop.html">Doorstop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Related-Projects/FRET.html">FRET</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Related-Projects/IKOS.html">IKOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Related-Projects/Cobra.html">Cobra</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../The-Space-ROS-Project/Contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The-Space-ROS-Project/Governance.html">Project Governance</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Space ROS Documentation: Rolling</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="../Introduction.html">Introduction</a></li>
+      <li class="breadcrumb-item active">How Space ROS Differs from ROS 2</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/space-ros/docs/blob/rolling/source/Introduction/How-Space-ROS-Differs.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="how-space-ros-differs-from-ros-2">
+<h1>How Space ROS Differs from ROS 2<a class="headerlink" href="#how-space-ros-differs-from-ros-2" title="Permalink to this headline"></a></h1>
+<p>To date, work has focused on establishing the foundation for Space ROS, including builds and infrastructure, code analysis tools, requirements tools and processes, and space-specific functionality.
+These efforts extend the foundation provided by ROS 2.
+The following sections list the differences between Space ROS and the standard ROS 2 distributions.</p>
+<div class="section" id="builds-and-infrastructure">
+<h2>Builds and Infrastructure<a class="headerlink" href="#builds-and-infrastructure" title="Permalink to this headline"></a></h2>
+<p>There are several new infrastructure elements for Space ROS, including information resources and regular builds provided to the Space ROS community.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Item</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Website</p></td>
+<td><p>The <a class="reference external" href="https://space.ros.org/">Space ROS website</a> has high-level information about Space ROS as well as a searchable set of related articles and videos.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Documentation site</p></td>
+<td><p>The Space ROS documentation site (this site) contains information about Space ROS, without duplicating the standard ROS 2 documentation.
+For standard ROS 2 topics, one can refer to the <a class="reference external" href="https://docs.ros.org/en/humble/index.html">ROS 2 Humble documentation</a>.</p></td>
+</tr>
+<tr class="row-even"><td><p>GitHub organization</p></td>
+<td><p>There is a <a class="reference external" href="https://github.com/space-ros">github organization</a> for many of the Space ROS projects.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Docker images</p></td>
+<td><p>Pre-built Docker images are available from the <a class="reference external" href="https://hub.docker.com/r/osrf/space-ros">OSRF Space ROS page</a> on Docker Hub.</p></td>
+</tr>
+<tr class="row-even"><td><p>Earthly builds</p></td>
+<td><p>Space ROS builds use the <a class="reference external" href="https://earthly.dev/">Earthly CI/CD tool</a>.
+This allows local developer builds to use the identical system as the CI builds.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="code-analysis-tools">
+<h2>Code Analysis Tools<a class="headerlink" href="#code-analysis-tools" title="Permalink to this headline"></a></h2>
+<p>Static analysis tools are recommended by various standards such as NPR 7150.2 and DO-178C.
+The initial focus for Space ROS has been on source code quality and producing the artifacts required to support certification.
+To this end, we have added code analysis tools beyond the core set available with ROS 2, updated the tool output to use the standard SARIF file format,
+and included a Dashboard interface to view the output of the tools.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Item</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Cobra static analyzer</p></td>
+<td><p>The <a class="reference external" href="https://spinroot.com/cobra/">Cobra static analyzer</a> was developed at NASA’s Jet Propulsion Labratory (JPL) in 2015.
+It supports multiple code analysis rule sets, including P10 and CWE.
+Cobra can perform interactive analyses of code bases with up to millions of lines of code, using a rich query scripting language.</p></td>
+</tr>
+<tr class="row-odd"><td><p>IKOS static analyzer</p></td>
+<td><p>The <a class="reference external" href="https://software.nasa.gov/software/ARC-16789-1">IKOS static analyzer</a> is a NASA tool based on the theory of abstract interpretation.
+IKOS is scalable to large complex computer programs and presents a sound approach to verification of such programs.</p></td>
+</tr>
+<tr class="row-even"><td><p>MC/DC testing tool</p></td>
+<td><p>Modified Condition/Decision Coverage (MC/DC) is required by some safety-critical standards.
+We have integrated MC/DC analysis according to <a class="reference external" href="https://gtd-gmbh.gitlab.io/mcdc-checker/mcdc-checker/_downloads/bde6b1b30b75c07c02f00abd96208cfa/MCDC_for_Space_DASIA_2021.pdf">this approach</a> that utilizes open source tools.</p></td>
+</tr>
+<tr class="row-odd"><td><p>SARIF output</p></td>
+<td><p>For Space ROS, all of the static analyzers provide output in the <a class="reference external" href="http://docs.oasis-open.org/sarif/sarif/v2.0/csprd01/sarif-v2.0-csprd01.html">SARIF file format</a>, a standard, JSON-based format for the output of static analysis tools.</p></td>
+</tr>
+<tr class="row-even"><td><p>The SARIF bundle</p></td>
+<td><p>After running static analyzers on the Space ROS source code, the Space ROS build system gathers the SARIF files produced by the analyzers into a single archive file.
+This archive contains the original SARIF files, processed SARIF files where some of the redundant output has been removed, and archive metadata.</p></td>
+</tr>
+<tr class="row-odd"><td><p>The Code Analysis Dashboard</p></td>
+<td><p>the Code Analysis Dashboard, a Visual Studio Code plugin, reads the SARIF files and presents the issues detected by the static analyzers.
+Developers can also use the various charts and graphs provided by the Dashboard to understand how issues are addressed over time.
+For example, by comparing the analysis output from two separate Space ROS builds.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="requirements-tools-and-processes">
+<h2>Requirements Tools and Processes<a class="headerlink" href="#requirements-tools-and-processes" title="Permalink to this headline"></a></h2>
+<p>An essential part of safety critical projects conforming to industry quality standards is capturing and tracking requirements, including full requirements traceability from high-level requirements to code-level artifacts.
+With Space ROS, we have incorporated tools that help us to meet the meta-level requirements introduced by aerospace quality standards.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Item</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Doorstop</p></td>
+<td><p><a class="reference external" href="https://doorstop.readthedocs.io/en/latest/">Doorstop</a> is a requirements management tool that facilitates the storage of textual requirements alongside source code in version control.
+Doorstop provides mechanisms for entering and modifying a hierarchical set of requirements, validating traceability through requirements levels, and publishing documents in several formats.</p></td>
+</tr>
+<tr class="row-odd"><td><p>FRET</p></td>
+<td><p><a class="reference external" href="https://software.nasa.gov/software/ARC-18066-1">FRET</a> is a framework for the elicitation, formalization and understanding of requirements.
+Users enter system requirements in a specialized natural language.
+FRET helps understanding and review of semantics by utilizing a variety of forms for each requirement: natural language description, formal mathematical logics, and diagrams.
+Requirements can be defined in a hierarchical fashion and can be exported in a variety of forms to be used by analysis tools.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="space-specific-functionality">
+<h2>Space-Specific Functionality<a class="headerlink" href="#space-specific-functionality" title="Permalink to this headline"></a></h2>
+<p>The Space ROS project also incorporates space-specific functionality, such as a package to support telemetry from flight software systems.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Item</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>C++ PMR memory allocator</p></td>
+<td><p>We have updated upstream ROS 2 code to ensure that users can provide their own allocator and it will be used by the core Space ROS modules.
+Users are able to provide cutom allocators designed for specific requirements, such as avoiding non-determinism.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Eventing &amp; Telemetry Subsystem</p></td>
+<td><p>The Eventing and Telemetry System (ETS) is the system responsible for providing robust event reporting functionality.
+ETS is used to instrument and monitor flight software.</p></td>
+</tr>
+<tr class="row-even"><td><p>Demo applications</p></td>
+<td><p>Space ROS provides demonstration applications that integrate Space ROS with simulated robots, including the Curiosity Mars rover and the Canadarm manipulator.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Simulation assets</p></td>
+<td><p>There is a <a class="reference external" href="https://github.com/space-ros/simulation">repository in the Space ROS github organization</a> that hosts space-related simulation assets.
+This repository holds all of the simulation assets used in our demos and is organized to be scalable so that we can continue to add more simulation assets over time.</p></td>
+</tr>
+<tr class="row-even"><td><p>RTEMS</p></td>
+<td><p><a class="reference external" href="https://www.rtems.org/">RTEMS</a> is an open source real-time operating system that supports open standard application programming interfaces such as POSIX and is used in space flight, medical, networking and many more embedded devices.
+To further support flight software systems we build Space ROS for RTEMS and have a demonstration application that runs on RTEMS.</p></td>
+</tr>
+<tr class="row-odd"><td><p>cFS/ROS 2 Bridge</p></td>
+<td><p>There is an active project, the <a class="reference external" href="https://sbir.nasa.gov/SBIR/abstracts/20/sttr/phase2/STTR-20-2-T4.01-5037.html">BRASH Integration Toolkit for ROS2 and Flight Software Interoperability</a>, that promises to bridge the gap between Space ROS and legacy flight software systems.
+We hope to work with this project to integrate some of the core functionality into Space ROS.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="About-Space-ROS.html" class="btn btn-neutral float-left" title="About Space ROS" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Dev-And-Release-Model.html" class="btn btn-neutral float-right" title="The Space ROS Development and Release Model" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Open Robotics.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
