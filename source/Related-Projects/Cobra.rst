@@ -27,7 +27,7 @@ How is Cobra used in Space ROS?
 
 The Space ROS Docker image incorporates the *cobra* command-line tool.
 In addition, there is a Python-based wrapper tool, *ament_cobra*, that is used to integrate Cobra into the ament-based build and test system.
-That is, when building and executing tests for Space ROS, along with the other source code analysis tools, ament_cobra is invoked to analyze the code using the AUTOSAR C++ 14 ruleset. 
+That is, when building and executing tests for Space ROS, along with the other source code analysis tools, ament_cobra is invoked to analyze the code using the AUTOSAR C++ 14 ruleset.
 For more detailed information about how to use Cobra when developing code for Space ROS, see the :doc:`Using the Cobra Static Analyzer <../How-To-Guides/Use-Cobra>` How-To Guide.
 
 Additional resources
