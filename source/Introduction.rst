@@ -2,7 +2,7 @@ Introduction
 ============
 
 Space ROS is an open-source software framework, derived from `ROS 2 <https://docs.ros.org/en/humble/index.html>`_ that will be hardened to be compatible with the demands of safety-critical space robotics applications.
-Conforming to the ROS 2 Application Programming Interface (API), Space ROS is designed to be platform independent, portable and project independent.
+Conforming to the ROS 2 Application Programming Interface (API), Space ROS is designed to be platform independent, portable, and project independent.
 Space ROS will provide a robust framework for space robotics applications where ROS 2 applications can be reused with little to no modification, enabling the space community to take advantage of the innovation of the ROS community.
 This will shorten the time for development of novel space robotics capabilities, enable reuse of capabilities between missions, and lower the life-cycle cost of new space robotics missions.
 
