@@ -118,47 +118,11 @@
              
   <div class="section" id="ikos">
 <h1>IKOS<a class="headerlink" href="#ikos" title="Permalink to this headline"></a></h1>
-<p>The <a class="reference external" href="https://www.rtca.org/">RTCA</a> standard, <a class="reference external" href="https://en.wikipedia.org/wiki/DO-178C">DO-178C</a>, includes an extension, <a class="reference external" href="https://my.rtca.org/productdetails?id=a1B36000001IcfeEAC">DO-333</a> , that describes how developers can use static analysis in certification.
-DO-333 provides guidance on how formal mathematical methods may be used for the purpose of producing verification evidence suitable for use in certification, listing <a class="reference external" href="https://en.wikipedia.org/wiki/Abstract_interpretation#:~:text=In%20computer%20science%2C%20abstract%20interpretation,over%20ordered%20sets%2C%20especially%20lattices.">Abstract Interpretation</a> as a possibility to obtain certification credits.</p>
-<p>IKOS is a static analysis framework based on the theory of abstract interpretation, and is used to develop static analyses that are both precise and scalable.
-IKOS separates concerns such as code parsing, model development, abstract domain management, results management, and analysis strategy, making certification-worthy static analysis accessible to a larger class of static analysis developers.</p>
-<p>IKOS uses special compiler and linker settings in order to analyze source code.
-To run IKOS on a large project, one uses the <em>ikos-scan</em> utility, a command line tool that runs the static analyzer over a codebase after performing a regular build.
-The ikos-scan command works by overriding the environment variables CC and CXX to intercept any compiler commands.
-Behind the scenes, ikos-scan builds the original program as well as a special LLVM bitcode (.bc) file that is used by the analyzer.
-The <em>ikos-report</em> tool then reads the .bc file generated in the previous step and carries out various analyses.</p>
-<p>IKOS is able to perform many different analyses, including:</p>
+<p>TODO:</p>
 <ul class="simple">
-<li><p><strong>buffer overflow analysis</strong> - checks for buffer overflows and out-of-bound array accesses</p></li>
-<li><p><strong>division by zero analysis</strong> - checks for integer divisions by zero</p></li>
-<li><p><strong>null pointer analysis</strong> - checks for null pointer dereferences</p></li>
-<li><p><strong>unaligned pointer analysis</strong> - checks for unaligned pointer dereferences</p></li>
-<li><p><strong>uninitialized variable analysis</strong> - checks for read of uninitialized variables</p></li>
-<li><p><strong>signed integer overflow analysis</strong> - checks for signed integer overflows</p></li>
-<li><p><strong>unsigned integer overflow analysis</strong> - checks for unsigned integer overflows</p></li>
-<li><p><strong>shift count analysis</strong> - checks for invalid shifts, where the amount shifted is greater or equal to the bit-width of the left operand, or less than zero</p></li>
-<li><p><strong>pointer overflow analysis</strong> - checks for pointer arithmetic overflows</p></li>
-<li><p><strong>pointer comparison analysis</strong> - checks for pointer comparisons between pointers referring to different objects</p></li>
-<li><p><strong>soundness analysis</strong> - checks for instructions that could make the analysis unsound, i.e miss bugs</p></li>
-<li><p><strong>function call analysis</strong> - checks for function calls through function pointers of the wrong type</p></li>
-<li><p><strong>dead code analysis</strong> - checks for unreachable statements</p></li>
-<li><p><strong>double free analysis</strong> - checks for double free, invalid free, use after free and use after return</p></li>
+<li><p>Describe how IKOS is used with Space ROS.</p></li>
+<li><p>Link to additional resources about IKOS, including papers, presentations, and its github repository.</p></li>
 </ul>
-<div class="section" id="how-is-ikos-used-with-space-ros">
-<h2>How is IKOS used with Space ROS?<a class="headerlink" href="#how-is-ikos-used-with-space-ros" title="Permalink to this headline"></a></h2>
-<p>The Space ROS Docker image incorporates the <em>ikos</em> command-line tool.
-In addition, there is a Python-based wrapper tool, <em>ament_ikos</em>, that is used to integrate IKOS into the ament-based build and test system.
-Space ROS adds ikos to the common set of linters and analysis tools used by most of the Space ROS core by including it in its forked version of ament_lint_common.
-Then, when building and executing tests for Space ROS, along with the other source code analysis tools, ament_ikos is invoked to analyze any test binaries.</p>
-</div>
-<div class="section" id="additional-references">
-<h2>Additional References<a class="headerlink" href="#additional-references" title="Permalink to this headline"></a></h2>
-<p>Link to additional resources about IKOS, including papers, presentations, and its github repository.</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://jorgenavas.github.io/papers/ikos-sefm14.pdf">IKOS: A Framework for Static Analysis based on Abstract Interpretation</a></p></li>
-<li><p><a class="reference external" href="https://github.com/NASA-SW-VnV/ikos">The IKOS github repository</a></p></li>
-</ul>
-</div>
 </div>
 
 
