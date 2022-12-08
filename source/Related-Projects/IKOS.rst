@@ -8,10 +8,10 @@ IKOS is a static analysis framework based on the theory of abstract interpretati
 IKOS separates concerns such as code parsing, model development, abstract domain management, results management, and analysis strategy, making certification-worthy static analysis accessible to a larger class of static analysis developers.
 
 IKOS uses special compiler and linker settings in order to analyze source code.
-To run IKOS on a large project, one uses the *ikos-scan* utility, a command line tool that runs the static analyzer over a codebase after performing a regular build.
-The ikos-scan command works by overriding the environment variables CC and CXX to intercept any compiler commands.
-Behind the scenes, ikos-scan builds the original program as well as a special LLVM bitcode (.bc) file that is used by the analyzer.
-The *ikos-report* tool then reads the .bc file generated in the previous step and carries out various analyses.
+To run IKOS on a large project, one uses the ``ikos-scan`` utility, a command line tool that runs the static analyzer over a codebase after performing a regular build.
+The ``ikos-scan`` command works by overriding the environment variables CC and CXX to intercept any compiler commands.
+Behind the scenes, ``ikos-scan`` builds the original program as well as a special LLVM bitcode (``.bc``) file that is used by the analyzer.
+The ``ikos-report`` tool then reads the ``.bc`` file generated in the previous step and carries out various analyses.
 
 IKOS is able to perform many different analyses, including:
 
@@ -33,15 +33,15 @@ IKOS is able to perform many different analyses, including:
 How is IKOS used with Space ROS?
 --------------------------------
 
-The Space ROS Docker image incorporates the *ikos* command-line tool.
-In addition, there is a Python-based wrapper tool, *ament_ikos*, that is used to integrate IKOS into the ament-based build and test system.
-Space ROS adds ikos to the common set of linters and analysis tools used by most of the Space ROS core by including it in its forked version of ament_lint_common.
-Then, when building and executing tests for Space ROS, along with the other source code analysis tools, ament_ikos is invoked to analyze any test binaries.
+The Space ROS Docker image incorporates the ``ikos`` command-line tool.
+In addition, there is a Python-based wrapper tool, ``ament_ikos``, that is used to integrate IKOS into the ament-based build and test system.
+Space ROS adds ikos to the common set of linters and analysis tools used by most of the Space ROS core by including it in its forked version of ``ament_lint_common``.
+Then, when building and executing tests for Space ROS, along with the other source code analysis tools, ``ament_ikos`` is invoked to analyze any test binaries.
 
 Additional References
 ---------------------
 
-Link to additional resources about IKOS, including papers, presentations, and its github repository.
+The following resources are available to learn more about IKOS:
 
 * `IKOS: A Framework for Static Analysis based on Abstract Interpretation <https://jorgenavas.github.io/papers/ikos-sefm14.pdf>`_
 * `The IKOS github repository <https://github.com/NASA-SW-VnV/ikos>`_
