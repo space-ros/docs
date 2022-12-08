@@ -139,10 +139,10 @@ Cobra is able to evaluate code according to the following rule sets:</p>
 </ul>
 <div class="section" id="how-is-cobra-used-in-space-ros">
 <h2>How is Cobra used in Space ROS?<a class="headerlink" href="#how-is-cobra-used-in-space-ros" title="Permalink to this headline"></a></h2>
-<p>The Space ROS Docker image incorporates the <em>cobra</em> command-line tool via the <em>cobra_vendor</em> package.
-In addition, there is a Python-based wrapper tool, <em>ament_cobra</em>, that is used to integrate Cobra into the ament-based build and test system.
-Space ROS adds cobra to the common set of linters used by most of the Space ROS core by including it in its forked version of <em>ament_lint_common</em>.
-Then, when building and executing tests for Space ROS, along with the other source code analysis tools, ament_cobra is invoked to analyze the code using the AUTOSAR C++ 14 ruleset.
+<p>The Space ROS Docker image incorporates the <code class="docutils literal notranslate"><span class="pre">cobra</span></code> command-line tool via the <code class="docutils literal notranslate"><span class="pre">cobra_vendor</span></code> package.
+In addition, there is a Python-based wrapper tool, <code class="docutils literal notranslate"><span class="pre">ament_cobra</span></code>, that is used to integrate Cobra into the ament-based build and test system.
+Space ROS adds cobra to the common set of linters used by most of the Space ROS core by including it in its forked version of <code class="docutils literal notranslate"><span class="pre">ament_lint_common</span></code>.
+Then, when building and executing tests for Space ROS, along with the other source code analysis tools, <code class="docutils literal notranslate"><span class="pre">ament_cobra</span></code> is invoked to analyze the code using the AUTOSAR C++ 14 ruleset.
 For more detailed information about how to use Cobra when developing code for Space ROS, see the <a class="reference internal" href="../How-To-Guides/Use-Cobra.html"><span class="doc">Using the Cobra Static Analyzer</span></a> How-To Guide.</p>
 </div>
 <div class="section" id="additional-resources">
