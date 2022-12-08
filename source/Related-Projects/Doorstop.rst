@@ -1,7 +1,7 @@
 Doorstop
 ========
 
-Doorstop is a simple requirements management tool that provides a command-line-and-text-editor-based workflow.
+Doorstop is a simple requirements management tool that provides a command-line-and-text-editor based workflow.
 Doorstop facilitates the storage of textual requirements alongside source code in a revision control system.
 Requirements are stored in human-readable formats (YAML or Markdown) in a versioned repository, making it easy to parse the requirements with additional automation tools.
 
@@ -24,4 +24,5 @@ Please refer to the following resources to learn more about Doorstop:
 
 * `Doorstop documentation <https://doorstop.readthedocs.io/en/latest/>`_
 * `The Doorstop github repository <https://github.com/doorstop-dev/doorstop>`_
+* `Doorstop: Text-Based Requirements Management Using Version Control <https://www.researchgate.net/publication/276044183_Doorstop_Text-Based_Requirements_Management_Using_Version_Control>`_
 
