@@ -94,7 +94,7 @@ Notes about the MC/DC checker
 
   where ``-E`` means run preprocesor only.
 
-  You can pass include directories as arguments to the mcdc_checker tool, e.g
+  You can pass include directories as arguments to the ``mcdc_checker`` tool, e.g
 
   .. code-block:: bash
 
@@ -108,7 +108,7 @@ Notes about the MC/DC checker
 How to get coverage data for a specific ROS package
 ---------------------------------------------------
 
-Here are instructions for generating coverage data with the ``gcov`` and ``lcov`` coverage tools, using the ``rcpputils`` pacakge as an example.
+Here are instructions for generating coverage data with the ``gcov`` and ``lcov`` coverage tools, using the ``rcpputils`` package as an example.
 
 In your colcon workspace, build the package:
 
