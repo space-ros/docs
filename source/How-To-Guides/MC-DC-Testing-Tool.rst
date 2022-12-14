@@ -123,7 +123,7 @@ Run the tests
    colcon test --event-handlers console_direct+ --packages-select rcpputils
 
 
-You should now see gcov ``.gcna`` and ``.dcno`` data files generated in the ``build`` directory
+You should now see gcov ``.gcna`` and ``.gcno`` data files generated in the ``build`` directory
 
 Use ``lcov`` to capture coverage data
 
