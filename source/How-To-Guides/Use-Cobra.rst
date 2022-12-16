@@ -21,7 +21,7 @@ An easy way to use Cobra on your source files is via the ``ament_cobra`` command
 ``ament_cobra`` is a wrapper program for the Cobra tool that simplifies the interface to Cobra and helps to integrate the tool into the `ament <https://github.com/ament>`_-based build system.
 ``ament_cobra`` provides the following command-line interface:
 
-.. code-block:: none
+.. code-block::
 
     usage: ament_cobra [-h] [--include_dirs [INCLUDE_DIRS ...]] [--exclude [EXCLUDE ...]]
                     [--ruleset RULESET] [--compile_cmds COMPILE_CMDS] [--xunit-file XUNIT_FILE]
@@ -69,13 +69,13 @@ The ``ament_cobra`` tool:
 
 For example, the following invocation of ``ament_cobra``, without any command-line arguments,
 
-.. code-block:: none
+.. code-block::
 
     spaceros-user@c1b264aeb129:~/spaceros/src/rcutils/src$ ament_cobra
 
 scans for all C and C++ files in the current working directory (``~/spaceros/src/rcutils/src``) and below, analyzes those files using Cobra's Basic rule set, and produces the following output:
 
-.. code-block:: none
+.. code-block::
 
     1: Shadow, 9 patterns :: Fct names also used as variables
     2: Rval, 1 patterns :: Inconsistent checking return value of function
@@ -87,7 +87,7 @@ scans for all C and C++ files in the current working directory (``~/spaceros/src
     68 errors
 
 The output includes a summary of the issues found and the number of occurances of each issue.
-Cobra also saves a detailed summary of the analysis results in the file ``_Basic_.txt``, which is a JSON file that contains an entry for each issue. 
+Cobra also saves a detailed summary of the analysis results in the file ``_Basic_.txt``, which is a JSON file that contains an entry for each issue.
 For example, the first couple of entries in ``__Basic__.txt`` for this run are as follows:
 
 .. code-block:: json
@@ -114,7 +114,7 @@ The positional (non-option) arguments passed to ``ament_cobra`` are expected to 
 Any directories specified are searched recursively for files ending in one of the following filename extensions: ``.c``, ``.cc``, ``.cpp``, ``.cxx``.
 For example, to analyze a single file, one can specify the filename on the command line, as show below:
 
-.. code-block:: none
+.. code-block::
 
     spaceros-user@c1b264aeb129:~/spaceros/src/rcutils/src$ ament_cobra string_array.c
     1: Ifelseif, 2 patterns :: Missing else at end of if-else-if chain
@@ -130,13 +130,13 @@ You may specify one of these rulesets using the ``--ruleset`` command-line optio
 If the ``--ruleset`` option is provided more than once on the command line, only the last one is respected.
 The following example, run while in the ``~/spaceros/src/rcutils/src`` directory, shows how to process any C/C++ files in the current working directory and any subdirectories using the ``p10`` rule set:
 
-.. code-block:: none
+.. code-block::
 
     spaceros-user@c1b264aeb129:~/spaceros/src/rcutils/src$ ament_cobra --ruleset p10
 
 Example output for the previous command is as follows:
 
-.. code-block:: none
+.. code-block::
 
     Rule 5: counted 9 assertions; it should be > 32
     1: P10_1a, 1 patterns :: use of recursion
@@ -171,7 +171,7 @@ Generating output files
 JUnit XML files are typically used to interface to a CI system like Jenkins, while SARIF can be used by IDEs such as Visual Studio Code with a SARIF-enabled plugin to allow developers to interactively navigate the discovered issues.
 The following command shows how one may process all C/C++ files in the current working directory or below using the ``p10`` rule set and generating both JUnit XML and SARIF output files:
 
-.. code-block:: none
+.. code-block::
 
     $ ament_cobra . --ruleset p10 --xunit-file p10.xml --sarif-file p10.sarif
 
@@ -188,15 +188,15 @@ The ``--compile_cmds`` option takes precedence over the ``--include_dirs`` optio
 Instead, ament_cobra will gather all preprocessor options from the ``compile_commands.json`` file.
 For example, if one first builds a particular package to produce the compile_commands.json output file, such as when using cmake's `-DCMAKE_EXPORT_COMPILE_COMMANDS option <https://cmake.org/cmake/help/latest/variable/CMAKE_EXPORT_COMPILE_COMMANDS.html>`_:
 
-.. code-block:: none
+.. code-block::
 
     spaceros-user@c1b264aeb129:~/spaceros$ colcon build --packages-select rcutils --cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 
 One may then pass the compile_commands.json to ``ament_cobra`` using the ``--compile_cmds`` command-line option:
 
-.. code-block:: none
+.. code-block::
 
-    spaceros-user@c1b264aeb129:~/spaceros$ ament_cobra src/rcutils/src --compile_cmds ~/spaceros/build/rcutils/compile_commands.json 
+    spaceros-user@c1b264aeb129:~/spaceros$ ament_cobra src/rcutils/src --compile_cmds ~/spaceros/build/rcutils/compile_commands.json
 
 Displaying verbose output
 -------------------------
@@ -204,13 +204,13 @@ Displaying verbose output
 ``ament_cobra`` has a ``--verbose`` command-line option that is handy when you want to see the exact command-line ``ament_cobra`` uses when invoking ``cobra``.
 For example, adding ``--verbose`` to the previous command line:
 
-.. code-block:: none
+.. code-block::
 
     spaceros-user@c1b264aeb129:~/spaceros/src/rcutils/src$ ament_cobra --ruleset p10 --sarif-file 2.sarif --verbose
 
 Shows the command-line used to invoke ``cobra`` in the first line of the output:
 
-.. code-block:: none
+.. code-block::
 
     /home/spaceros-user/spaceros/install/cobra_vendor/bin/cobra -C++ -comments -json -f p10 /home/spaceros-user/spaceros/src/rcutils/src/allocator.c /home/spaceros-user/spaceros/src/rcutils/src/array_list.c /home/spaceros-user/spaceros/src/rcutils/src/char_array.c /home/spaceros-user/spaceros/src/rcutils/src/cmdline_parser.c /home/spaceros-user/spaceros/src/rcutils/src/env.c /home/spaceros-user/spaceros/src/rcutils/src/error_handling.c /home/spaceros-user/spaceros/src/rcutils/src/filesystem.c /home/spaceros-user/spaceros/src/rcutils/src/find.c /home/spaceros-user/spaceros/src/rcutils/src/format_string.c /home/spaceros-user/spaceros/src/rcutils/src/hash_map.c /home/spaceros-user/spaceros/src/rcutils/src/logging.c /home/spaceros-user/spaceros/src/rcutils/src/process.c /home/spaceros-user/spaceros/src/rcutils/src/qsort.c /home/spaceros-user/spaceros/src/rcutils/src/repl_str.c /home/spaceros-user/spaceros/src/rcutils/src/shared_library.c /home/spaceros-user/spaceros/src/rcutils/src/snprintf.c /home/spaceros-user/spaceros/src/rcutils/src/split.c /home/spaceros-user/spaceros/src/rcutils/src/strcasecmp.c /home/spaceros-user/spaceros/src/rcutils/src/strdup.c /home/spaceros-user/spaceros/src/rcutils/src/strerror.c /home/spaceros-user/spaceros/src/rcutils/src/string_array.c /home/spaceros-user/spaceros/src/rcutils/src/string_map.c /home/spaceros-user/spaceros/src/rcutils/src/time.c /home/spaceros-user/spaceros/src/rcutils/src/time_unix.c /home/spaceros-user/spaceros/src/rcutils/src/time_win32.c /home/spaceros-user/spaceros/src/rcutils/src/uint8_array.c /home/spaceros-user/spaceros/src/rcutils/src/testing/fault_injection.c
     Rule 5: counted 9 assertions; it should be > 32
@@ -245,19 +245,19 @@ Using Cobra via colcon test
 
 To use Cobra via colcon test on the Space ROS source code, first launch the Space ROS Docker image from your host system:
 
-.. code-block:: none
+.. code-block::
 
     $ docker run -it --rm osrf/space-ros
 
 The image starts with the user in the ``spaceros`` directory:
 
-.. code-block:: none
+.. code-block::
 
-    spaceros-user@5218e73f96c6:~/spaceros$ 
+    spaceros-user@5218e73f96c6:~/spaceros$
 
 Here, you'll see the file, ``exact.repos``, which contains the exact versions of each package used when building the Space ROS image.
 
-.. code-block:: none
+.. code-block::
 
     spaceros-user@5218e73f96c6:~/spaceros$ ll
     total 32
@@ -269,7 +269,7 @@ Here, you'll see the file, ``exact.repos``, which contains the exact versions of
 In order to minimize the size of the Docker image, the Space ROS image doesn't include the source code.
 However, you can pull the source code into a ``src`` directory using the following commands:
 
-.. code-block:: none
+.. code-block::
 
     spaceros-user@5218e73f96c6:~/spaceros$ mkdir src
     spaceros-user@5218e73f96c6:~/spaceros$ vcs import src < exact.repos
@@ -282,7 +282,7 @@ Running all tests
 To run all of the Space ROS tests, first perform a full build of the Space ROS source code.
 For example,
 
-.. code-block:: none
+.. code-block::
 
     spaceros-user@c1b264aeb129:~/spaceros$ colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 
@@ -293,7 +293,7 @@ For example,
 
 Then, to run all of the tests, which includes which includes executing the unit tests and running the static analyzers, run the following command:
 
-.. code-block:: none
+.. code-block::
 
     spaceros-user@c1b264aeb129:~/spaceros$ colcon test
 
@@ -307,13 +307,13 @@ Running tests for an individual package
 It is also possible to target just a single package with ``colcon``.
 For example, one may build just the ``rcutils`` package using the following command:
 
-.. code-block:: none
+.. code-block::
 
     spaceros-user@c1b264aeb129:~/spaceros$ colcon build --packages-select rcutils --allow-overriding rcutils --cmake-args -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 
 Tests for ``rcutils`` can then be run using:
 
-.. code-block:: none
+.. code-block::
 
     spaceros-user@c1b264aeb129:~/spaceros$ colcon test --packages-select rcutils
 
@@ -323,7 +323,7 @@ Running an individual test
 It is also possible using ``colcon`` to target individual tests, such as running only the Cobra static analyzer.
 This is accomplished using ``colcon``'s ``ctest-args`` option and specifying which test to run:
 
-.. code-block:: none
+.. code-block::
 
     spaceros-user@c1b264aeb129:~/spaceros$ colcon test --packages-select rcutils --ctest-args -L cobra
 
@@ -334,9 +334,9 @@ In all cases, test output is in the directory associated with each package.
 For example, for ``rcutils`` the output is in ``build/rcutils/test_results/rcutils``.
 The output includes the SAIRF and JUnit XML files associated with each test.
 
-.. code-block:: none
+.. code-block::
 
-    spaceros-user@5218e73f96c6:~/spaceros/build/rcutils/test_results/rcutils$ ls -l *.sarif 
+    spaceros-user@5218e73f96c6:~/spaceros/build/rcutils/test_results/rcutils$ ls -l *.sarif
     -rw-r--r-- 1 spaceros-user spaceros-user  57622 Dec 16 19:41 clang_tidy.sarif
     -rw-r--r-- 1 spaceros-user spaceros-user   3062 Dec 16 19:43 cobra-autosar.sarif
     -rw-r--r-- 1 spaceros-user spaceros-user  20158 Dec 16 19:43 copyright.sarif
