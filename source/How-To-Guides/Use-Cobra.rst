@@ -90,7 +90,7 @@ The output includes a summary of the issues found and the number of occurances o
 Cobra also saves a detailed summary of the analysis results in the file ``_Basic_.txt``, which is a JSON file that contains an entry for each issue.
 For example, the first couple of entries in ``__Basic__.txt`` for this run are as follows:
 
-.. code-block:: json
+.. code-block::
 
     [
     { "type"      :       "Fct names also used as variables",
