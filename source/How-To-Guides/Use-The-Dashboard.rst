@@ -8,7 +8,7 @@ These issues are represented in `SARIF format <https://sarifweb.azurewebsites.ne
 
 The main features of the Space ROS Dashboard are as follows:
 
-- Track the dispositioning issues, including annotating them with links to bug reports in your dispositioning service of choice
+- Track issues reported by static analysis tooling, including annotating them with links to bug reports in your dispositioning service of choice
 - Compare issues across multiple builds
 - View a burn-down chart of issues over time
 
@@ -19,14 +19,16 @@ Prerequisites
 
 In order to use the Space ROS Dashboard, you will have to install `Visual Studio Code <https://code.visualstudio.com/>`_ and the `Space ROS Dashboard extension <https://marketplace.visualstudio.com/items?itemName=openrobotics.spaceros-dashboard>`_.
 
-You will also need to have SARIF data to view.
+You will also need to have SARIF data to view, which you can obtain through running `colcon build` and then `colcon test`.
+Note, that you will have to enable exporting of the compile commands, which you can do by running `colcon build` with `--cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS` or by adding `set(COLCON_EXPORT_COMPILE_COMMANDS ON)` in the package's `CMakeLists.txt` file.
+
 
 Optionally, you can use `Microsoft's Dev Containers Extension <https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers>`_ to use the Space ROS Dashboard with Visual Studio Code inside of a Docker container.
 
 Dispositioning issues
 =====================
 
-Once you have the Space ROS Dashboard extension installed, you can open a SARIF file in Visual Studio Code and the Dashboard will automatically open.
+Once you have the Space ROS Dashboard extension installed, you can open a SARIF file (found in `spaceros_ws/build/<package>/test_results`) in Visual Studio Code and the Dashboard will automatically open.
 
 .. image:: /images/dashboard-open-sarif.png
 
