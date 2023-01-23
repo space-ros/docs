@@ -134,7 +134,7 @@ Two artifacts are produced from these builds: an OCI-compliant container image p
 <h2>Setting up your local sources<a class="headerlink" href="#setting-up-your-local-sources" title="Permalink to this headline"></a></h2>
 <p>Before you can build artifacts locally, Space ROS sources must be checked out.
 To check out the default sources you can use Earthly</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>earthly +sources
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>earthly<span class="w"> </span>+sources
 </pre></div>
 </div>
 <p>Once the default sources are checked out you can modify them by making changes to the contents of the <code class="docutils literal notranslate"><span class="pre">src</span></code> directory on your local machine.
@@ -143,7 +143,7 @@ If you have a complete custom repos file you can use any custom commands to popu
 <div class="section" id="building-the-space-ros-container-image-locally">
 <h2>Building the Space ROS container image locally<a class="headerlink" href="#building-the-space-ros-container-image-locally" title="Permalink to this headline"></a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">osrf/space-ros</span></code> container image can be built by running the <code class="docutils literal notranslate"><span class="pre">+image</span></code> earthly target.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>earthly +image
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>earthly<span class="w"> </span>+image
 </pre></div>
 </div>
 <p>Once this process completes, your local docker registry should contain an image tagged <code class="docutils literal notranslate"><span class="pre">osrf/space-ros:latest</span></code>.
@@ -153,7 +153,7 @@ You can re-tag this image and publish it to a container registry or use it local
 <h2>Generating build results locally<a class="headerlink" href="#generating-build-results-locally" title="Permalink to this headline"></a></h2>
 <p>To generate a build results archive locally you can use the <code class="docutils literal notranslate"><span class="pre">+build-testing</span></code> target.
 This will run a complete build of Space ROS and can take several hours depending on your hardware!</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>earthly +build-testing
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>earthly<span class="w"> </span>+build-testing
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">+build-testing</span></code> target will build all packages in <code class="docutils literal notranslate"><span class="pre">src</span></code> and place the resulting <code class="docutils literal notranslate"><span class="pre">install</span></code> directory as well as a build results archive in <code class="docutils literal notranslate"><span class="pre">log/build_results_archives</span></code>.
@@ -176,7 +176,7 @@ It may be helpful to upload that archive when contributing pull requests to Spac
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Open Robotics.</p>
+    <p>&#169; Copyright 2023, Open Robotics.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
