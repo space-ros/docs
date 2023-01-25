@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Using use the Space ROS Dashboard &mdash; Space ROS Documentation: Rolling  documentation</title>
+  <title>Using the Space ROS Dashboard &mdash; Space ROS Documentation: Rolling  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -76,7 +76,7 @@
 <li class="toctree-l2"><a class="reference internal" href="Use-Cobra.html">Using the Cobra Static Analyzer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="MC-DC-Testing-Tool.html">Using the MC/DC Testing Tool</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Use-VSCode-With-Docker.html">Using VSCode with the Space ROS Docker Images</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Using use the Space ROS Dashboard</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Using the Space ROS Dashboard</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Use-Simulation-Assets.html">Using Space-Related Simulation Assets</a></li>
 </ul>
 </li>
@@ -105,7 +105,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a></li>
           <li class="breadcrumb-item"><a href="../How-To-Guides.html">How-to Guides</a></li>
-      <li class="breadcrumb-item active">Using use the Space ROS Dashboard</li>
+      <li class="breadcrumb-item active">Using the Space ROS Dashboard</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/space-ros/docs/blob/rolling/source/How-To-Guides/Use-The-Dashboard.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -115,10 +115,69 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="using-use-the-space-ros-dashboard">
-<h1>Using use the Space ROS Dashboard<a class="headerlink" href="#using-use-the-space-ros-dashboard" title="Permalink to this headline"></a></h1>
-<p>TODO:</p>
-<p>How to use the Space ROS Dashboard, including installation of the VSCode plug-in.</p>
+  <div class="section" id="using-the-space-ros-dashboard">
+<h1>Using the Space ROS Dashboard<a class="headerlink" href="#using-the-space-ros-dashboard" title="Permalink to this headline"></a></h1>
+<p>Static analysis is a critical step in the formal verification required for safety-critical systems.
+The Space ROS Dashboard is a tool for aggregating and tracking issues discovered through static analysis.
+These issues are represented in <a class="reference external" href="https://sarifweb.azurewebsites.net/">SARIF format</a>, which is a format for representing issues found by static analysis tools.</p>
+<p>The main features of the Space ROS Dashboard are as follows:</p>
+<ul class="simple">
+<li><p>Track issues reported by static analysis tooling, including annotating them with links to bug reports in your dispositioning service of choice</p></li>
+<li><p>Compare issues across multiple builds</p></li>
+<li><p>View a burn-down chart of issues over time</p></li>
+</ul>
+<p>This how-to guide will walk you through the main features of the Space ROS Dashboard.</p>
+<div class="section" id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline"></a></h2>
+<p>In order to use the Space ROS Dashboard, you will have to install <a class="reference external" href="https://code.visualstudio.com/">Visual Studio Code</a> and the <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=openrobotics.spaceros-dashboard">Space ROS Dashboard extension</a>.</p>
+<p>You will also need to have SARIF data to view, which you can obtain through running <code class="xref any docutils literal notranslate"><span class="pre">colcon</span> <span class="pre">build</span></code> and then <code class="xref any docutils literal notranslate"><span class="pre">colcon</span> <span class="pre">test</span></code>.
+Note, that you will have to enable exporting of the compile commands, which you can do by running <code class="xref any docutils literal notranslate"><span class="pre">colcon</span> <span class="pre">build</span></code> with <code class="xref any docutils literal notranslate"><span class="pre">--cmake-args</span> <span class="pre">-DCMAKE_EXPORT_COMPILE_COMMANDS</span></code> or by adding <code class="xref any docutils literal notranslate"><span class="pre">set(COLCON_EXPORT_COMPILE_COMMANDS</span> <span class="pre">ON)</span></code> in the package’s <code class="xref any docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> file.</p>
+<p>Optionally, you can use <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers">Microsoft’s Dev Containers Extension</a> to use the Space ROS Dashboard with Visual Studio Code inside of a Docker container.</p>
+</div>
+<div class="section" id="dispositioning-issues">
+<h2>Dispositioning issues<a class="headerlink" href="#dispositioning-issues" title="Permalink to this headline"></a></h2>
+<p>Once you have the Space ROS Dashboard extension installed, you can open a SARIF file (found in <code class="xref any docutils literal notranslate"><span class="pre">spaceros_ws/build/&lt;package&gt;/test_results</span></code>) in Visual Studio Code and the Dashboard will automatically open.</p>
+<img alt="../_images/dashboard-open-sarif.png" src="../_images/dashboard-open-sarif.png" />
+<p class="image-subtitle">An example of what the Space ROS Dashboard looks like when opened with a SARIF file</p>
+<p>From there, you are able to explore issues by their location, rules, tools, and more.
+When you click an issue, you will see more information for that issue in the bottom right panel.</p>
+<img alt="../_images/dashboard-open-issue.png" src="../_images/dashboard-open-issue.png" />
+<p class="image-subtitle">The bottom right panel shows you more details about the selected issue.</p>
+<p>You are also able to add an annotation to the issue to record where that issue will be tracked, for example, on Github or Bitbucket.</p>
+<img alt="../_images/dashboard-add-annotation.png" src="../_images/dashboard-add-annotation.png" />
+<p class="image-subtitle">A popover is created to add an annotation to the issue.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Saving annotations is a work-in-progress and may not be available in the current release.</p>
+</div>
+<p>Saving annotations is not automatic.
+In order to save your annotations, you will need to save click the “Upload annotations” button in the top right of the panel.</p>
+</div>
+<div class="section" id="comparing-issues-across-builds">
+<h2>Comparing issues across builds<a class="headerlink" href="#comparing-issues-across-builds" title="Permalink to this headline"></a></h2>
+<img alt="../_images/dashboard-compare-builds.png" src="../_images/dashboard-compare-builds.png" />
+<p class="image-subtitle">An example of comparing issues across builds.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is a work-in-progress and may not be available in the current release.</p>
+</div>
+<p>In the Space ROS Dashboard you are also able to compare issues across builds.
+To do this, you can open multiple SARIF build archives in the extension and click the “Compare” tab at the top of the panel.
+You are then able to select which builds you want to compare.
+You will see the issues that have been introduced or fixed between the builds you have selected.</p>
+</div>
+<div class="section" id="viewing-a-burn-down-chart">
+<h2>Viewing a burn-down chart<a class="headerlink" href="#viewing-a-burn-down-chart" title="Permalink to this headline"></a></h2>
+<img alt="../_images/dashboard-burndown-chart.png" src="../_images/dashboard-burndown-chart.png" />
+<p class="image-subtitle">An example of a burn-down chart that shows the number of issues over time, given an expected rate of issue resolution.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is a work-in-progress and may not be available in the current release.</p>
+</div>
+<p>The Space ROS Dashboard also allows you to view a burn-down chart of issues over time.
+To do this, click the “Burndown” tab in the Space ROS Dashboard and input the expected rate of issue resolution.
+The burn-down chart will then show two lines: one for the expected rate of issue resolution and one for the actual rate of issue resolution.</p>
+</div>
 </div>
 
 
