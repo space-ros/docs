@@ -117,8 +117,104 @@
              
   <div class="section" id="using-the-mc-dc-testing-tool">
 <h1>Using the MC/DC Testing Tool<a class="headerlink" href="#using-the-mc-dc-testing-tool" title="Permalink to this headline"></a></h1>
-<p>TODO:</p>
-<p>How to use the MC/DC testing tool and assess coverage.</p>
+<p>The <a class="reference external" href="https://gtd-gmbh.gitlab.io/mcdc-checker/mcdc-checker/">MC/DC checker</a> analyzes C/C++ code and assesses whether decisions in the code are formulated in a way that enables <code class="docutils literal notranslate"><span class="pre">gcov</span></code> to show MC/DC coverage.</p>
+<div class="section" id="what-does-the-mc-dc-checker-tool-do">
+<h2>What does the MC/DC checker tool do?<a class="headerlink" href="#what-does-the-mc-dc-checker-tool-do" title="Permalink to this headline"></a></h2>
+<p>The MC/DC checker does not actually assess test coverage itself. On a higher level, the tool is supposed be invoked before running coverage tools:</p>
+<ol class="arabic simple">
+<li><p>Run MC/DC checker.</p></li>
+<li><p>Make code changes based on solutions recommended by the MC/DC checker.</p></li>
+<li><p>Run coverage tool to get MC/DC coverage.</p></li>
+</ol>
+<p>Here is an overview of what the MC/DC checker does:</p>
+<ol class="arabic simple">
+<li><p>Runs <code class="docutils literal notranslate"><span class="pre">clang</span></code> to preprocess the file - generates AST (Abstract Syntax Tree).</p></li>
+<li><p>Walks the AST to find decisions.</p></li>
+<li><p>Builds Binary Decision Diagram (BDD) from decisions.</p></li>
+<li><p>Checks to see if BDD is tree-like. For tree-like BDD, it is proven Object Branch Coverage (OBC) implies MC/DC.</p></li>
+<li><p>If BDD is non-tree-like, attempts to reorder the BDD.</p></li>
+<li><p>After checking all files, it outputs to console a summary of all non-BDD decisions in files</p></li>
+<li><p>Generates BDD .dot files showing before and after reordering.</p></li>
+</ol>
+</div>
+<div class="section" id="patch-for-the-mc-dc-checker">
+<h2>Patch for the MC/DC checker<a class="headerlink" href="#patch-for-the-mc-dc-checker" title="Permalink to this headline"></a></h2>
+<p>Currently the MC/DC checker works for simple C programs but crashes when run against code in several ROS packages. A <a class="reference external" href="https://gist.githubusercontent.com/iche033/ef0d23c85f4d810fa26c722027894c91/raw/f0a9f48abffff0101b9e7f2a2fd94f79cafe360e/mcdc_checker.patch">patch</a> with minor code changes to checker code is needed to avoid the crash. See instructions below for applying the patch to the checker.</p>
+</div>
+<div class="section" id="how-to-run-the-mc-dc-checker">
+<h2>How to run the MC/DC checker<a class="headerlink" href="#how-to-run-the-mc-dc-checker" title="Permalink to this headline"></a></h2>
+<p>The recommended way of running the check is to use the upstream docker image as it requires a patched version of <code class="docutils literal notranslate"><span class="pre">libclang</span></code>.</p>
+<p>Pull their docker image</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>pull<span class="w"> </span>registry.gitlab.com/gtd-gmbh/mcdc-checker/mcdc-checker
+</pre></div>
+</div>
+<p>Launch the docker container and mount your source code that you would like to run MC/DC check on.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>&lt;some_library&gt;
+<span class="c1"># override entrypoint and run bash:</span>
+docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/code<span class="w"> </span>--entrypoint<span class="w"> </span>/bin/bash<span class="w"> </span>registry.gitlab.com/gtd-gmbh/mcdc-checker/mcdc-checker
+</pre></div>
+</div>
+<p>In a separate terminal, download the original <code class="docutils literal notranslate"><span class="pre">mcdc_checker.py</span></code> script</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>https://gitlab.com/gtd-gmbh/mcdc-checker/mcdc-checker/-/raw/master/src/mcdc_checker.py
+</pre></div>
+</div>
+<p>Download and apply the patch</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>https://gist.githubusercontent.com/iche033/ef0d23c85f4d810fa26c722027894c91/raw/f0a9f48abffff0101b9e7f2a2fd94f79cafe360e/mcdc_checker.patch
+
+patch<span class="w"> </span>mcdc_checker.py<span class="w"> </span>&lt;<span class="w"> </span>mcdc_checker.patch
+</pre></div>
+</div>
+<p>Copy the modified <code class="docutils literal notranslate"><span class="pre">mcdc_checker.py</span></code> script into the container</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>cp<span class="w"> </span>mcdc_checker.py<span class="w"> </span><span class="sb">`</span>docker<span class="w"> </span>ps<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>mcdc-checker<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $1;}&#39;</span><span class="sb">`</span>:/app/src/mcdc_checker.py
+</pre></div>
+</div>
+<p>Go back to the docker container and run the <code class="docutils literal notranslate"><span class="pre">mcdc_checker</span></code> cmd</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mcdc_checker<span class="w"> </span>-a
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">-a</span></code> flag tells the check to run recursively on all files in this directory. You should see the script start processing the source code and generating output. See notes below for more info about possible error messages.</p>
+</div>
+<div class="section" id="notes-about-the-mc-dc-checker">
+<h2>Notes about the MC/DC checker<a class="headerlink" href="#notes-about-the-mc-dc-checker" title="Permalink to this headline"></a></h2>
+<ul>
+<li><p>When running the <code class="docutils literal notranslate"><span class="pre">mcdc_checker</span></code> script, you may encounter error messages about include files not found.</p>
+<p>The checker invokes <code class="docutils literal notranslate"><span class="pre">clang</span></code> to preprocess the input files. If include files are not found, it will not be able to do <code class="docutils literal notranslate"><span class="pre">#include</span></code> file expansion. Underneath the hood, the checker runs:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>clang<span class="w"> </span>input_file.c<span class="w"> </span>-E<span class="w"> </span>&gt;<span class="w"> </span>output
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">-E</span></code> means run preprocesor only.</p>
+<p>You can pass include directories as arguments to the <code class="docutils literal notranslate"><span class="pre">mcdc_checker</span></code> tool, e.g</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mcdc_checker<span class="w"> </span>-a<span class="w"> </span>-I/usr/include<span class="w"> </span>-I&lt;some_other_dir&gt;
+</pre></div>
+</div>
+</li>
+<li><p>Some non-tree BDDs do not have solutions</p>
+<p>Looking at the console output produced by the <code class="docutils literal notranslate"><span class="pre">mcdc_checker</span></code> tool, the <code class="docutils literal notranslate"><span class="pre">bdd_is_not_tree_like</span> <span class="pre">occurred</span> <span class="pre">in:</span></code> section lists issues with non-tree BDDs. However, it is possible that not all of them contain solutions.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="how-to-get-coverage-data-for-a-specific-ros-package">
+<h2>How to get coverage data for a specific ROS package<a class="headerlink" href="#how-to-get-coverage-data-for-a-specific-ros-package" title="Permalink to this headline"></a></h2>
+<p>Here are instructions for generating coverage data with the <code class="docutils literal notranslate"><span class="pre">gcov</span></code> and <code class="docutils literal notranslate"><span class="pre">lcov</span></code> coverage tools, using the <code class="docutils literal notranslate"><span class="pre">rcpputils</span></code> package as an example.</p>
+<p>In your colcon workspace, build the package:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>colcon<span class="w"> </span>build<span class="w"> </span>--packages-select<span class="w"> </span>rcpputils<span class="w"> </span>--cmake-args<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Debug<span class="w"> </span>-DCMAKE_CXX_FLAGS<span class="o">=</span><span class="s2">&quot;--coverage&quot;</span>
+</pre></div>
+</div>
+<p>Run the tests</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>colcon<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--event-handlers<span class="w"> </span>console_direct+<span class="w"> </span>--packages-select<span class="w"> </span>rcpputils
+</pre></div>
+</div>
+<p>You should now see gcov <code class="docutils literal notranslate"><span class="pre">.gcna</span></code> and <code class="docutils literal notranslate"><span class="pre">.gcno</span></code> data files generated in the <code class="docutils literal notranslate"><span class="pre">build</span></code> directory</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">lcov</span></code> to capture coverage data</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>lcov<span class="w"> </span>--capture<span class="w"> </span>--directory<span class="w"> </span>build/rcpputils/<span class="w"> </span>--output-file<span class="w"> </span>rcpputils_report.info
+</pre></div>
+</div>
+<p>Generate html report</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>genhtml<span class="w"> </span>rcpputils_report.info<span class="w"> </span>--output-directory<span class="w"> </span>rcpputils_coverage_report
+</pre></div>
+</div>
+<p>Open <code class="docutils literal notranslate"><span class="pre">rcpputils_coverage_report/index.html</span></code> to see coverage data for the <code class="docutils literal notranslate"><span class="pre">rcpputils</span></code> pacakge</p>
+</div>
 </div>
 
 
