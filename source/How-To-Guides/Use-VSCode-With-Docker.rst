@@ -38,6 +38,9 @@ You can use your own SpaceROS Docker image, or you can use a `pre-built example 
 
     .. image:: ../images/run-from-docker-extension.png
 
+Connecting to the Docker Container with VSCode
+----------------------------------------------
+
 Once the container is running, you can use the Remote Development VSCode extension to connect to the container.
 To do this click the green button in the bottom left of VSCode.
 This button is a quick way to access the Remote Development VSCode extension.
@@ -68,3 +71,9 @@ Once you select the container, a new VSCode window will open with the container'
 You can then install the Space ROS dashboard and begin analyzing your data.
 
 .. image:: ../images/install-spaceros-in-remote-window.png
+
+Summary
+-------
+
+In this How-To Guide, we showed you how to use VSCode and Docker to explore Space ROS Docker images.
+We also showed you how to use the Remote Development VSCode extension to connect to a running Docker container.
