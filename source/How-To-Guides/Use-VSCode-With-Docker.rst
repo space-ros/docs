@@ -3,7 +3,7 @@ Using VSCode with the Space ROS Docker Images
 #############################################
 
 `Docker <https://www.docker.com/>`_ is a tool that allows you to run containers.
-Containers are similar to are virtual machines in that they are useful for sharing reproducible software environments.
+Containers are similar to virtual machines in that they are useful for sharing reproducible software environments.
 However, containers are more light weight than virtual machines since they share the kernel of the host machine.
 In this How-To Guide, we'll show you how to use VSCode and Docker to work with a Space ROS Docker image.
 
