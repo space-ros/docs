@@ -12,7 +12,7 @@ Ogma supports a number of source languages, including `Copilot <https://github.c
 Why use Ogma?
 -------------
 
-Runtime Verification is crucial especially for systems that are not amenable to full formal verification, or when testing all possible cases is not viable. It can also prove exceptionally useful to detect anomalies in the environment.
+Runtime Verification is crucial especially for systems that are not amenable to full formal verification, or when testing all possible cases is not viable. It can also prove exceptionally useful to detect anomalies in the environment in which a system, such as robot or an aircraft, is operating.
 
 A failure in a monitoring system could threaten the mission as a whole. The purpose of Ogma is to generate self-contained monitoring applications directly from high-level languages that are amenable to formal verification.
 
