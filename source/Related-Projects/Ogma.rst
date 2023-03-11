@@ -25,7 +25,7 @@ Additional References
 
 To learn more about Ogma, please see:
 
-* The Ogma repository, `Ogma <https://github.com/nasa/ogma>`_
+* `The Ogma repository <https://github.com/nasa/ogma>`_
 * Paper: `Monitoring ROS 2: from Requirements to Autonomous Robots <https://arxiv.org/abs/2209.14030>`_
 * Paper: `Integrating FRET with Copilot: Automated Translation of Natural Language Requirements to Runtime Monitors <https://ntrs.nasa.gov/citations/20220000049>`_
 * Paper: `Automated Translation of Natural Language Requirements to Runtime Monitors <https://link.springer.com/chapter/10.1007/978-3-030-99524-9_21>`_
