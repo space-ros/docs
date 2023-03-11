@@ -7,7 +7,7 @@ The purpose of Runtime Verification is to monitor a system at runtime and detect
 
 Ogma facilitates the generation of correct monitors by translating high-level languages into self-contained monitoring applications.
 
-Ogma supports a number of source languages, including `Copilot <https://github.com/copilot-language/copilot>`_, `FRET <FRET>` and Lustre. The applications can be generated for the Robot Operating System (Space ROS) and `NASA's Core Flight System (cFS) <https://github.com/nasa/cFS/>`_, among others.
+Ogma supports a number of source languages, including `Copilot <https://github.com/copilot-language/copilot>`_, :doc:`FRET <FRET>` and Lustre. The applications can be generated for the Robot Operating System (Space ROS) and `NASA's Core Flight System (cFS) <https://github.com/nasa/cFS/>`_, among others.
 
 Why use Ogma?
 -------------
