@@ -1,6 +1,6 @@
 # Space ROS Documentation
 
-This repository contains the sources for the Space ROS documentation which is not currently hosted.
+This repository contains the sources for the Space ROS documentation which is hosted as: https://space-ros.github.io/docs
 The sources from this repository are built by GitHub Actions.
 
 ## Contributing to the documentation
