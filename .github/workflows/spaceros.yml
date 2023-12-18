@@ -20,7 +20,7 @@ jobs:
 
       - name: Install dependencies with pip
         run: |
-          pip install --no-warn-script-location --user --upgrade -r requirements.txt
+          pip install --no-warn-script-location --user -r requirements.txt -c constraints.txt
 
       - name: Build
         run: make html
@@ -44,7 +44,7 @@ jobs:
 
       - name: Install dependencies with pip
         run: |
-          pip install --no-warn-script-location --user --upgrade -r requirements.txt
+          pip install --no-warn-script-location --user -r requirements.txt -c constraints.txt
 
       - name: Build
         run: make multiversion
