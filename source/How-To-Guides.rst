@@ -16,3 +16,4 @@ They contain succinct steps to help you accomplish important tasks quickly.
    How-To-Guides/Use-VSCode-With-Docker
    How-To-Guides/Use-The-Dashboard
    How-To-Guides/Use-Simulation-Assets
+   How-To-Guides/Releasing-Space-ROS
