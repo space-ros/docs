@@ -34,16 +34,12 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="../index.html" class="icon icon-home">
-            Space ROS Documentation: Rolling
-              <img src="../_static/logo.svg" class="logo" alt="Logo"/>
+            <a href="../index.html" class="icon icon-home"> Space ROS Documentation: Rolling
+            <img src="../_static/logo.svg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -108,9 +104,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../How-To-Guides.html">How-to Guides</a></li>
-      <li class="breadcrumb-item active">Using the MC/DC Testing Tool</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../How-To-Guides.html">How-to Guides</a> &raquo;</li>
+      <li>Using the MC/DC Testing Tool</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/space-ros/docs/blob/rolling/source/How-To-Guides/MC-DC-Testing-Tool.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -150,31 +146,31 @@
 <h2>How to run the MC/DC checker<a class="headerlink" href="#how-to-run-the-mc-dc-checker" title="Permalink to this headline"></a></h2>
 <p>The recommended way of running the check is to use the upstream docker image as it requires a patched version of <code class="docutils literal notranslate"><span class="pre">libclang</span></code>.</p>
 <p>Pull their docker image</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>pull<span class="w"> </span>registry.gitlab.com/gtd-gmbh/mcdc-checker/mcdc-checker
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker pull registry.gitlab.com/gtd-gmbh/mcdc-checker/mcdc-checker
 </pre></div>
 </div>
 <p>Launch the docker container and mount your source code that you would like to run MC/DC check on.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>&lt;some_library&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> &lt;some_library&gt;
 <span class="c1"># override entrypoint and run bash:</span>
-docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/code<span class="w"> </span>--entrypoint<span class="w"> </span>/bin/bash<span class="w"> </span>registry.gitlab.com/gtd-gmbh/mcdc-checker/mcdc-checker
+docker run -it -v <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/code --entrypoint /bin/bash registry.gitlab.com/gtd-gmbh/mcdc-checker/mcdc-checker
 </pre></div>
 </div>
 <p>In a separate terminal, download the original <code class="docutils literal notranslate"><span class="pre">mcdc_checker.py</span></code> script</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>https://gitlab.com/gtd-gmbh/mcdc-checker/mcdc-checker/-/raw/master/src/mcdc_checker.py
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget https://gitlab.com/gtd-gmbh/mcdc-checker/mcdc-checker/-/raw/master/src/mcdc_checker.py
 </pre></div>
 </div>
 <p>Download and apply the patch</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>https://gist.githubusercontent.com/iche033/ef0d23c85f4d810fa26c722027894c91/raw/f0a9f48abffff0101b9e7f2a2fd94f79cafe360e/mcdc_checker.patch
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget https://gist.githubusercontent.com/iche033/ef0d23c85f4d810fa26c722027894c91/raw/f0a9f48abffff0101b9e7f2a2fd94f79cafe360e/mcdc_checker.patch
 
-patch<span class="w"> </span>mcdc_checker.py<span class="w"> </span>&lt;<span class="w"> </span>mcdc_checker.patch
+patch mcdc_checker.py &lt; mcdc_checker.patch
 </pre></div>
 </div>
 <p>Copy the modified <code class="docutils literal notranslate"><span class="pre">mcdc_checker.py</span></code> script into the container</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>cp<span class="w"> </span>mcdc_checker.py<span class="w"> </span><span class="sb">`</span>docker<span class="w"> </span>ps<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>mcdc-checker<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $1;}&#39;</span><span class="sb">`</span>:/app/src/mcdc_checker.py
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker cp mcdc_checker.py <span class="sb">`</span>docker ps <span class="p">|</span> grep mcdc-checker <span class="p">|</span> awk <span class="s1">&#39;{print $1;}&#39;</span><span class="sb">`</span>:/app/src/mcdc_checker.py
 </pre></div>
 </div>
 <p>Go back to the docker container and run the <code class="docutils literal notranslate"><span class="pre">mcdc_checker</span></code> cmd</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mcdc_checker<span class="w"> </span>-a
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mcdc_checker -a
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">-a</span></code> flag tells the check to run recursively on all files in this directory. You should see the script start processing the source code and generating output. See notes below for more info about possible error messages.</p>
@@ -184,12 +180,12 @@ patch<span class="w"> </span>mcdc_checker.py<span class="w"> </span>&lt;<span cl
 <ul>
 <li><p>When running the <code class="docutils literal notranslate"><span class="pre">mcdc_checker</span></code> script, you may encounter error messages about include files not found.</p>
 <p>The checker invokes <code class="docutils literal notranslate"><span class="pre">clang</span></code> to preprocess the input files. If include files are not found, it will not be able to do <code class="docutils literal notranslate"><span class="pre">#include</span></code> file expansion. Underneath the hood, the checker runs:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>clang<span class="w"> </span>input_file.c<span class="w"> </span>-E<span class="w"> </span>&gt;<span class="w"> </span>output
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>clang input_file.c -E &gt; output
 </pre></div>
 </div>
 <p>where <code class="docutils literal notranslate"><span class="pre">-E</span></code> means run preprocesor only.</p>
 <p>You can pass include directories as arguments to the <code class="docutils literal notranslate"><span class="pre">mcdc_checker</span></code> tool, e.g</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mcdc_checker<span class="w"> </span>-a<span class="w"> </span>-I/usr/include<span class="w"> </span>-I&lt;some_other_dir&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mcdc_checker -a -I/usr/include -I&lt;some_other_dir&gt;
 </pre></div>
 </div>
 </li>
@@ -202,20 +198,20 @@ patch<span class="w"> </span>mcdc_checker.py<span class="w"> </span>&lt;<span cl
 <h2>How to get coverage data for a specific ROS package<a class="headerlink" href="#how-to-get-coverage-data-for-a-specific-ros-package" title="Permalink to this headline"></a></h2>
 <p>Here are instructions for generating coverage data with the <code class="docutils literal notranslate"><span class="pre">gcov</span></code> and <code class="docutils literal notranslate"><span class="pre">lcov</span></code> coverage tools, using the <code class="docutils literal notranslate"><span class="pre">rcpputils</span></code> package as an example.</p>
 <p>In your colcon workspace, build the package:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>colcon<span class="w"> </span>build<span class="w"> </span>--packages-select<span class="w"> </span>rcpputils<span class="w"> </span>--cmake-args<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Debug<span class="w"> </span>-DCMAKE_CXX_FLAGS<span class="o">=</span><span class="s2">&quot;--coverage&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>colcon build --packages-select rcpputils --cmake-args -DCMAKE_BUILD_TYPE<span class="o">=</span>Debug -DCMAKE_CXX_FLAGS<span class="o">=</span><span class="s2">&quot;--coverage&quot;</span>
 </pre></div>
 </div>
 <p>Run the tests</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>colcon<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--event-handlers<span class="w"> </span>console_direct+<span class="w"> </span>--packages-select<span class="w"> </span>rcpputils
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>colcon <span class="nb">test</span> --event-handlers console_direct+ --packages-select rcpputils
 </pre></div>
 </div>
 <p>You should now see gcov <code class="docutils literal notranslate"><span class="pre">.gcna</span></code> and <code class="docutils literal notranslate"><span class="pre">.gcno</span></code> data files generated in the <code class="docutils literal notranslate"><span class="pre">build</span></code> directory</p>
 <p>Use <code class="docutils literal notranslate"><span class="pre">lcov</span></code> to capture coverage data</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>lcov<span class="w"> </span>--capture<span class="w"> </span>--directory<span class="w"> </span>build/rcpputils/<span class="w"> </span>--output-file<span class="w"> </span>rcpputils_report.info
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>lcov --capture --directory build/rcpputils/ --output-file rcpputils_report.info
 </pre></div>
 </div>
 <p>Generate html report</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>genhtml<span class="w"> </span>rcpputils_report.info<span class="w"> </span>--output-directory<span class="w"> </span>rcpputils_coverage_report
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>genhtml rcpputils_report.info --output-directory rcpputils_coverage_report
 </pre></div>
 </div>
 <p>Open <code class="docutils literal notranslate"><span class="pre">rcpputils_coverage_report/index.html</span></code> to see coverage data for the <code class="docutils literal notranslate"><span class="pre">rcpputils</span></code> pacakge</p>
@@ -233,7 +229,7 @@ patch<span class="w"> </span>mcdc_checker.py<span class="w"> </span>&lt;<span cl
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, Open Robotics.</p>
+    <p>&#169; Copyright 2024, Open Robotics.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

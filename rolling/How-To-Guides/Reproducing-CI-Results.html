@@ -34,16 +34,12 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="../index.html" class="icon icon-home">
-            Space ROS Documentation: Rolling
-              <img src="../_static/logo.svg" class="logo" alt="Logo"/>
+            <a href="../index.html" class="icon icon-home"> Space ROS Documentation: Rolling
+            <img src="../_static/logo.svg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -108,9 +104,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../How-To-Guides.html">How-to Guides</a></li>
-      <li class="breadcrumb-item active">Reproducing CI Results Locally</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../How-To-Guides.html">How-to Guides</a> &raquo;</li>
+      <li>Reproducing CI Results Locally</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/space-ros/docs/blob/rolling/source/How-To-Guides/Reproducing-CI-Results.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -139,7 +135,7 @@ Two artifacts are produced from these builds: an OCI-compliant container image p
 <h2>Setting up your local sources<a class="headerlink" href="#setting-up-your-local-sources" title="Permalink to this headline"></a></h2>
 <p>Before you can build artifacts locally, Space ROS sources must be checked out.
 To check out the default sources you can use Earthly</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>earthly<span class="w"> </span>+sources
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>earthly +sources
 </pre></div>
 </div>
 <p>Once the default sources are checked out you can modify them by making changes to the contents of the <code class="docutils literal notranslate"><span class="pre">src</span></code> directory on your local machine.
@@ -148,7 +144,7 @@ If you have a complete custom repos file you can use any custom commands to popu
 <div class="section" id="building-the-space-ros-container-image-locally">
 <h2>Building the Space ROS container image locally<a class="headerlink" href="#building-the-space-ros-container-image-locally" title="Permalink to this headline"></a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">osrf/space-ros</span></code> container image can be built by running the <code class="docutils literal notranslate"><span class="pre">+image</span></code> earthly target.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>earthly<span class="w"> </span>+image
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>earthly +image
 </pre></div>
 </div>
 <p>Once this process completes, your local docker registry should contain an image tagged <code class="docutils literal notranslate"><span class="pre">osrf/space-ros:latest</span></code>.
@@ -158,7 +154,7 @@ You can re-tag this image and publish it to a container registry or use it local
 <h2>Generating build results locally<a class="headerlink" href="#generating-build-results-locally" title="Permalink to this headline"></a></h2>
 <p>To generate a build results archive locally you can use the <code class="docutils literal notranslate"><span class="pre">+build-testing</span></code> target.
 This will run a complete build of Space ROS and can take several hours depending on your hardware!</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>earthly<span class="w"> </span>+build-testing
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>earthly +build-testing
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">+build-testing</span></code> target will build all packages in <code class="docutils literal notranslate"><span class="pre">src</span></code> and place the resulting <code class="docutils literal notranslate"><span class="pre">install</span></code> directory as well as a build results archive in <code class="docutils literal notranslate"><span class="pre">log/build_results_archives</span></code>.
@@ -181,7 +177,7 @@ It may be helpful to upload that archive when contributing pull requests to Spac
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, Open Robotics.</p>
+    <p>&#169; Copyright 2024, Open Robotics.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
