@@ -25,4 +25,4 @@ WORKDIR /tmp/doc_repository
 
 USER $user
 
-CMD pip3 install --no-warn-script-location --user --upgrade -r requirements.txt && make multiversion
+CMD pip3 install --no-warn-script-location --user -r requirements.txt -c constraints.txt && make multiversion
