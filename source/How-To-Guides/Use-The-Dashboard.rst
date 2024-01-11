@@ -20,7 +20,7 @@ Prerequisites
 In order to use the Space ROS Dashboard, you will have to install `Visual Studio Code <https://code.visualstudio.com/>`_ and the `Space ROS Dashboard extension <https://marketplace.visualstudio.com/items?itemName=openrobotics.spaceros-dashboard>`_.
 
 You will also need to have SARIF data to view, which you can obtain through running `colcon build` and then `colcon test`.
-Note, that you will have to enable exporting of the compile commands, which you can do by running `colcon build` with `--cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS` or by adding `set(COLCON_EXPORT_COMPILE_COMMANDS ON)` in the package's `CMakeLists.txt` file.
+Note, that you will have to enable exporting of the compile commands, which you can do by running `colcon build` with `--cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=ON` or by adding `set(COLCON_EXPORT_COMPILE_COMMANDS ON)` in the package's `CMakeLists.txt` file.
 
 
 Optionally, you can use `Microsoft's Dev Containers Extension <https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers>`_ to use the Space ROS Dashboard with Visual Studio Code inside of a Docker container.
