@@ -111,6 +111,6 @@ The Space ROS project also incorporates space-specific functionality, such as a 
      - `RTEMS <https://www.rtems.org/>`_ is an open source real-time operating system that supports open standard application programming interfaces such as POSIX and is used in space flight, medical, networking and many more embedded devices.
        To further support flight software systems we build Space ROS for RTEMS and have a demonstration application that runs on RTEMS.
    * - cFS/ROS 2 Bridge
-     - There is an active project, the `BRASH Integration Toolkit for ROS2 and Flight Software Interoperability	<https://sbir.nasa.gov/SBIR/abstracts/20/sttr/phase2/STTR-20-2-T4.01-5037.html>`_, that promises to bridge the gap between Space ROS and legacy flight software systems.
+     - There is an active project, the `BRASH Integration Toolkit for ROS2 and Flight Software Interoperability	<https://traclabs-brash.bitbucket.io>`_, that promises to bridge the gap between Space ROS and legacy flight software systems.
        We hope to work with this project to integrate some of the core functionality into Space ROS.
 
