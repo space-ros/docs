@@ -1,7 +1,5 @@
 Canadarm Demo
 =============
 
-TODO:
+Instructions for running this demo can be found `here <https://github.com/space-ros/docker/tree/main/space_robots#canadarm-demo>`_ .
 
-Describe how to run the Canadarm demo.
-This may be simply a link to the demo repo that provides the instructions.

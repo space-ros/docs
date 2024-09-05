@@ -1,7 +1,4 @@
 Mars Rover Demo
 ===============
 
-TODO:
-
-Describe how to run the Mars rover demo.
-This may be simply a link to the demo repo that provides the instructions
+Instructions for running this demo can be found `here <https://github.com/space-ros/docker/tree/main/space_robots#curiosity-mars-rover-demo>`_ .
