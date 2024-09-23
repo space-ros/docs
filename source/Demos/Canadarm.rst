@@ -1,7 +1,10 @@
 Canadarm Demo
 =============
 
-TODO:
+`Prequiste`: Ensure `space_robots <https://github.com/space-ros/docker/tree/main/space_robots/>`_ has been cloned.
 
-Describe how to run the Canadarm demo.
-This may be simply a link to the demo repo that provides the instructions.
+The Canadarm demo is located in the `demos repository <https://github.com/space-ros/demos/tree/main/canadarm/>`_ of Space ROS. Simply clone the repository, then:
+
+```
+ros2 launch canadarm canadarm.launch.py
+```
