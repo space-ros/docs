@@ -58,6 +58,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../Demos.html">Demos</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Demos/MoveIt2.html">Moveit2 Image</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Demos/Canadarm.html">Canadarm Demo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Demos/Mars-Rover.html">Mars Rover Demo</a></li>
 </ul>
@@ -119,20 +120,11 @@
              
   <div class="section" id="first-time-building-space-ros">
 <span id="id1"></span><h1>First Time Building Space ROS<a class="headerlink" href="#first-time-building-space-ros" title="Permalink to this headline"></a></h1>
-<div class="contents local topic" id="table-of-contents">
-<p class="topic-title">Table of Contents</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="#prerequisites" id="id2">Prerequisites</a></p></li>
-<li><p><a class="reference internal" href="#introduction" id="id3">Introduction</a></p></li>
-<li><p><a class="reference internal" href="#tasks" id="id4">Tasks</a></p></li>
-<li><p><a class="reference internal" href="#summary-and-conclusion" id="id5">Summary and conclusion</a></p></li>
-</ul>
-</div>
 <p><strong>Goal:</strong> Create a workspace using Earthly for development and testing.
 <strong>Tutorial level:</strong> Beginner</p>
 <p><strong>Time:</strong> 10 minutes (not including build time)</p>
 <div class="section" id="prerequisites">
-<h2><a class="toc-backref" href="#id2">Prerequisites</a><a class="headerlink" href="#prerequisites" title="Permalink to this headline"></a></h2>
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">git installation</a></p></li>
 <li><p><a class="reference external" href="https://earthly.dev/get-earthly">Earthly installation</a> which requires <a class="reference external" href="https://docker.com">Docker</a>.</p></li>
@@ -140,7 +132,7 @@
 </ul>
 </div>
 <div class="section" id="introduction">
-<h2><a class="toc-backref" href="#id3">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline"></a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline"></a></h2>
 <p>Space ROS, like ROS 2, is composed of a number of independent software projects each maintained in its own repositories.
 The ROS community has a number of tools to help organize and improve working with multiple repositories.
 Earthly is an automation tool where each target is run in a dedicated container with the ability to share artifacts between targets and the local host.
@@ -155,57 +147,225 @@ If you are familiar with the ROS development workflow and building ROS 2 from so
 Even on a powerful workstation this process can take a long time.
 This tutorial does not cover iterating on an individual package or set of packages at this time.</p>
 </div>
-</div>
-<div class="section" id="tasks">
-<h2><a class="toc-backref" href="#id4">Tasks</a><a class="headerlink" href="#tasks" title="Permalink to this headline"></a></h2>
 <div class="section" id="create-a-local-workspace-directory">
-<h3>1 Create a local workspace directory<a class="headerlink" href="#create-a-local-workspace-directory" title="Permalink to this headline"></a></h3>
+<h3>Create a local workspace directory<a class="headerlink" href="#create-a-local-workspace-directory" title="Permalink to this headline"></a></h3>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">mkdir spaceros_ws</span>
 <span class="go">cd spaceros_ws</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="bootstrap-the-earthly-configuration-file">
-<h3>2 Bootstrap the Earthly configuration file.<a class="headerlink" href="#bootstrap-the-earthly-configuration-file" title="Permalink to this headline"></a></h3>
-<p>Configuration for Earthly is stored in an <code class="docutils literal notranslate"><span class="pre">Earthfile</span></code> at the top level directory.
-If you inspect the contents, you’ll find a file which looks like a hybrid of a <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code>/<code class="docutils literal notranslate"><span class="pre">Containerfile</span></code> and a <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>.
-It is not necessary to understand the contents of this file in order to complete this tutorial or use Earthly for Space ROS development but you can read the <a class="reference external" href="https://docs.earthly.dev/docs/earthfile">Earthfile reference</a> if interested.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">earthly --artifact github.com/space-ros/docker/spaceros:nuclearsandwich/earthly-prototyping+earthfile/Earthfile</span>
+<div class="section" id="clone-the-repository">
+<h3>Clone the repository<a class="headerlink" href="#clone-the-repository" title="Permalink to this headline"></a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git clone https://github.com/space-ros/space-ros</span>
+</pre></div>
+</div>
+<p>The Earthfile configuration in this directory facilitates builds of Space ROS from source code. The generated container image is based on Ubuntu 22.04 (Jammy)</p>
+</div>
+</div>
+<div class="section" id="building-the-docker-image">
+<h2>Building the Docker Image<a class="headerlink" href="#building-the-docker-image" title="Permalink to this headline"></a></h2>
+<p>To build the image, run:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd space-ros</span>
+<span class="go">./build.sh</span>
+</pre></div>
+</div>
+<p>The build process will take about 20 or 30 minutes, depending on the host computer.</p>
+<p>The build will use the local <a class="reference external" href="https://github.com/space-ros/space-ros/blob/main/ros2.repos">ros2.repos</a> file, and will pick up any local modifications. The ros2 repos file can be regenerated or updated using the build target,</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">earthly build +repos-file</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="clone-space-ros-sources">
-<h3>3 Clone Space ROS sources<a class="headerlink" href="#clone-space-ros-sources" title="Permalink to this headline"></a></h3>
-<p>In a typical ROS 2 or Space ROS development setup, you would need to configure the ROS repositories on your host system and install the <code class="docutils literal notranslate"><span class="pre">vcs</span></code> utility.
-With Earthly this utility and the others required for ROS development are installed and used within containers, avoiding this requirement.
-The <code class="docutils literal notranslate"><span class="pre">+sources</span></code> target will use <code class="docutils literal notranslate"><span class="pre">vcs</span></code> to clone repositories from the Space ROS repos file and save the results to the <code class="docutils literal notranslate"><span class="pre">src</span></code> subdirectory of your host workspace.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">earthly +sources</span>
+<div class="section" id="running-the-space-ros-docker-image-in-a-container">
+<h2>Running the Space ROS Docker Image in a Container<a class="headerlink" href="#running-the-space-ros-docker-image-in-a-container" title="Permalink to this headline"></a></h2>
+<p>After building the image, you can see the newly-built image by running:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker image list</span>
+</pre></div>
+</div>
+<p>The output will look something like this:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>docker image list
+<span class="go">REPOSITORY              TAG                        IMAGE ID       CREATED        SIZE</span>
+<span class="go">osrf/space-ros        latest                     109ad8fb7460   4 days ago      2.45GB</span>
+<span class="go">ubuntu                jammy                      a8780b506fa4   5 days ago      77.8MB</span>
+</pre></div>
+</div>
+<p>The new image is named osrf/space-ros:latest.</p>
+<p>There is a run.sh script provided for convenience that will run the spaceros image in a container.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">./run.sh</span>
+</pre></div>
+</div>
+<p>Upon startup, the container automatically runs the entrypoint.sh script, which sources the Space ROS environment file (setup.bash).</p>
+<p>You’ll now be running inside the container and should see a prompt similar to this:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">spaceros-user@d10d85c68f0e:~/$</span>
+</pre></div>
+</div>
+<p>Space ROS is installed to the <code class="docutils literal notranslate"><span class="pre">${SPACEROS_DIR}</span></code> in <code class="docutils literal notranslate"><span class="pre">/opt/spaceors</span></code>, if required, the ROS environment file can be manually sourced with:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">source &quot;${SPACEROS_DIR}&quot;/install/setup.bash</span>
+</pre></div>
+</div>
+<p>At this point, you can run the <code class="docutils literal notranslate"><span class="pre">ros2</span></code> command line utility to make sure everything is working OK:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">spaceros-user@d10d85c68f0e:~/$ </span>ros2
+<span class="go">usage: ros2 [-h] [--use-python-default-buffering] Call `ros2 &lt;command&gt; -h` for more detailed usage. ...</span>
+
+<span class="go">ros2 is an extensible command-line tool for ROS 2.</span>
+
+<span class="go">optional arguments:</span>
+<span class="go">  -h, --help            show this help message and exit</span>
+<span class="go">  --use-python-default-buffering</span>
+<span class="go">                        Do not force line buffering in stdout and instead use the python default buffering, which might be affected by PYTHONUNBUFFERED/-u and depends on whatever stdout is interactive or not</span>
+
+<span class="go">Commands:</span>
+<span class="go">  action     Various action related sub-commands</span>
+<span class="go">  component  Various component related sub-commands</span>
+<span class="go">  daemon     Various daemon related sub-commands</span>
+<span class="go">  doctor     Check ROS setup and other potential issues</span>
+<span class="go">  interface  Show information about ROS interfaces</span>
+<span class="go">  launch     Run a launch file</span>
+<span class="go">  lifecycle  Various lifecycle related sub-commands</span>
+<span class="go">  multicast  Various multicast related sub-commands</span>
+<span class="go">  node       Various node related sub-commands</span>
+<span class="go">  param      Various param related sub-commands</span>
+<span class="go">  pkg        Various package related sub-commands</span>
+<span class="go">  run        Run a package specific executable</span>
+<span class="go">  service    Various service related sub-commands</span>
+<span class="go">  topic      Various topic related sub-commands</span>
+<span class="go">  trace      Trace ROS nodes to get information on their execution</span>
+
+<span class="go">  wtf        Use `wtf` as alias to `doctor`</span>
+<span class="go">  Call `ros2 &lt;command&gt; -h` for more detailed usage.</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="optionally-update-space-ros-sources">
-<h3>4 Optionally update Space ROS sources<a class="headerlink" href="#optionally-update-space-ros-sources" title="Permalink to this headline"></a></h3>
-<p>If you want to check that Space ROS builds in its default configuration, you can jump to step 5 below and return after to verify that Space ROS’s default configuration is currently building.</p>
-<p>At this point you can make any modifications or additions to the repositories in src before continuing with the build.
-Editing the sources now will allow you to test Space ROS builds with additional packages or with modifications to an existing package which could be used to test in progress development branches before they are merged.
-None of the later steps of this tutorial will modify the contents of <code class="docutils literal notranslate"><span class="pre">src</span></code>.</p>
+<div class="section" id="rebuilding-space-ros-and-running-unit-tests">
+<h2>Rebuilding Space ROS and running unit tests<a class="headerlink" href="#rebuilding-space-ros-and-running-unit-tests" title="Permalink to this headline"></a></h2>
+<p>Space ROS sources and intermediate build artifacts are not included in the docker image.</p>
+<p>A manifest of the exact sources used to produce the current image is saved as <code class="docutils literal notranslate"><span class="pre">exact.repos</span></code> in the <code class="docutils literal notranslate"><span class="pre">/opt/spaceros</span> <span class="pre">directory</span></code>. To clone all sources from this manifest you can use the command sequence</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">spaceros-user@d10d85c68f0e:~/$ </span><span class="nb">cd</span> /opt/spaceros
+<span class="gp">spaceros-user@d10d85c68f0e:/opt/spaceros$ </span>mkdir src
+<span class="gp">spaceros-user@d10d85c68f0e:/opt/spaceros$ </span>vcs import src &lt; exact.repos
+</pre></div>
 </div>
-<div class="section" id="building-and-testing-space-ros">
-<h3>5 Building and testing Space ROS<a class="headerlink" href="#building-and-testing-space-ros" title="Permalink to this headline"></a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">+build-testing</span></code> target will build all packages in <code class="docutils literal notranslate"><span class="pre">src</span></code> and place the resulting <code class="docutils literal notranslate"><span class="pre">install</span></code> directory as well as a build results archive in <code class="docutils literal notranslate"><span class="pre">log/build_results_archives</span></code>.
-Any changes you make to the repositories in <code class="docutils literal notranslate"><span class="pre">src</span></code> will be reflected in each build.
-It isn’t currently possible to change the build arguments or limit which packages are built and tested without modifying the target directly.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">earthly +build-testing</span>
+<p>From there you can run a new build and any additional tests.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">spaceros-user@d10d85c68f0e:/opt/spaceros$ </span>colcon build --cmake-args -DCMAKE_BUILD_TYPE<span class="o">=</span>Debug -DCMAKE_EXPORT_COMPILE_COMMANDS<span class="o">=</span>ON --no-warn-unused-cli
+<span class="gp">spaceros-user@d10d85c68f0e:/opt/spaceros$ </span>colcon <span class="nb">test</span> --ctest-args -LE <span class="s2">&quot;(ikos|xfail)&quot;</span> --pytest-args -m <span class="s2">&quot;not xfail&quot;</span>
+</pre></div>
+</div>
+<p>The tests include running the static analysis tools clang_tidy and cppcheck (which has the MISRA 2012 add-on enabled).</p>
+<p>You can use colcon’s <code class="docutils literal notranslate"><span class="pre">--packages-select</span></code> option to run a subset of packages. For example, to run tests only for the rcpputils package and display the output directly to the console (as well as saving it to a log file), you can run:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">spaceros-user@d10d85c68f0e:/opt/spaceros$ </span>colcon <span class="nb">test</span> --event-handlers console_direct+ --packages-select rcpputils
 </pre></div>
 </div>
 </div>
+<div class="section" id="viewing-test-output">
+<h2>Viewing Test Output<a class="headerlink" href="#viewing-test-output" title="Permalink to this headline"></a></h2>
+<p>The output from the tests are stored in XUnit XML files, named <code class="docutils literal notranslate"><span class="pre">&lt;tool-name&gt;.xunit.xml</span></code>. After running the unit tests, you can scan the build directory for the various <code class="docutils literal notranslate"><span class="pre">*.xunit.xml</span></code> files.</p>
+<p>For example, a clang_tidy.xunit.xml file looks like this:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">&lt;xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="go">&lt;testsuite</span>
+<span class="go">  name=&quot;rmw.clang_tidy&quot;</span>
+<span class="go">  tests=&quot;21&quot;</span>
+<span class="go">  errors=&quot;0&quot;</span>
+<span class="go">  failures=&quot;0&quot;</span>
+<span class="go">  time=&quot;1.248&quot;</span>
+<span class="go">&gt;</span>
+<span class="go">  &lt;testcase</span>
+<span class="go">    name=&quot;/home/spaceros-user/spaceros/src/rmw/rmw/src/allocators.c&quot;</span>
+<span class="go">    classname=&quot;rmw.clang_tidy&quot;/&gt;</span>
+<span class="go">  &lt;testcase</span>
+<span class="go">    name=&quot;/home/spaceros-user/spaceros/src/rmw/rmw/src/convert_rcutils_ret_to_rmw_ret.c&quot;</span>
+<span class="go">    classname=&quot;rmw.clang_tidy&quot;/&gt;</span>
+<span class="go">  &lt;testcase</span>
+<span class="go">    name=&quot;/home/spaceros-user/spaceros/src/rmw/rmw/src/event.c&quot;</span>
+<span class="go">    classname=&quot;rmw.clang_tidy&quot;/&gt;</span>
+<span class="go">  &lt;testcase</span>
+<span class="go">    name=&quot;/home/spaceros-user/spaceros/src/rmw/rmw/src/init.c&quot;</span>
+<span class="go">    classname=&quot;rmw.clang_tidy&quot;/&gt;</span>
+<span class="go">  &lt;testcase</span>
+<span class="go">    name=&quot;/home/spaceros-user/spaceros/src/rmw/rmw/src/init_options.c&quot;</span>
+<span class="go">    classname=&quot;rmw.clang_tidy&quot;/&gt;</span>
+<span class="go">  &lt;testcase</span>
+<span class="go">    name=&quot;/home/spaceros-user/spaceros/src/rmw/rmw/src/message_sequence.c&quot;</span>
+<span class="go">    classname=&quot;rmw.clang_tidy&quot;/&gt;</span>
+<span class="go">  &lt;testcase</span>
+<span class="go">    name=&quot;/home/spaceros-user/spaceros/src/rmw/rmw/src/names_and_types.c&quot;</span>
+<span class="go">    classname=&quot;rmw.clang_tidy&quot;/&gt;</span>
+<span class="go">  &lt;testcase</span>
+<span class="go">    name=&quot;/home/spaceros-user/spaceros/src/rmw/rmw/src/network_flow_endpoint.c&quot;</span>
+<span class="go">    classname=&quot;rmw.clang_tidy&quot;/&gt;</span>
+<span class="go">  &lt;testcase</span>
+<span class="go">    name=&quot;/home/spaceros-user/spaceros/src/rmw/rmw/src/network_flow_endpoint_array.c&quot;</span>
+<span class="go">    classname=&quot;rmw.clang_tidy&quot;/&gt;</span>
+<span class="go">  &lt;testcase</span>
+<span class="go">    name=&quot;/home/spaceros-user/spaceros/src/rmw/rmw/src/publisher_options.c&quot;</span>
+<span class="go">    classname=&quot;rmw.clang_tidy&quot;/&gt;</span>
+
+<span class="go">&lt;etc&gt;</span>
+<span class="go">...</span>
+</pre></div>
 </div>
-<div class="section" id="summary-and-conclusion">
-<h2><a class="toc-backref" href="#id5">Summary and conclusion</a><a class="headerlink" href="#summary-and-conclusion" title="Permalink to this headline"></a></h2>
-<ul class="simple">
-<li><p>Earthly can help you get started by quickly setting up a container environment for building Space ROS yourself and replicating the periodic builds running on Space ROS infrastructure.</p></li>
-<li><p>Earthly does not help set up your host computer to develop or run Space ROS directly.</p></li>
-</ul>
+</div>
+<div class="section" id="connecting-another-terminal-to-a-running-docker-container">
+<h2>Connecting Another Terminal to a Running Docker Container<a class="headerlink" href="#connecting-another-terminal-to-a-running-docker-container" title="Permalink to this headline"></a></h2>
+<p>Sometimes it may be convenient to attach additional terminals to a running Docker container.</p>
+<p>With the Space ROS Docker container running, open a second host terminal and then run the following command to determine the container ID:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker container list</span>
+</pre></div>
+</div>
+<p>The output will look something like this:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">CONTAINER ID   IMAGE                   COMMAND                  CREATED          STATUS          PORTS     NAMES</span>
+<span class="go">d10d85c68f0e   openrobotics/spaceros   &quot;/entrypoint.sh …&quot;   28 minutes ago   Up 28 minutes             inspiring_moser</span>
+</pre></div>
+</div>
+<p>The container ID in this case, is d10d85c68f0e. So, run the following command in the host terminal:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker exec -it d10d85c68f0e /bin/bash --init-file &quot;install/setup.bash&quot;</span>
+</pre></div>
+</div>
+<p>You will then be at a prompt in the same running container.</p>
+<p>In place of the container ID, you can also use the automatically-generated container name (“inspiring_moser” in this case).</p>
+</div>
+<div class="section" id="running-an-ikos-scan">
+<h2>Running an IKOS Scan<a class="headerlink" href="#running-an-ikos-scan" title="Permalink to this headline"></a></h2>
+<p>IKOS uses special compiler and linker settings in order to instrument and analyze binaries. To run an IKOS scan on all of the Space ROS test binaries (which will take a very long time), run the following command at the root of the Space ROS workspace:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">spaceros-user@d10d85c68f0e:/opt/spaceros$ </span><span class="nv">CC</span><span class="o">=</span><span class="s2">&quot;ikos-scan-cc&quot;</span> <span class="nv">CXX</span><span class="o">=</span><span class="s2">&quot;ikos-scan-c++&quot;</span> <span class="nv">LD</span><span class="o">=</span><span class="s2">&quot;ikos-scan-cc&quot;</span> colcon build --build-base build_ikos --install-base install_ikos --cmake-args -DSECURITY<span class="o">=</span>ON -DINSTALL_EXAMPLES<span class="o">=</span>OFF -DCMAKE_EXPORT_COMPILE_COMMANDS<span class="o">=</span>ON --no-warn-unused-cli
+</pre></div>
+</div>
+<p>The previous command generates the instrumented binaries and the associated output in a separate directory from the normal Space ROS build; the command uses –build-base option to specify build_ikos as the build output directory instead of the default build directory.</p>
+<p>To run an IKOS scan on a specific package, such as rcpputils in this case, use the –packages-select option, as follows:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">spaceros-user@d10d85c68f0e:/opt/spaceros$ </span><span class="nv">CC</span><span class="o">=</span><span class="s2">&quot;ikos-scan-cc&quot;</span> <span class="nv">CXX</span><span class="o">=</span><span class="s2">&quot;ikos-scan-c++&quot;</span> <span class="nv">LD</span><span class="o">=</span><span class="s2">&quot;ikos-scan-cc&quot;</span> colcon build --build-base build_ikos --install-base install_ikos --packages-select rcpputils --cmake-args -DSECURITY<span class="o">=</span>ON -DINSTALL_EXAMPLES<span class="o">=</span>OFF -DCMAKE_EXPORT_COMPILE_COMMANDS<span class="o">=</span>ON --no-warn-unused-cli
+</pre></div>
+</div>
+</div>
+<div class="section" id="generating-ikos-results">
+<h2>Generating IKOS Results<a class="headerlink" href="#generating-ikos-results" title="Permalink to this headline"></a></h2>
+<p>To generate JUnit XML/SARIF files for all of the binaries resulting from the build command in the previous step, you can use colcon test, as follows:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">spaceros-user@d10d85c68f0e:/opt/spaceros$ </span>colcon <span class="nb">test</span> --build-base build_ikos --install-base install_ikos --ctest-args -L <span class="s2">&quot;ikos&quot;</span>
+</pre></div>
+</div>
+<p>To generate a JUnit XML file for a specific package only, you can add the –packages-select option, as follows:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">spaceros-user@d10d85c68f0e:/opt/spaceros$ </span>colcon <span class="nb">test</span> --build-base build_ikos --install-base install_ikos --ctest-args -L <span class="s2">&quot;ikos&quot;</span> --packages-select rcpputils
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">colcon</span> <span class="pre">test</span></code> command with the <code class="docutils literal notranslate"><span class="pre">-L</span> <span class="pre">&quot;ikos&quot;</span></code> flag runs IKOS report generation, which reads the IKOS database generated in the previous analysis step and generates a JUnit XML report file. After running <code class="docutils literal notranslate"><span class="pre">colcon</span> <span class="pre">test</span></code>, you can view the JUnit XML files. For example, to view the JUnit XML file for IKOS scan of the rcpputils binaries you can use the following command:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">spaceros-user@d10d85c68f0e:/opt/spaceros$ </span>more build_ikos/rcpputils/test_results/rcpputils/ikos.xunit.xml
+</pre></div>
+</div>
+<p>SARIF files are also available in the same path:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">spaceros-user@d10d85c68f0e:/opt/spaceros$ </span>more build_ikos/rcpputils/test_results/rcpputils/ikos.sarif
+</pre></div>
+</div>
+</div>
+<div class="section" id="saving-build-artifacts-locally">
+<h2>Saving build artifacts locally<a class="headerlink" href="#saving-build-artifacts-locally" title="Permalink to this headline"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">./build.sh</span></code> script executes the Earthly <code class="docutils literal notranslate"><span class="pre">build</span></code> task defined in <code class="docutils literal notranslate"><span class="pre">Earthfile</span></code>, which copies specified artifacts from the container to the host. Additional tasks defined in the Earthfile enable the preservation of intermediate artifacts generated during the build process.</p>
+<p>For instance, the <code class="docutils literal notranslate"><span class="pre">vcs-exact</span></code> task can be utilized to copy the exact version of ROS packages pulled during the spaceros build.</p>
+<p>To invoke a task, use the following syntax:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">earthly +TASK_NAME</span>
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">earthly +vcs-exact</span>
+</pre></div>
+</div>
+<p>Refer to the <a class="reference external" href="https://github.com/space-ros/space-ros/blob/main/Earthfile">Earthfile</a> for tasks that save artifacts locally on the host. Such tasks end with the <code class="docutils literal notranslate"><span class="pre">SAVE</span> <span class="pre">ARTIFACT</span> <span class="pre">..</span> <span class="pre">AS</span> <span class="pre">LOCAL</span></code> syntax.</p>
 </div>
 </div>
 
@@ -220,7 +380,7 @@ It isn’t currently possible to change the build arguments or limit which packa
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, Open Robotics.</p>
+    <p>&#169; Copyright 2025, Open Robotics.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

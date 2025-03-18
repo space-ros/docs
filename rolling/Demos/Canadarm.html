@@ -26,7 +26,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Mars Rover Demo" href="Mars-Rover.html" />
-    <link rel="prev" title="Demos" href="../Demos.html" /> 
+    <link rel="prev" title="Moveit2 Image" href="MoveIt2.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -58,6 +58,7 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../Demos.html">Demos</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="MoveIt2.html">Moveit2 Image</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Canadarm Demo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Mars-Rover.html">Mars Rover Demo</a></li>
 </ul>
@@ -119,23 +120,51 @@
              
   <div class="section" id="canadarm-demo">
 <h1>Canadarm Demo<a class="headerlink" href="#canadarm-demo" title="Permalink to this headline"></a></h1>
-<p>TODO:</p>
-<p>Describe how to run the Canadarm demo.
-This may be simply a link to the demo repo that provides the instructions.</p>
+<div class="section" id="build-the-space-ros-moveit2-docker-images">
+<h2>Build the Space ROS &amp; MoveIt2 Docker Images<a class="headerlink" href="#build-the-space-ros-moveit2-docker-images" title="Permalink to this headline"></a></h2>
+<p>If you haven’t already, follow <a class="reference external" href="https://space-ros.github.io/docs/rolling/Demos/MoveIt2.html">the MoveIt2 instructions</a>, and <a class="reference external" href="https://space-ros.github.io/docs/rolling/Tutorials/First-Time-Building.html">the Space ROS image instructions</a>. These are the base images for the Canadarm and Curiosity Mars rover demos. The Dockerfile installs all of the prerequisite system dependencies along with the demos source code, then builds the Space ROS Space Robots Demo.</p>
+</div>
+<div class="section" id="space-ros-space-robots-demo-docker-image">
+<h2>Space ROS Space Robots Demo Docker Image<a class="headerlink" href="#space-ros-space-robots-demo-docker-image" title="Permalink to this headline"></a></h2>
+<p>Build the <code class="docutils literal notranslate"><span class="pre">space_robots</span></code> image:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ../space_robots</span>
+<span class="go">./build.sh</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="running-the-demo-docker">
+<h2>Running the Demo Docker<a class="headerlink" href="#running-the-demo-docker" title="Permalink to this headline"></a></h2>
+<p>Run the following to allow GUI passthrough:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">xhost +local:docker</span>
+</pre></div>
+</div>
+<p>Then run:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">./run.sh</span>
+</pre></div>
+</div>
+<p>Depending on the host computer, you might need to remove the <code class="docutils literal notranslate"><span class="pre">--gpus</span> <span class="pre">all</span></code> flag in <code class="docutils literal notranslate"><span class="pre">run.sh</span></code>, which uses your GPUs.</p>
+</div>
+<div class="section" id="running-the-canadarm-demo">
+<h2>Running the Canadarm Demo<a class="headerlink" href="#running-the-canadarm-demo" title="Permalink to this headline"></a></h2>
+<p>Run the following command:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 launch canadarm canadarm.launch.py</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../Demos.html" class="btn btn-neutral float-left" title="Demos" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="MoveIt2.html" class="btn btn-neutral float-left" title="Moveit2 Image" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="Mars-Rover.html" class="btn btn-neutral float-right" title="Mars Rover Demo" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, Open Robotics.</p>
+    <p>&#169; Copyright 2025, Open Robotics.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

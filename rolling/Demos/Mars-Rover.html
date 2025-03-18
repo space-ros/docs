@@ -58,6 +58,7 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../Demos.html">Demos</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="MoveIt2.html">Moveit2 Image</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Canadarm.html">Canadarm Demo</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Mars Rover Demo</a></li>
 </ul>
@@ -119,9 +120,90 @@
              
   <div class="section" id="mars-rover-demo">
 <h1>Mars Rover Demo<a class="headerlink" href="#mars-rover-demo" title="Permalink to this headline"></a></h1>
-<p>TODO:</p>
-<p>Describe how to run the Mars rover demo.
-This may be simply a link to the demo repo that provides the instructions</p>
+<div class="section" id="build-the-space-ros-moveit2-docker-images">
+<h2>Build the Space ROS &amp; MoveIt2 Docker Images<a class="headerlink" href="#build-the-space-ros-moveit2-docker-images" title="Permalink to this headline"></a></h2>
+<p>If you haven’t already, follow <a class="reference external" href="https://space-ros.github.io/docs/rolling/Demos/MoveIt2.html">these instructions</a> for building the MoveIt2 docker image, <a class="reference external" href="https://space-ros.github.io/docs/rolling/Tutorials/First-Time-Building.html">and these instructions</a> for the spaceros image. These are the base images for the Canadarm and Curiosity Mars rover demos. The Dockerfile installs all of the prerequisite system dependencies along with the demos source code, then builds the Space ROS Space Robots Demo.</p>
+</div>
+<div class="section" id="space-ros-space-robots-demo-docker-image">
+<h2>Space ROS Space Robots Demo Docker Image<a class="headerlink" href="#space-ros-space-robots-demo-docker-image" title="Permalink to this headline"></a></h2>
+<p>Build the <code class="docutils literal notranslate"><span class="pre">space_robots</span></code> image:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ../space_robots</span>
+<span class="go">./build.sh</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="running-the-demo-docker">
+<h2>Running the Demo Docker<a class="headerlink" href="#running-the-demo-docker" title="Permalink to this headline"></a></h2>
+<p>Run the following to allow GUI passthrough:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">xhost +local:docker</span>
+</pre></div>
+</div>
+<p>Then run:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">./run.sh</span>
+</pre></div>
+</div>
+<p>Depending on the host computer, you might need to remove the <code class="docutils literal notranslate"><span class="pre">--gpus</span> <span class="pre">all</span></code> flag in <code class="docutils literal notranslate"><span class="pre">run.sh</span></code>, which uses your GPUs.</p>
+</div>
+<div class="section" id="running-the-mars-rover-demo">
+<h2>Running the Mars Rover Demo<a class="headerlink" href="#running-the-mars-rover-demo" title="Permalink to this headline"></a></h2>
+<p>Launch the demo:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 launch mars_rover mars_rover.launch.py</span>
+</pre></div>
+</div>
+<p>On the top left corner, click on the refresh button to show camera feed.</p>
+<div class="section" id="perform-tasks">
+<h3>Perform Tasks<a class="headerlink" href="#perform-tasks" title="Permalink to this headline"></a></h3>
+<div class="section" id="setup">
+<h4>Setup<a class="headerlink" href="#setup" title="Permalink to this headline"></a></h4>
+<p>Open a new terminal and attach it to the currently running container:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker exec -it &lt;container-name&gt; bash</span>
+</pre></div>
+</div>
+<p>Make sure packages are sourced:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">source ~/spaceros/install/setup.bash</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">source ~/demos_ws/install/setup.bash</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="available-commands">
+<h4>Available Commands<a class="headerlink" href="#available-commands" title="Permalink to this headline"></a></h4>
+<p>Drive the rover forward:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 service call /move_forward std_srvs/srv/Empty</span>
+</pre></div>
+</div>
+<p>Stop the rover:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 service call /move_stop std_srvs/srv/Empty</span>
+</pre></div>
+</div>
+<p>Turn left:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 service call /turn_left std_srvs/srv/Empty</span>
+</pre></div>
+</div>
+<p>Turn right:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 service call /turn_right std_srvs/srv/Empty</span>
+</pre></div>
+</div>
+<p>Open the tool arm:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 service call /open_arm std_srvs/srv/Empty</span>
+</pre></div>
+</div>
+<p>Cloes the tool arm:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 service call /close_arm std_srvs/srv/Empty</span>
+</pre></div>
+</div>
+<p>Open the mast (camera arm):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 service call /mast_open std_srvs/srv/Empty</span>
+</pre></div>
+</div>
+<p>Close the mast (camera arm):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 service call /mast_close std_srvs/srv/Empty</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 </div>
 
 
@@ -135,7 +217,7 @@ This may be simply a link to the demo repo that provides the instructions</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, Open Robotics.</p>
+    <p>&#169; Copyright 2025, Open Robotics.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
