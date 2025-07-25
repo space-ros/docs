@@ -1,11 +1,11 @@
-LunarSim Demo
+Lunar Terrain Demo
 ==============
 
-Space ROS Lunar Sim Demo Docker Image
+Space ROS Lunar Terrain Demo Docker Image
 -------------------------------------
 
-The Space ROS Lunar Sim Demo docker image uses the spaceros docker image (*osrf/space-ros:latest*) as its base image.
-The Dockerfile installs all of the prerequisite system dependencies along with the demo source code, then builds the Space ROS Lunar Sim Demo.
+The Space ROS Lunar Terrain Demo docker image uses the spaceros docker image (*osrf/space-ros:latest*) as its base image.
+The Dockerfile installs all of the prerequisite system dependencies along with the demo source code, then builds the Space ROS Lunar Terrain Demo.
 
 This demo includes a Gazebo simulation of the lunar environment (specfically around the Shackleton crater near the south pole). It uses
 Digital Elevation Models (DEMs) from the Lunar Orbiter Laser Altimeter (LOLA) to accurately simulate the lunar surface in a specific region. It also contains a dynamic model of the Sun that moves according to Ephemeris data.
@@ -16,11 +16,11 @@ Building the Demo Docker
 The demo image builds on top of the spaceros image.
 To build the docker image, first ensure the spaceros base image is available either by `building it locally <https://github.com/space-ros/space-ros>`_ or pulling it.
 
-Then build lunar_sim demo images:
+Then build lunar_terrain demo images:
 
 .. code-block:: bash
 
-  cd lunarsim_demo
+  cd lunar_terrain
   ./build.sh
 
 
@@ -51,7 +51,7 @@ Once the container is running, you can launch the demo by running:
 .. code-block:: bash
 
   souce install/setup.bash
-  ros2 launch lunar_sim_gz_worlds lunar_sim.launch
+  ros2 launch lunar_terrain_gz_bringup lunar_terrain_world.launch.py
 
 This will launch the gazebo lunar world, spawn the rover and start teleop in a new terminal window which enables you to control the rover as per the instructions in the terminal window.
 
@@ -99,7 +99,7 @@ meets the 2^n x 2^n requirement:
 Cropping
 ^^^^^^^^
 
-The crop_dem.py script, located in lunarsim_gz_worlds/scrikpts, can be
+The crop_dem.py script, located in lunar_terrain_gz_worlds/scripts, can be
 used to crop a part of the DEM out:
 
 .. code:: bash
@@ -113,7 +113,7 @@ A normal map is a 2D texture that encodes information about the surface
 orientation (normals) of the terrain, which influences how light
 interacts with the surface. We can derive this texture by calculating
 the gradients within our DEM. This can be done using the
-surface_normals.py script in lunarsim_gz_worlds/scripts:
+surface_normals.py script in lunar_terrain_gz_worlds/scripts:
 
 .. code:: bash
 
@@ -136,7 +136,7 @@ can be downloaded at `Polyhaven <https://polyhaven.com/>`_. For
 instance, the normal map from `this sand
 texture <https://polyhaven.com/a/sandy_gravel>`_ can be blended with
 DEM’s normal map. This can be done using the blend_normals.py script
-located in lunarsim_gz_worlds/scripts:
+located in lunar_terrain_gz_worlds/scripts:
 
 .. code:: bash
 
@@ -149,7 +149,7 @@ map, we get the following blended map:
 
 .. rst-class:: image-subtitle
 
-    Surface Normals of the terrain in LunarSim with blended sand texture normals
+    Surface Normals of the terrain in Lunar-Terrain with blended sand texture normals
 
 Using DEM in Gazebo
 ^^^^^^^^^^^^^^^^^^^

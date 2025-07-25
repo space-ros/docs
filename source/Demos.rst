@@ -14,4 +14,4 @@ The following pages go into detail to show you how to run these demo application
 
    Demos/Canadarm
    Demos/Mars-Rover
-   Demos/LunarSim
+   Demos/Lunar-Terrain
