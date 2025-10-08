@@ -1,0 +1,57 @@
+[project]
+name = "space-ros-docs"
+version = "0.1.0"
+description = "Space ROS Documentation"
+authors = ["Open Robotics"]
+channels = ["conda-forge"]
+platforms = ["linux-64", "osx-64", "osx-arm64", "win-64"]
+
+[dependencies]
+python = ">=3.8,<3.12"
+pip = ">=22.0.2"
+git = "*"
+graphviz = "*"
+make = "*"
+
+[pypi-dependencies]
+doc8 = "==0.8.1"
+docutils = "==0.16.0"
+sphinx = ">=5.0,<6.0"
+sphinx-copybutton = ">=0.4.0"
+sphinx-multiversion = ">=0.2.4"
+sphinx-rtd-theme = ">=1.0.0"
+sphinx-sitemap = ">=2.3.0"
+sphinx-tabs = ">=3.2.0"
+
+[tasks]
+# Help task - show available commands
+help = "python3 -m sphinx -M help source build -c ."
+
+# Build single version documentation
+html = "python3 -m sphinx -M html source build -c ."
+
+# Build multi-version documentation
+multiversion = { cmd = "sphinx-multiversion -c . source build/html && echo '<html><head><meta http-equiv=\"refresh\" content=\"0; url=rolling/index.html\" /></head></html>' > build/html/index.html && python3 make_sitemapindex.py", depends-on = ["_ensure-build-dir"] }
+
+# Test documentation with doc8
+test = "doc8 --ignore D001 --ignore-path build --ignore-path .pixi source"
+
+# Clean build directory
+clean = { cmd = "rm -rf build", depends-on = ["_ensure-build-dir"] }
+
+# Ensure build directory exists
+_ensure-build-dir = "mkdir -p build/html"
+
+# Development server (if needed)
+serve = { cmd = "python3 -m http.server 8000 -d build/html", depends-on = ["html"] }
+
+# Lint and build workflow
+ci = { depends-on = ["test", "html"] }
+
+# Full multiversion build workflow
+deploy = { depends-on = ["test", "multiversion"] }
+
+
+
+[environments]
+default = { solve-group = "default" }
