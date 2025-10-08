@@ -8,7 +8,6 @@
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="canonical" href="https://space-ros.github.io/docs/rolling/Tutorials/First-Time-Building.html" />
@@ -19,7 +18,9 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -119,12 +120,12 @@
            <div itemprop="articleBody">
              
   <div class="section" id="first-time-building-space-ros">
-<span id="id1"></span><h1>First Time Building Space ROS<a class="headerlink" href="#first-time-building-space-ros" title="Permalink to this headline"></a></h1>
+<span id="id1"></span><h1>First Time Building Space ROS<a class="headerlink" href="#first-time-building-space-ros" title="Permalink to this heading"></a></h1>
 <p><strong>Goal:</strong> Create a workspace using Earthly for development and testing.
 <strong>Tutorial level:</strong> Beginner</p>
 <p><strong>Time:</strong> 10 minutes (not including build time)</p>
 <div class="section" id="prerequisites">
-<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline"></a></h2>
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">git installation</a></p></li>
 <li><p><a class="reference external" href="https://earthly.dev/get-earthly">Earthly installation</a> which requires <a class="reference external" href="https://docker.com">Docker</a>.</p></li>
@@ -132,13 +133,13 @@
 </ul>
 </div>
 <div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline"></a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
 <p>Space ROS, like ROS 2, is composed of a number of independent software projects each maintained in its own repositories.
 The ROS community has a number of tools to help organize and improve working with multiple repositories.
 Earthly is an automation tool where each target is run in a dedicated container with the ability to share artifacts between targets and the local host.
 The Space ROS project primarily uses Earthly to create automation that runs consistently in local development, and in hosted infrastructure such as GitHub Actions.</p>
 <div class="section" id="trade-offs">
-<h3>Trade-offs<a class="headerlink" href="#trade-offs" title="Permalink to this headline"></a></h3>
+<h3>Trade-offs<a class="headerlink" href="#trade-offs" title="Permalink to this heading"></a></h3>
 <p>Earthly does not modify your host system outside of running containers and the local workspace directory.
 This has the advantage of setting up relatively quickly but it also means that working within Earthly will not make setting up a standard ROS 2 development setup any easier.</p>
 <p>If you are new to building ROS, this tutorial is a good place to start in order to allow you to get up and running quickly.
@@ -148,14 +149,14 @@ Even on a powerful workstation this process can take a long time.
 This tutorial does not cover iterating on an individual package or set of packages at this time.</p>
 </div>
 <div class="section" id="create-a-local-workspace-directory">
-<h3>Create a local workspace directory<a class="headerlink" href="#create-a-local-workspace-directory" title="Permalink to this headline"></a></h3>
+<h3>Create a local workspace directory<a class="headerlink" href="#create-a-local-workspace-directory" title="Permalink to this heading"></a></h3>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">mkdir spaceros_ws</span>
 <span class="go">cd spaceros_ws</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="clone-the-repository">
-<h3>Clone the repository<a class="headerlink" href="#clone-the-repository" title="Permalink to this headline"></a></h3>
+<h3>Clone the repository<a class="headerlink" href="#clone-the-repository" title="Permalink to this heading"></a></h3>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git clone https://github.com/space-ros/space-ros</span>
 </pre></div>
 </div>
@@ -163,7 +164,7 @@ This tutorial does not cover iterating on an individual package or set of packag
 </div>
 </div>
 <div class="section" id="building-the-docker-image">
-<h2>Building the Docker Image<a class="headerlink" href="#building-the-docker-image" title="Permalink to this headline"></a></h2>
+<h2>Building the Docker Image<a class="headerlink" href="#building-the-docker-image" title="Permalink to this heading"></a></h2>
 <p>To build the image, run:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd space-ros</span>
 <span class="go">./build.sh</span>
@@ -176,13 +177,13 @@ This tutorial does not cover iterating on an individual package or set of packag
 </div>
 </div>
 <div class="section" id="running-the-space-ros-docker-image-in-a-container">
-<h2>Running the Space ROS Docker Image in a Container<a class="headerlink" href="#running-the-space-ros-docker-image-in-a-container" title="Permalink to this headline"></a></h2>
+<h2>Running the Space ROS Docker Image in a Container<a class="headerlink" href="#running-the-space-ros-docker-image-in-a-container" title="Permalink to this heading"></a></h2>
 <p>After building the image, you can see the newly-built image by running:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker image list</span>
 </pre></div>
 </div>
 <p>The output will look something like this:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>docker image list
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>docker<span class="w"> </span>image<span class="w"> </span>list
 <span class="go">REPOSITORY              TAG                        IMAGE ID       CREATED        SIZE</span>
 <span class="go">osrf/space-ros        latest                     109ad8fb7460   4 days ago      2.45GB</span>
 <span class="go">ubuntu                jammy                      a8780b506fa4   5 days ago      77.8MB</span>
@@ -236,27 +237,27 @@ This tutorial does not cover iterating on an individual package or set of packag
 </div>
 </div>
 <div class="section" id="rebuilding-space-ros-and-running-unit-tests">
-<h2>Rebuilding Space ROS and running unit tests<a class="headerlink" href="#rebuilding-space-ros-and-running-unit-tests" title="Permalink to this headline"></a></h2>
+<h2>Rebuilding Space ROS and running unit tests<a class="headerlink" href="#rebuilding-space-ros-and-running-unit-tests" title="Permalink to this heading"></a></h2>
 <p>Space ROS sources and intermediate build artifacts are not included in the docker image.</p>
 <p>A manifest of the exact sources used to produce the current image is saved as <code class="docutils literal notranslate"><span class="pre">exact.repos</span></code> in the <code class="docutils literal notranslate"><span class="pre">/opt/spaceros</span> <span class="pre">directory</span></code>. To clone all sources from this manifest you can use the command sequence</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">spaceros-user@d10d85c68f0e:~/$ </span><span class="nb">cd</span> /opt/spaceros
-<span class="gp">spaceros-user@d10d85c68f0e:/opt/spaceros$ </span>mkdir src
-<span class="gp">spaceros-user@d10d85c68f0e:/opt/spaceros$ </span>vcs import src &lt; exact.repos
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">spaceros-user@d10d85c68f0e:~/$ </span><span class="nb">cd</span><span class="w"> </span>/opt/spaceros
+<span class="gp">spaceros-user@d10d85c68f0e:/opt/spaceros$ </span>mkdir<span class="w"> </span>src
+<span class="gp">spaceros-user@d10d85c68f0e:/opt/spaceros$ </span>vcs<span class="w"> </span>import<span class="w"> </span>src<span class="w"> </span>&lt;<span class="w"> </span>exact.repos
 </pre></div>
 </div>
 <p>From there you can run a new build and any additional tests.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">spaceros-user@d10d85c68f0e:/opt/spaceros$ </span>colcon build --cmake-args -DCMAKE_BUILD_TYPE<span class="o">=</span>Debug -DCMAKE_EXPORT_COMPILE_COMMANDS<span class="o">=</span>ON --no-warn-unused-cli
-<span class="gp">spaceros-user@d10d85c68f0e:/opt/spaceros$ </span>colcon <span class="nb">test</span> --ctest-args -LE <span class="s2">&quot;(ikos|xfail)&quot;</span> --pytest-args -m <span class="s2">&quot;not xfail&quot;</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">spaceros-user@d10d85c68f0e:/opt/spaceros$ </span>colcon<span class="w"> </span>build<span class="w"> </span>--cmake-args<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Debug<span class="w"> </span>-DCMAKE_EXPORT_COMPILE_COMMANDS<span class="o">=</span>ON<span class="w"> </span>--no-warn-unused-cli
+<span class="gp">spaceros-user@d10d85c68f0e:/opt/spaceros$ </span>colcon<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--ctest-args<span class="w"> </span>-LE<span class="w"> </span><span class="s2">&quot;(ikos|xfail)&quot;</span><span class="w"> </span>--pytest-args<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;not xfail&quot;</span>
 </pre></div>
 </div>
 <p>The tests include running the static analysis tools clang_tidy and cppcheck (which has the MISRA 2012 add-on enabled).</p>
 <p>You can use colcon’s <code class="docutils literal notranslate"><span class="pre">--packages-select</span></code> option to run a subset of packages. For example, to run tests only for the rcpputils package and display the output directly to the console (as well as saving it to a log file), you can run:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">spaceros-user@d10d85c68f0e:/opt/spaceros$ </span>colcon <span class="nb">test</span> --event-handlers console_direct+ --packages-select rcpputils
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">spaceros-user@d10d85c68f0e:/opt/spaceros$ </span>colcon<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--event-handlers<span class="w"> </span>console_direct+<span class="w"> </span>--packages-select<span class="w"> </span>rcpputils
 </pre></div>
 </div>
 </div>
 <div class="section" id="viewing-test-output">
-<h2>Viewing Test Output<a class="headerlink" href="#viewing-test-output" title="Permalink to this headline"></a></h2>
+<h2>Viewing Test Output<a class="headerlink" href="#viewing-test-output" title="Permalink to this heading"></a></h2>
 <p>The output from the tests are stored in XUnit XML files, named <code class="docutils literal notranslate"><span class="pre">&lt;tool-name&gt;.xunit.xml</span></code>. After running the unit tests, you can scan the build directory for the various <code class="docutils literal notranslate"><span class="pre">*.xunit.xml</span></code> files.</p>
 <p>For example, a clang_tidy.xunit.xml file looks like this:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">&lt;xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
@@ -304,7 +305,7 @@ This tutorial does not cover iterating on an individual package or set of packag
 </div>
 </div>
 <div class="section" id="connecting-another-terminal-to-a-running-docker-container">
-<h2>Connecting Another Terminal to a Running Docker Container<a class="headerlink" href="#connecting-another-terminal-to-a-running-docker-container" title="Permalink to this headline"></a></h2>
+<h2>Connecting Another Terminal to a Running Docker Container<a class="headerlink" href="#connecting-another-terminal-to-a-running-docker-container" title="Permalink to this heading"></a></h2>
 <p>Sometimes it may be convenient to attach additional terminals to a running Docker container.</p>
 <p>With the Space ROS Docker container running, open a second host terminal and then run the following command to determine the container ID:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker container list</span>
@@ -323,38 +324,38 @@ This tutorial does not cover iterating on an individual package or set of packag
 <p>In place of the container ID, you can also use the automatically-generated container name (“inspiring_moser” in this case).</p>
 </div>
 <div class="section" id="running-an-ikos-scan">
-<h2>Running an IKOS Scan<a class="headerlink" href="#running-an-ikos-scan" title="Permalink to this headline"></a></h2>
+<h2>Running an IKOS Scan<a class="headerlink" href="#running-an-ikos-scan" title="Permalink to this heading"></a></h2>
 <p>IKOS uses special compiler and linker settings in order to instrument and analyze binaries. To run an IKOS scan on all of the Space ROS test binaries (which will take a very long time), run the following command at the root of the Space ROS workspace:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">spaceros-user@d10d85c68f0e:/opt/spaceros$ </span><span class="nv">CC</span><span class="o">=</span><span class="s2">&quot;ikos-scan-cc&quot;</span> <span class="nv">CXX</span><span class="o">=</span><span class="s2">&quot;ikos-scan-c++&quot;</span> <span class="nv">LD</span><span class="o">=</span><span class="s2">&quot;ikos-scan-cc&quot;</span> colcon build --build-base build_ikos --install-base install_ikos --cmake-args -DSECURITY<span class="o">=</span>ON -DINSTALL_EXAMPLES<span class="o">=</span>OFF -DCMAKE_EXPORT_COMPILE_COMMANDS<span class="o">=</span>ON --no-warn-unused-cli
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">spaceros-user@d10d85c68f0e:/opt/spaceros$ </span><span class="nv">CC</span><span class="o">=</span><span class="s2">&quot;ikos-scan-cc&quot;</span><span class="w"> </span><span class="nv">CXX</span><span class="o">=</span><span class="s2">&quot;ikos-scan-c++&quot;</span><span class="w"> </span><span class="nv">LD</span><span class="o">=</span><span class="s2">&quot;ikos-scan-cc&quot;</span><span class="w"> </span>colcon<span class="w"> </span>build<span class="w"> </span>--build-base<span class="w"> </span>build_ikos<span class="w"> </span>--install-base<span class="w"> </span>install_ikos<span class="w"> </span>--cmake-args<span class="w"> </span>-DSECURITY<span class="o">=</span>ON<span class="w"> </span>-DINSTALL_EXAMPLES<span class="o">=</span>OFF<span class="w"> </span>-DCMAKE_EXPORT_COMPILE_COMMANDS<span class="o">=</span>ON<span class="w"> </span>--no-warn-unused-cli
 </pre></div>
 </div>
 <p>The previous command generates the instrumented binaries and the associated output in a separate directory from the normal Space ROS build; the command uses –build-base option to specify build_ikos as the build output directory instead of the default build directory.</p>
 <p>To run an IKOS scan on a specific package, such as rcpputils in this case, use the –packages-select option, as follows:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">spaceros-user@d10d85c68f0e:/opt/spaceros$ </span><span class="nv">CC</span><span class="o">=</span><span class="s2">&quot;ikos-scan-cc&quot;</span> <span class="nv">CXX</span><span class="o">=</span><span class="s2">&quot;ikos-scan-c++&quot;</span> <span class="nv">LD</span><span class="o">=</span><span class="s2">&quot;ikos-scan-cc&quot;</span> colcon build --build-base build_ikos --install-base install_ikos --packages-select rcpputils --cmake-args -DSECURITY<span class="o">=</span>ON -DINSTALL_EXAMPLES<span class="o">=</span>OFF -DCMAKE_EXPORT_COMPILE_COMMANDS<span class="o">=</span>ON --no-warn-unused-cli
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">spaceros-user@d10d85c68f0e:/opt/spaceros$ </span><span class="nv">CC</span><span class="o">=</span><span class="s2">&quot;ikos-scan-cc&quot;</span><span class="w"> </span><span class="nv">CXX</span><span class="o">=</span><span class="s2">&quot;ikos-scan-c++&quot;</span><span class="w"> </span><span class="nv">LD</span><span class="o">=</span><span class="s2">&quot;ikos-scan-cc&quot;</span><span class="w"> </span>colcon<span class="w"> </span>build<span class="w"> </span>--build-base<span class="w"> </span>build_ikos<span class="w"> </span>--install-base<span class="w"> </span>install_ikos<span class="w"> </span>--packages-select<span class="w"> </span>rcpputils<span class="w"> </span>--cmake-args<span class="w"> </span>-DSECURITY<span class="o">=</span>ON<span class="w"> </span>-DINSTALL_EXAMPLES<span class="o">=</span>OFF<span class="w"> </span>-DCMAKE_EXPORT_COMPILE_COMMANDS<span class="o">=</span>ON<span class="w"> </span>--no-warn-unused-cli
 </pre></div>
 </div>
 </div>
 <div class="section" id="generating-ikos-results">
-<h2>Generating IKOS Results<a class="headerlink" href="#generating-ikos-results" title="Permalink to this headline"></a></h2>
+<h2>Generating IKOS Results<a class="headerlink" href="#generating-ikos-results" title="Permalink to this heading"></a></h2>
 <p>To generate JUnit XML/SARIF files for all of the binaries resulting from the build command in the previous step, you can use colcon test, as follows:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">spaceros-user@d10d85c68f0e:/opt/spaceros$ </span>colcon <span class="nb">test</span> --build-base build_ikos --install-base install_ikos --ctest-args -L <span class="s2">&quot;ikos&quot;</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">spaceros-user@d10d85c68f0e:/opt/spaceros$ </span>colcon<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--build-base<span class="w"> </span>build_ikos<span class="w"> </span>--install-base<span class="w"> </span>install_ikos<span class="w"> </span>--ctest-args<span class="w"> </span>-L<span class="w"> </span><span class="s2">&quot;ikos&quot;</span>
 </pre></div>
 </div>
 <p>To generate a JUnit XML file for a specific package only, you can add the –packages-select option, as follows:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">spaceros-user@d10d85c68f0e:/opt/spaceros$ </span>colcon <span class="nb">test</span> --build-base build_ikos --install-base install_ikos --ctest-args -L <span class="s2">&quot;ikos&quot;</span> --packages-select rcpputils
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">spaceros-user@d10d85c68f0e:/opt/spaceros$ </span>colcon<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--build-base<span class="w"> </span>build_ikos<span class="w"> </span>--install-base<span class="w"> </span>install_ikos<span class="w"> </span>--ctest-args<span class="w"> </span>-L<span class="w"> </span><span class="s2">&quot;ikos&quot;</span><span class="w"> </span>--packages-select<span class="w"> </span>rcpputils
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">colcon</span> <span class="pre">test</span></code> command with the <code class="docutils literal notranslate"><span class="pre">-L</span> <span class="pre">&quot;ikos&quot;</span></code> flag runs IKOS report generation, which reads the IKOS database generated in the previous analysis step and generates a JUnit XML report file. After running <code class="docutils literal notranslate"><span class="pre">colcon</span> <span class="pre">test</span></code>, you can view the JUnit XML files. For example, to view the JUnit XML file for IKOS scan of the rcpputils binaries you can use the following command:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">spaceros-user@d10d85c68f0e:/opt/spaceros$ </span>more build_ikos/rcpputils/test_results/rcpputils/ikos.xunit.xml
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">spaceros-user@d10d85c68f0e:/opt/spaceros$ </span>more<span class="w"> </span>build_ikos/rcpputils/test_results/rcpputils/ikos.xunit.xml
 </pre></div>
 </div>
 <p>SARIF files are also available in the same path:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">spaceros-user@d10d85c68f0e:/opt/spaceros$ </span>more build_ikos/rcpputils/test_results/rcpputils/ikos.sarif
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">spaceros-user@d10d85c68f0e:/opt/spaceros$ </span>more<span class="w"> </span>build_ikos/rcpputils/test_results/rcpputils/ikos.sarif
 </pre></div>
 </div>
 </div>
 <div class="section" id="saving-build-artifacts-locally">
-<h2>Saving build artifacts locally<a class="headerlink" href="#saving-build-artifacts-locally" title="Permalink to this headline"></a></h2>
+<h2>Saving build artifacts locally<a class="headerlink" href="#saving-build-artifacts-locally" title="Permalink to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">./build.sh</span></code> script executes the Earthly <code class="docutils literal notranslate"><span class="pre">build</span></code> task defined in <code class="docutils literal notranslate"><span class="pre">Earthfile</span></code>, which copies specified artifacts from the container to the host. Additional tasks defined in the Earthfile enable the preservation of intermediate artifacts generated during the build process.</p>
 <p>For instance, the <code class="docutils literal notranslate"><span class="pre">vcs-exact</span></code> task can be utilized to copy the exact version of ROS packages pulled during the spaceros build.</p>
 <p>To invoke a task, use the following syntax:</p>

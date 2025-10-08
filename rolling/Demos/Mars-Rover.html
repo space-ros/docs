@@ -8,7 +8,6 @@
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="canonical" href="https://space-ros.github.io/docs/rolling/Demos/Mars-Rover.html" />
@@ -19,7 +18,9 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -119,13 +120,13 @@
            <div itemprop="articleBody">
              
   <div class="section" id="mars-rover-demo">
-<h1>Mars Rover Demo<a class="headerlink" href="#mars-rover-demo" title="Permalink to this headline"></a></h1>
+<h1>Mars Rover Demo<a class="headerlink" href="#mars-rover-demo" title="Permalink to this heading"></a></h1>
 <div class="section" id="build-the-space-ros-moveit2-docker-images">
-<h2>Build the Space ROS &amp; MoveIt2 Docker Images<a class="headerlink" href="#build-the-space-ros-moveit2-docker-images" title="Permalink to this headline"></a></h2>
+<h2>Build the Space ROS &amp; MoveIt2 Docker Images<a class="headerlink" href="#build-the-space-ros-moveit2-docker-images" title="Permalink to this heading"></a></h2>
 <p>If you haven’t already, follow <a class="reference external" href="https://space-ros.github.io/docs/rolling/Demos/MoveIt2.html">these instructions</a> for building the MoveIt2 docker image, <a class="reference external" href="https://space-ros.github.io/docs/rolling/Tutorials/First-Time-Building.html">and these instructions</a> for the spaceros image. These are the base images for the Canadarm and Curiosity Mars rover demos. The Dockerfile installs all of the prerequisite system dependencies along with the demos source code, then builds the Space ROS Space Robots Demo.</p>
 </div>
 <div class="section" id="space-ros-space-robots-demo-docker-image">
-<h2>Space ROS Space Robots Demo Docker Image<a class="headerlink" href="#space-ros-space-robots-demo-docker-image" title="Permalink to this headline"></a></h2>
+<h2>Space ROS Space Robots Demo Docker Image<a class="headerlink" href="#space-ros-space-robots-demo-docker-image" title="Permalink to this heading"></a></h2>
 <p>Build the <code class="docutils literal notranslate"><span class="pre">space_robots</span></code> image:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ../space_robots</span>
 <span class="go">./build.sh</span>
@@ -133,7 +134,7 @@
 </div>
 </div>
 <div class="section" id="running-the-demo-docker">
-<h2>Running the Demo Docker<a class="headerlink" href="#running-the-demo-docker" title="Permalink to this headline"></a></h2>
+<h2>Running the Demo Docker<a class="headerlink" href="#running-the-demo-docker" title="Permalink to this heading"></a></h2>
 <p>Run the following to allow GUI passthrough:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">xhost +local:docker</span>
 </pre></div>
@@ -145,16 +146,16 @@
 <p>Depending on the host computer, you might need to remove the <code class="docutils literal notranslate"><span class="pre">--gpus</span> <span class="pre">all</span></code> flag in <code class="docutils literal notranslate"><span class="pre">run.sh</span></code>, which uses your GPUs.</p>
 </div>
 <div class="section" id="running-the-mars-rover-demo">
-<h2>Running the Mars Rover Demo<a class="headerlink" href="#running-the-mars-rover-demo" title="Permalink to this headline"></a></h2>
+<h2>Running the Mars Rover Demo<a class="headerlink" href="#running-the-mars-rover-demo" title="Permalink to this heading"></a></h2>
 <p>Launch the demo:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 launch mars_rover mars_rover.launch.py</span>
 </pre></div>
 </div>
 <p>On the top left corner, click on the refresh button to show camera feed.</p>
 <div class="section" id="perform-tasks">
-<h3>Perform Tasks<a class="headerlink" href="#perform-tasks" title="Permalink to this headline"></a></h3>
+<h3>Perform Tasks<a class="headerlink" href="#perform-tasks" title="Permalink to this heading"></a></h3>
 <div class="section" id="setup">
-<h4>Setup<a class="headerlink" href="#setup" title="Permalink to this headline"></a></h4>
+<h4>Setup<a class="headerlink" href="#setup" title="Permalink to this heading"></a></h4>
 <p>Open a new terminal and attach it to the currently running container:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker exec -it &lt;container-name&gt; bash</span>
 </pre></div>
@@ -168,7 +169,7 @@
 </div>
 </div>
 <div class="section" id="available-commands">
-<h4>Available Commands<a class="headerlink" href="#available-commands" title="Permalink to this headline"></a></h4>
+<h4>Available Commands<a class="headerlink" href="#available-commands" title="Permalink to this heading"></a></h4>
 <p>Drive the rover forward:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 service call /move_forward std_srvs/srv/Empty</span>
 </pre></div>

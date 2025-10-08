@@ -8,7 +8,6 @@
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="canonical" href="https://space-ros.github.io/docs/rolling/Demos/Canadarm.html" />
@@ -19,7 +18,9 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -119,13 +120,13 @@
            <div itemprop="articleBody">
              
   <div class="section" id="canadarm-demo">
-<h1>Canadarm Demo<a class="headerlink" href="#canadarm-demo" title="Permalink to this headline"></a></h1>
+<h1>Canadarm Demo<a class="headerlink" href="#canadarm-demo" title="Permalink to this heading"></a></h1>
 <div class="section" id="build-the-space-ros-moveit2-docker-images">
-<h2>Build the Space ROS &amp; MoveIt2 Docker Images<a class="headerlink" href="#build-the-space-ros-moveit2-docker-images" title="Permalink to this headline"></a></h2>
+<h2>Build the Space ROS &amp; MoveIt2 Docker Images<a class="headerlink" href="#build-the-space-ros-moveit2-docker-images" title="Permalink to this heading"></a></h2>
 <p>If you haven’t already, follow <a class="reference external" href="https://space-ros.github.io/docs/rolling/Demos/MoveIt2.html">the MoveIt2 instructions</a>, and <a class="reference external" href="https://space-ros.github.io/docs/rolling/Tutorials/First-Time-Building.html">the Space ROS image instructions</a>. These are the base images for the Canadarm and Curiosity Mars rover demos. The Dockerfile installs all of the prerequisite system dependencies along with the demos source code, then builds the Space ROS Space Robots Demo.</p>
 </div>
 <div class="section" id="space-ros-space-robots-demo-docker-image">
-<h2>Space ROS Space Robots Demo Docker Image<a class="headerlink" href="#space-ros-space-robots-demo-docker-image" title="Permalink to this headline"></a></h2>
+<h2>Space ROS Space Robots Demo Docker Image<a class="headerlink" href="#space-ros-space-robots-demo-docker-image" title="Permalink to this heading"></a></h2>
 <p>Build the <code class="docutils literal notranslate"><span class="pre">space_robots</span></code> image:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ../space_robots</span>
 <span class="go">./build.sh</span>
@@ -133,7 +134,7 @@
 </div>
 </div>
 <div class="section" id="running-the-demo-docker">
-<h2>Running the Demo Docker<a class="headerlink" href="#running-the-demo-docker" title="Permalink to this headline"></a></h2>
+<h2>Running the Demo Docker<a class="headerlink" href="#running-the-demo-docker" title="Permalink to this heading"></a></h2>
 <p>Run the following to allow GUI passthrough:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">xhost +local:docker</span>
 </pre></div>
@@ -145,7 +146,7 @@
 <p>Depending on the host computer, you might need to remove the <code class="docutils literal notranslate"><span class="pre">--gpus</span> <span class="pre">all</span></code> flag in <code class="docutils literal notranslate"><span class="pre">run.sh</span></code>, which uses your GPUs.</p>
 </div>
 <div class="section" id="running-the-canadarm-demo">
-<h2>Running the Canadarm Demo<a class="headerlink" href="#running-the-canadarm-demo" title="Permalink to this headline"></a></h2>
+<h2>Running the Canadarm Demo<a class="headerlink" href="#running-the-canadarm-demo" title="Permalink to this heading"></a></h2>
 <p>Run the following command:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 launch canadarm canadarm.launch.py</span>
 </pre></div>

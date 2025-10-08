@@ -8,7 +8,6 @@
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="canonical" href="https://space-ros.github.io/docs/rolling/How-To-Guides/Use-Cobra.html" />
@@ -19,7 +18,9 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -119,7 +120,7 @@
            <div itemprop="articleBody">
              
   <div class="section" id="using-the-cobra-static-analyzer">
-<h1>Using the Cobra Static Analyzer<a class="headerlink" href="#using-the-cobra-static-analyzer" title="Permalink to this headline"></a></h1>
+<h1>Using the Cobra Static Analyzer<a class="headerlink" href="#using-the-cobra-static-analyzer" title="Permalink to this heading"></a></h1>
 <p>This guide explains how to use the Cobra static analyzer to check C and C++ source code for potential issues.</p>
 <div class="contents local topic" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
@@ -130,12 +131,12 @@
 </ul>
 </div>
 <div class="section" id="using-cobra-directly">
-<h2><a class="toc-backref" href="#id1">Using Cobra directly</a><a class="headerlink" href="#using-cobra-directly" title="Permalink to this headline"></a></h2>
+<h2><a class="toc-backref" href="#id1">Using Cobra directly</a><a class="headerlink" href="#using-cobra-directly" title="Permalink to this heading"></a></h2>
 <p>Cobra is included in the Space ROS Docker image and can be invoked directly using the <code class="docutils literal notranslate"><span class="pre">cobra</span></code> command-line tool.
 There are several additional resources listed on this site’s <a class="reference internal" href="../Related-Projects/Cobra.html"><span class="doc">Related Projects page for Cobra</span></a> that will help you to learn to use Cobra and its many command-line options.</p>
 </div>
 <div class="section" id="using-cobra-via-ament-cobra">
-<h2><a class="toc-backref" href="#id2">Using Cobra via ament_cobra</a><a class="headerlink" href="#using-cobra-via-ament-cobra" title="Permalink to this headline"></a></h2>
+<h2><a class="toc-backref" href="#id2">Using Cobra via ament_cobra</a><a class="headerlink" href="#using-cobra-via-ament-cobra" title="Permalink to this heading"></a></h2>
 <p>An easy way to use Cobra on your source files is via the <code class="docutils literal notranslate"><span class="pre">ament_cobra</span></code> command-line tool.
 <code class="docutils literal notranslate"><span class="pre">ament_cobra</span></code> is a wrapper program for the Cobra tool that simplifies the interface to Cobra and helps to integrate the tool into the <a class="reference external" href="https://github.com/ament">ament</a>-based build system.
 <code class="docutils literal notranslate"><span class="pre">ament_cobra</span></code> provides the following command-line interface:</p>
@@ -157,14 +158,14 @@ There are several additional resources listed on this site’s <a class="referen
                         <span class="n">Include</span> <span class="n">directories</span> <span class="k">for</span> <span class="n">C</span><span class="o">/</span><span class="n">C</span><span class="o">++</span> <span class="n">files</span> <span class="n">being</span> <span class="n">checked</span><span class="o">.</span><span class="n">Each</span> <span class="n">directory</span> <span class="ow">is</span> <span class="n">passed</span>
                         <span class="n">to</span> <span class="n">cobra</span> <span class="k">as</span> <span class="s1">&#39;-I&lt;include_dir&gt;&#39;</span> <span class="p">(</span><span class="n">default</span><span class="p">:</span> <span class="kc">None</span><span class="p">)</span>
 <span class="o">--</span><span class="n">exclude</span> <span class="p">[</span><span class="n">EXCLUDE</span> <span class="o">...</span><span class="p">]</span>
-                        <span class="n">Exclude</span> <span class="n">C</span><span class="o">/</span><span class="n">C</span><span class="o">++</span> <span class="n">files</span> <span class="kn">from</span> <span class="nn">being</span> <span class="n">checked</span><span class="o">.</span> <span class="p">(</span><span class="n">default</span><span class="p">:</span> <span class="p">[])</span>
+                        <span class="n">Exclude</span> <span class="n">C</span><span class="o">/</span><span class="n">C</span><span class="o">++</span> <span class="n">files</span> <span class="kn">from</span><span class="w"> </span><span class="nn">being</span> <span class="n">checked</span><span class="o">.</span> <span class="p">(</span><span class="n">default</span><span class="p">:</span> <span class="p">[])</span>
 <span class="o">--</span><span class="n">ruleset</span> <span class="n">RULESET</span>     <span class="n">The</span> <span class="n">cobra</span> <span class="n">rule</span> <span class="nb">set</span> <span class="n">to</span> <span class="n">use</span> <span class="n">to</span> <span class="n">analyze</span> <span class="n">the</span> <span class="n">code</span><span class="p">:</span> <span class="n">basic</span><span class="p">,</span> <span class="n">cwe</span><span class="p">,</span> <span class="n">p10</span><span class="p">,</span> <span class="n">jpl</span><span class="p">,</span>
                         <span class="n">misra2012</span><span class="p">,</span> <span class="n">C</span><span class="o">++/</span><span class="n">autosar</span><span class="o">.</span> <span class="p">(</span><span class="n">default</span><span class="p">:</span> <span class="n">basic</span><span class="p">)</span>
 <span class="o">--</span><span class="n">compile_cmds</span> <span class="n">COMPILE_CMDS</span>
-                        <span class="n">The</span> <span class="n">compile_commands</span><span class="o">.</span><span class="n">json</span> <span class="n">file</span> <span class="kn">from</span> <span class="nn">which</span> <span class="n">to</span> <span class="n">gather</span> <span class="n">preprocessor</span>
+                        <span class="n">The</span> <span class="n">compile_commands</span><span class="o">.</span><span class="n">json</span> <span class="n">file</span> <span class="kn">from</span><span class="w"> </span><span class="nn">which</span> <span class="n">to</span> <span class="n">gather</span> <span class="n">preprocessor</span>
                         <span class="n">directives</span><span class="o">.</span> <span class="n">This</span> <span class="n">option</span> <span class="n">will</span> <span class="n">take</span> <span class="n">precedence</span> <span class="n">over</span> <span class="n">the</span> <span class="o">--</span><span class="n">include_dirs</span>
                         <span class="n">options</span> <span class="ow">and</span> <span class="nb">any</span> <span class="n">directories</span> <span class="n">specified</span> <span class="n">using</span> <span class="o">--</span><span class="n">include_dirs</span> <span class="n">will</span> <span class="n">be</span> <span class="n">ignored</span><span class="o">.</span>
-                        <span class="n">Instead</span><span class="p">,</span> <span class="n">ament_cobra</span> <span class="n">will</span> <span class="n">gather</span> <span class="nb">all</span> <span class="n">preprocessor</span> <span class="n">options</span> <span class="kn">from</span> <span class="nn">the</span>
+                        <span class="n">Instead</span><span class="p">,</span> <span class="n">ament_cobra</span> <span class="n">will</span> <span class="n">gather</span> <span class="nb">all</span> <span class="n">preprocessor</span> <span class="n">options</span> <span class="kn">from</span><span class="w"> </span><span class="nn">the</span>
                         <span class="n">compile_commands</span><span class="o">.</span><span class="n">json</span> <span class="n">file</span><span class="o">.</span> <span class="p">(</span><span class="n">default</span><span class="p">:</span> <span class="kc">None</span><span class="p">)</span>
 <span class="o">--</span><span class="n">xunit</span><span class="o">-</span><span class="n">file</span> <span class="n">XUNIT_FILE</span>
                         <span class="n">Generate</span> <span class="n">a</span> <span class="n">xunit</span> <span class="n">compliant</span> <span class="n">XML</span> <span class="n">file</span> <span class="p">(</span><span class="n">default</span><span class="p">:</span> <span class="kc">None</span><span class="p">)</span>
@@ -175,7 +176,7 @@ There are several additional resources listed on this site’s <a class="referen
 </pre></div>
 </div>
 <div class="section" id="basic-operation">
-<h3>Basic operation<a class="headerlink" href="#basic-operation" title="Permalink to this headline"></a></h3>
+<h3>Basic operation<a class="headerlink" href="#basic-operation" title="Permalink to this heading"></a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">ament_cobra</span></code> tool:</p>
 <ul class="simple">
 <li><p>Gathers a list of C/C++ filenames to be analyzed from from a list directories and/or files specified on the command line. Each directory is recursively scanned for target files. By default, if no filenames or directories are specified, <code class="docutils literal notranslate"><span class="pre">ament_cobra</span></code> scans for target files starting in the current working directory.</p></li>
@@ -219,7 +220,7 @@ For example, the first couple of entries in <code class="docutils literal notran
 </div>
 </div>
 <div class="section" id="selecting-files-and-directories-to-analyze">
-<h3>Selecting files and directories to analyze<a class="headerlink" href="#selecting-files-and-directories-to-analyze" title="Permalink to this headline"></a></h3>
+<h3>Selecting files and directories to analyze<a class="headerlink" href="#selecting-files-and-directories-to-analyze" title="Permalink to this heading"></a></h3>
 <p>The positional (non-option) arguments passed to <code class="docutils literal notranslate"><span class="pre">ament_cobra</span></code> are expected to be files and/or directories to be analyzed.
 Any directories specified are searched recursively for files ending in one of the following filename extensions: <code class="docutils literal notranslate"><span class="pre">.c</span></code>, <code class="docutils literal notranslate"><span class="pre">.cc</span></code>, <code class="docutils literal notranslate"><span class="pre">.cpp</span></code>, <code class="docutils literal notranslate"><span class="pre">.cxx</span></code>.
 For example, to analyze a single file, one can specify the filename on the command line, as show below:</p>
@@ -232,7 +233,7 @@ detailed results are in file _Basic_.txt
 </div>
 </div>
 <div class="section" id="selecting-the-ruleset-to-use">
-<h3>Selecting the ruleset to use<a class="headerlink" href="#selecting-the-ruleset-to-use" title="Permalink to this headline"></a></h3>
+<h3>Selecting the ruleset to use<a class="headerlink" href="#selecting-the-ruleset-to-use" title="Permalink to this heading"></a></h3>
 <p>Cobra supports analyzing input source code according to multiple rule sets: Cobra’s Basic rule set (basic), <a class="reference external" href="https://cwe.mitre.org/">Common Weakness Enumeration</a> (cwe), the <a class="reference external" href="https://en.wikipedia.org/wiki/The_Power_of_10:_Rules_for_Developing_Safety-Critical_Code">Power of 10</a> (p10), the <a class="reference external" href="https://web.archive.org/web/20111015064908/http://lars-lab.jpl.nasa.gov/JPL_Coding_Standard_C.pdf">JPL Coding Standard</a> (jpl), <a class="reference external" href="https://en.wikipedia.org/wiki/MISRA_C#MISRA_C:2012">MISRA C 2012</a> (misra2012), and a subset of the <a class="reference external" href="https://www.autosar.org/fileadmin/user_upload/standards/adaptive/17-03/AUTOSAR_RS_CPP14Guidelines.pdf">AUTOSAR C++ 14</a>  rule set (C++/autosar).
 You may specify one of these rulesets using the <code class="docutils literal notranslate"><span class="pre">--ruleset</span></code> command-line option.
 If the <code class="docutils literal notranslate"><span class="pre">--ruleset</span></code> option is provided more than once on the command line, only the last one is respected.
@@ -269,7 +270,7 @@ The following example, run while in the <code class="docutils literal notranslat
 <p>In this case, because the <code class="docutils literal notranslate"><span class="pre">p10</span></code> ruleset was used, detailed output is stored in the file, <code class="docutils literal notranslate"><span class="pre">_P10_.txt</span></code>.</p>
 </div>
 <div class="section" id="generating-output-files">
-<h3>Generating output files<a class="headerlink" href="#generating-output-files" title="Permalink to this headline"></a></h3>
+<h3>Generating output files<a class="headerlink" href="#generating-output-files" title="Permalink to this heading"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">ament_cobra</span></code> is able to parse the output file generated by <code class="docutils literal notranslate"><span class="pre">cobra</span></code> and generate JUnit XML and/or <a class="reference external" href="https://docs.oasis-open.org/sarif/sarif/v2.1.0/csprd01/sarif-v2.1.0-csprd01.html">SARIF</a> files.
 JUnit XML files are typically used to interface to a CI system like Jenkins, while SARIF can be used by IDEs such as Visual Studio Code with a SARIF-enabled plugin to allow developers to interactively navigate the discovered issues.
 The following command shows how one may process all C/C++ files in the current working directory or below using the <code class="docutils literal notranslate"><span class="pre">p10</span></code> rule set and generate both JUnit XML and SARIF output files:</p>
@@ -278,7 +279,7 @@ The following command shows how one may process all C/C++ files in the current w
 </div>
 </div>
 <div class="section" id="specifying-preprocessor-options">
-<h3>Specifying preprocessor options<a class="headerlink" href="#specifying-preprocessor-options" title="Permalink to this headline"></a></h3>
+<h3>Specifying preprocessor options<a class="headerlink" href="#specifying-preprocessor-options" title="Permalink to this heading"></a></h3>
 <p>Cobra is able to invoke the C preprocessor before analyzing source code files.
 <code class="docutils literal notranslate"><span class="pre">ament_cobra</span></code> provides an <code class="docutils literal notranslate"><span class="pre">--include-dirs</span></code> option which allows the user to specify a list of directories in which to look for #include files.
 <code class="docutils literal notranslate"><span class="pre">ament_cobra</span></code> translates any directories specified with <code class="docutils literal notranslate"><span class="pre">include-dirs</span></code> to <code class="docutils literal notranslate"><span class="pre">-I</span></code> options when invoking the C preprocessor.</p>
@@ -296,7 +297,7 @@ For example, if one first builds a particular package to produce the compile_com
 </div>
 </div>
 <div class="section" id="displaying-verbose-output">
-<h3>Displaying verbose output<a class="headerlink" href="#displaying-verbose-output" title="Permalink to this headline"></a></h3>
+<h3>Displaying verbose output<a class="headerlink" href="#displaying-verbose-output" title="Permalink to this heading"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">ament_cobra</span></code> has a <code class="docutils literal notranslate"><span class="pre">--verbose</span></code> command-line option that is handy when you want to see the exact command-line <code class="docutils literal notranslate"><span class="pre">ament_cobra</span></code> uses when invoking <code class="docutils literal notranslate"><span class="pre">cobra</span></code>.
 For example, adding <code class="docutils literal notranslate"><span class="pre">--verbose</span></code> to the previous command line:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>spaceros-user@c1b264aeb129:~/spaceros/src/rcutils/src$ ament_cobra --ruleset p10 --sarif-file 2.sarif --verbose
@@ -332,7 +333,7 @@ For example, adding <code class="docutils literal notranslate"><span class="pre"
 </div>
 </div>
 <div class="section" id="using-cobra-via-colcon-test">
-<h2><a class="toc-backref" href="#id3">Using Cobra via colcon test</a><a class="headerlink" href="#using-cobra-via-colcon-test" title="Permalink to this headline"></a></h2>
+<h2><a class="toc-backref" href="#id3">Using Cobra via colcon test</a><a class="headerlink" href="#using-cobra-via-colcon-test" title="Permalink to this heading"></a></h2>
 <p><a class="reference external" href="https://colcon.readthedocs.io/en/released/">colcon</a> is a command-line tool used to build and test packages in a workspace.
 <code class="docutils literal notranslate"><span class="pre">colcon</span></code> operates by traversing the directory hierarchy in a workspace, generating a graph of package dependencies, and performing an operation (such as <code class="docutils literal notranslate"><span class="pre">build</span></code> or <code class="docutils literal notranslate"><span class="pre">test</span></code>) on one or more packages.</p>
 <p>To use Cobra via colcon test on the Space ROS source code, first launch the Space ROS Docker image from your host system:</p>
@@ -360,7 +361,7 @@ spaceros-user@5218e73f96c6:~/spaceros$ vcs import src &lt; exact.repos
 </div>
 <p>Now we’re ready to build and execute tests for Space ROS.</p>
 <div class="section" id="running-all-tests">
-<h3>Running all tests<a class="headerlink" href="#running-all-tests" title="Permalink to this headline"></a></h3>
+<h3>Running all tests<a class="headerlink" href="#running-all-tests" title="Permalink to this heading"></a></h3>
 <p>To run all of the Space ROS tests, first perform a full build of the Space ROS source code.
 For example,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>spaceros-user@c1b264aeb129:~/spaceros$ colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
@@ -381,7 +382,7 @@ For example,</p>
 </div>
 </div>
 <div class="section" id="running-tests-for-an-individual-package">
-<h3>Running tests for an individual package<a class="headerlink" href="#running-tests-for-an-individual-package" title="Permalink to this headline"></a></h3>
+<h3>Running tests for an individual package<a class="headerlink" href="#running-tests-for-an-individual-package" title="Permalink to this heading"></a></h3>
 <p>It is also possible to target just a single package with <code class="docutils literal notranslate"><span class="pre">colcon</span></code>.
 For example, one may build just the <code class="docutils literal notranslate"><span class="pre">rcutils</span></code> package using the following command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>spaceros-user@c1b264aeb129:~/spaceros$ colcon build --packages-select rcutils --allow-overriding rcutils --cmake-args -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
@@ -393,7 +394,7 @@ For example, one may build just the <code class="docutils literal notranslate"><
 </div>
 </div>
 <div class="section" id="running-an-individual-test">
-<h3>Running an individual test<a class="headerlink" href="#running-an-individual-test" title="Permalink to this headline"></a></h3>
+<h3>Running an individual test<a class="headerlink" href="#running-an-individual-test" title="Permalink to this heading"></a></h3>
 <p>It is also possible using <code class="docutils literal notranslate"><span class="pre">colcon</span></code> to target individual tests, such as running only the Cobra static analyzer.
 This is accomplished using <code class="docutils literal notranslate"><span class="pre">colcon</span></code>’s <code class="docutils literal notranslate"><span class="pre">ctest-args</span></code> option and specifying which test to run:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>spaceros-user@c1b264aeb129:~/spaceros$ colcon test --packages-select rcutils --ctest-args -L cobra
@@ -401,7 +402,7 @@ This is accomplished using <code class="docutils literal notranslate"><span clas
 </div>
 </div>
 <div class="section" id="viewing-test-output">
-<h3>Viewing test output<a class="headerlink" href="#viewing-test-output" title="Permalink to this headline"></a></h3>
+<h3>Viewing test output<a class="headerlink" href="#viewing-test-output" title="Permalink to this heading"></a></h3>
 <p>In all cases, test output is in the directory associated with each package.
 For example, for <code class="docutils literal notranslate"><span class="pre">rcutils</span></code> the output is in <code class="docutils literal notranslate"><span class="pre">build/rcutils/test_results/rcutils</span></code>.
 The output includes the SAIRF and JUnit XML files associated with each test.</p>

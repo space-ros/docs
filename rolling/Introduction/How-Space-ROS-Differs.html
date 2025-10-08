@@ -8,7 +8,6 @@
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="canonical" href="https://space-ros.github.io/docs/rolling/Introduction/How-Space-ROS-Differs.html" />
@@ -19,7 +18,9 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -119,12 +120,12 @@
            <div itemprop="articleBody">
              
   <div class="section" id="how-space-ros-differs-from-ros-2">
-<h1>How Space ROS Differs from ROS 2<a class="headerlink" href="#how-space-ros-differs-from-ros-2" title="Permalink to this headline"></a></h1>
+<h1>How Space ROS Differs from ROS 2<a class="headerlink" href="#how-space-ros-differs-from-ros-2" title="Permalink to this heading"></a></h1>
 <p>To date, work has focused on establishing the foundation for Space ROS, including builds and infrastructure, code analysis tools, requirements tools and processes, and space-specific functionality.
 These efforts extend the foundation provided by ROS 2.
 The following sections list the differences between Space ROS and the standard ROS 2 distributions.</p>
 <div class="section" id="builds-and-infrastructure">
-<h2>Builds and Infrastructure<a class="headerlink" href="#builds-and-infrastructure" title="Permalink to this headline"></a></h2>
+<h2>Builds and Infrastructure<a class="headerlink" href="#builds-and-infrastructure" title="Permalink to this heading"></a></h2>
 <p>There are several new infrastructure elements for Space ROS, including information resources and regular builds provided to the Space ROS community.</p>
 <table class="colwidths-given docutils align-default">
 <colgroup>
@@ -158,7 +159,7 @@ This allows local developer builds to use the identical system as the CI builds.
 </table>
 </div>
 <div class="section" id="code-analysis-tools">
-<h2>Code Analysis Tools<a class="headerlink" href="#code-analysis-tools" title="Permalink to this headline"></a></h2>
+<h2>Code Analysis Tools<a class="headerlink" href="#code-analysis-tools" title="Permalink to this heading"></a></h2>
 <p>Static analysis tools are recommended by various standards such as NPR 7150.2 and DO-178C.
 The initial focus for Space ROS has been on source code quality and producing the artifacts required to support certification.
 To this end, we have added code analysis tools beyond the core set available with ROS 2, updated the tool output to use the standard SARIF file format,
@@ -203,7 +204,7 @@ For example, by comparing the analysis output from two separate Space ROS builds
 </table>
 </div>
 <div class="section" id="requirements-tools-and-processes">
-<h2>Requirements Tools and Processes<a class="headerlink" href="#requirements-tools-and-processes" title="Permalink to this headline"></a></h2>
+<h2>Requirements Tools and Processes<a class="headerlink" href="#requirements-tools-and-processes" title="Permalink to this heading"></a></h2>
 <p>An essential part of safety critical projects conforming to industry quality standards is capturing and tracking requirements, including full requirements traceability from high-level requirements to code-level artifacts.
 With Space ROS, we have incorporated tools that help us to meet the meta-level requirements introduced by aerospace quality standards.</p>
 <table class="colwidths-given docutils align-default">
@@ -231,7 +232,7 @@ Requirements can be defined in a hierarchical fashion and can be exported in a v
 </table>
 </div>
 <div class="section" id="space-specific-functionality">
-<h2>Space-Specific Functionality<a class="headerlink" href="#space-specific-functionality" title="Permalink to this headline"></a></h2>
+<h2>Space-Specific Functionality<a class="headerlink" href="#space-specific-functionality" title="Permalink to this heading"></a></h2>
 <p>The Space ROS project also incorporates space-specific functionality, such as a package to support telemetry from flight software systems.</p>
 <table class="colwidths-given docutils align-default">
 <colgroup>

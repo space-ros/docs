@@ -8,7 +8,6 @@
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="canonical" href="https://space-ros.github.io/docs/rolling/How-To-Guides/Releasing-Space-ROS.html" />
@@ -19,7 +18,9 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -119,9 +120,9 @@
            <div itemprop="articleBody">
              
   <div class="section" id="releasing-space-ros">
-<h1>Releasing Space ROS<a class="headerlink" href="#releasing-space-ros" title="Permalink to this headline"></a></h1>
+<h1>Releasing Space ROS<a class="headerlink" href="#releasing-space-ros" title="Permalink to this heading"></a></h1>
 <div class="section" id="before-the-release-window">
-<h2>Before the release window<a class="headerlink" href="#before-the-release-window" title="Permalink to this headline"></a></h2>
+<h2>Before the release window<a class="headerlink" href="#before-the-release-window" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Determine the release tag of the form rosdist-year.month.point, for example <code class="docutils literal notranslate"><span class="pre">humble-2024.01.0</span></code></p></li>
 <li><p>Open a new issue with a title of the form “year-month Release”, for example  “2024-01 Release”</p></li>
@@ -130,14 +131,14 @@
 </ul>
 </div>
 <div class="section" id="during-the-release-window">
-<h2>During the release window<a class="headerlink" href="#during-the-release-window" title="Permalink to this headline"></a></h2>
+<h2>During the release window<a class="headerlink" href="#during-the-release-window" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Tag issues intended for the release with the correct milestone</p></li>
 <li><p>Update issue status on the project view for the release</p></li>
 </ul>
 </div>
 <div class="section" id="at-the-end-of-the-release-window">
-<h2>At the end of the release window<a class="headerlink" href="#at-the-end-of-the-release-window" title="Permalink to this headline"></a></h2>
+<h2>At the end of the release window<a class="headerlink" href="#at-the-end-of-the-release-window" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Create release/distro branches on <code class="xref any docutils literal notranslate"><span class="pre">docker</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">demos</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">simulation</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">docs</span></code>, and <code class="xref any docutils literal notranslate"><span class="pre">process_sarif</span></code>.</p></li>
 <li><p>Update the .repos files to the new versions for the new distro sync.</p></li>
@@ -148,7 +149,7 @@
 </ul>
 </div>
 <div class="section" id="after-release-window">
-<h2>After release window<a class="headerlink" href="#after-release-window" title="Permalink to this headline"></a></h2>
+<h2>After release window<a class="headerlink" href="#after-release-window" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Open issues based on release experience</p></li>
 <li><p>Document lessons learned</p></li>

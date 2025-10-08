@@ -8,7 +8,6 @@
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="canonical" href="https://space-ros.github.io/docs/rolling/How-To-Guides/Use-VSCode-With-Docker.html" />
@@ -19,7 +18,9 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -119,7 +120,7 @@
            <div itemprop="articleBody">
              
   <div class="section" id="using-vscode-with-the-space-ros-docker-images">
-<h1>Using VSCode with the Space ROS Docker Images<a class="headerlink" href="#using-vscode-with-the-space-ros-docker-images" title="Permalink to this headline"></a></h1>
+<h1>Using VSCode with the Space ROS Docker Images<a class="headerlink" href="#using-vscode-with-the-space-ros-docker-images" title="Permalink to this heading"></a></h1>
 <p><a class="reference external" href="https://www.docker.com/">Docker</a> is a tool that allows you to run containers.
 Containers are similar to virtual machines in that they are useful for sharing reproducible software environments.
 However, containers are more light weight than virtual machines since they share the kernel of the host machine.
@@ -134,7 +135,7 @@ In this How-To Guide, we’ll show you how to use VSCode and Docker to work with
 </ul>
 </div>
 <div class="section" id="prerequisites">
-<h2><a class="toc-backref" href="#id2">Prerequisites</a><a class="headerlink" href="#prerequisites" title="Permalink to this headline"></a></h2>
+<h2><a class="toc-backref" href="#id2">Prerequisites</a><a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a></h2>
 <p>You’ll need to install the following software:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.docker.com/">Docker</a></p></li>
@@ -144,9 +145,9 @@ In this How-To Guide, we’ll show you how to use VSCode and Docker to work with
 </ul>
 </div>
 <div class="section" id="starting-a-docker-container">
-<h2><a class="toc-backref" href="#id3">Starting a Docker Container</a><a class="headerlink" href="#starting-a-docker-container" title="Permalink to this headline"></a></h2>
+<h2><a class="toc-backref" href="#id3">Starting a Docker Container</a><a class="headerlink" href="#starting-a-docker-container" title="Permalink to this heading"></a></h2>
 <p>You can use your own Space ROS Docker image, or you can use a <a class="reference external" href="https://hub.docker.com/r/osrf/space-ros/tags">pre-built example Space ROS Docker image from Docker Hub</a>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run -it osrf/space-ros:latest
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>osrf/space-ros:latest
 </pre></div>
 </div>
 <div class="admonition note">
@@ -156,7 +157,7 @@ In this How-To Guide, we’ll show you how to use VSCode and Docker to work with
 </div>
 </div>
 <div class="section" id="connecting-to-the-docker-container-with-vscode">
-<h2><a class="toc-backref" href="#id4">Connecting to the Docker Container with VSCode</a><a class="headerlink" href="#connecting-to-the-docker-container-with-vscode" title="Permalink to this headline"></a></h2>
+<h2><a class="toc-backref" href="#id4">Connecting to the Docker Container with VSCode</a><a class="headerlink" href="#connecting-to-the-docker-container-with-vscode" title="Permalink to this heading"></a></h2>
 <p>Once the container is running, you can use the Remote Development VSCode extension to connect to the container.
 To do this, click the green button in the bottom left of VSCode.
 This button is a quick way to access the Remote Development VSCode extension.</p>
@@ -177,7 +178,7 @@ This button is a quick way to access the Remote Development VSCode extension.</p
 <img alt="../_images/install-spaceros-in-remote-window.png" src="../_images/install-spaceros-in-remote-window.png" />
 </div>
 <div class="section" id="summary">
-<h2><a class="toc-backref" href="#id5">Summary</a><a class="headerlink" href="#summary" title="Permalink to this headline"></a></h2>
+<h2><a class="toc-backref" href="#id5">Summary</a><a class="headerlink" href="#summary" title="Permalink to this heading"></a></h2>
 <p>In this How-To Guide, we showed you how to use VSCode and Docker to explore Space ROS Docker images.
 We also showed you how to use the Remote Development VSCode extension to connect to a running Docker container.</p>
 </div>

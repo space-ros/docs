@@ -8,7 +8,6 @@
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="canonical" href="https://space-ros.github.io/docs/rolling/Demos/MoveIt2.html" />
@@ -19,7 +18,9 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -119,10 +120,10 @@
            <div itemprop="articleBody">
              
   <div class="section" id="moveit2-image">
-<h1>Moveit2 Image<a class="headerlink" href="#moveit2-image" title="Permalink to this headline"></a></h1>
+<h1>Moveit2 Image<a class="headerlink" href="#moveit2-image" title="Permalink to this heading"></a></h1>
 <p>The MoveIt2 Docker image uses the Space ROS docker image (openrobotics/spaceros:latest) as its base image, which you can build, following <a class="reference external" href="https://space-ros.github.io/docs/rolling/Tutorials/First-Time-Building.html">this</a> tutorial. The MoveIt2 Dockerfile installs all of the prerequisite system dependencies to build MoveIt2 (and Moveit2 tutorials) and then pulls and builds the latest MoveIt2 and Moveit2 tutorials source code.</p>
 <div class="section" id="cloning-the-repository">
-<h2>Cloning the repository<a class="headerlink" href="#cloning-the-repository" title="Permalink to this headline"></a></h2>
+<h2>Cloning the repository<a class="headerlink" href="#cloning-the-repository" title="Permalink to this heading"></a></h2>
 <p>Move into your Space ROS workspace:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd spaceros_ws</span>
 </pre></div>
@@ -133,7 +134,7 @@
 </div>
 </div>
 <div class="section" id="building-the-moveit2-image">
-<h2>Building the MoveIt2 Image<a class="headerlink" href="#building-the-moveit2-image" title="Permalink to this headline"></a></h2>
+<h2>Building the MoveIt2 Image<a class="headerlink" href="#building-the-moveit2-image" title="Permalink to this heading"></a></h2>
 <p>To build the docker image, run:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd docker/moveit2</span>
 <span class="go">./build.sh</span>
@@ -142,7 +143,7 @@
 <p>The build process will take about 30 minutes, depending on the host computer.</p>
 </div>
 <div class="section" id="running-the-moveit2-docker-image-in-a-container">
-<h2>Running the MoveIt2 Docker Image in a Container<a class="headerlink" href="#running-the-moveit2-docker-image-in-a-container" title="Permalink to this headline"></a></h2>
+<h2>Running the MoveIt2 Docker Image in a Container<a class="headerlink" href="#running-the-moveit2-docker-image-in-a-container" title="Permalink to this heading"></a></h2>
 <p>After building the image, you can see the newly-built image by running:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker image list</span>
 </pre></div>
@@ -165,7 +166,7 @@
 </div>
 </div>
 <div class="section" id="running-moveit2-tutorials">
-<h2>Running MoveIt2 Tutorials<a class="headerlink" href="#running-moveit2-tutorials" title="Permalink to this headline"></a></h2>
+<h2>Running MoveIt2 Tutorials<a class="headerlink" href="#running-moveit2-tutorials" title="Permalink to this heading"></a></h2>
 <p>Run the following command to launch the MoveIt2 tutorials demo launch file:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 launch moveit2_tutorials demo.launch.py rviz_tutorial:=true</span>
 </pre></div>
@@ -175,7 +176,7 @@
 <p>You can now follow the <a class="reference external" href="https://moveit.picknik.ai/main/doc/tutorials/quickstart_in_rviz/quickstart_in_rviz_tutorial.html">MoveIt2 Tutorial documentation</a></p>
 </div>
 <div class="section" id="running-the-moveit2-move-group-c-interface-demo">
-<h2>Running the MoveIt2 Move Group C++ Interface Demo<a class="headerlink" href="#running-the-moveit2-move-group-c-interface-demo" title="Permalink to this headline"></a></h2>
+<h2>Running the MoveIt2 Move Group C++ Interface Demo<a class="headerlink" href="#running-the-moveit2-move-group-c-interface-demo" title="Permalink to this heading"></a></h2>
 <p>To run the Move Group C++ Interface Demo, execute the following command:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 launch moveit2_tutorials move_group.launch.py</span>
 </pre></div>
@@ -184,7 +185,7 @@
 <p>Then, you can follow the <a class="reference external" href="https://moveit.picknik.ai/humble/doc/examples/move_group_interface/move_group_interface_tutorial.html">Move Group C++ Interface Demo documentation</a></p>
 </div>
 <div class="section" id="running-the-space-ros-space-robots-demos">
-<h2>Running the Space ROS Space Robots Demos<a class="headerlink" href="#running-the-space-ros-space-robots-demos" title="Permalink to this headline"></a></h2>
+<h2>Running the Space ROS Space Robots Demos<a class="headerlink" href="#running-the-space-ros-space-robots-demos" title="Permalink to this heading"></a></h2>
 <p>Once you have tested that MoveIt2 works, you are ready to run some of the other <a class="reference external" href="https://space-ros.github.io/docs/rolling/Demos/Canadarm.html">Space ROS space robot demos</a></p>
 </div>
 </div>
