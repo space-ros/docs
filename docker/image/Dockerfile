@@ -3,7 +3,7 @@
 #
 # docker build -f docker/image/Dockerfile .
 
-FROM ubuntu:focal
+FROM ubuntu:noble
 
 ARG user=rosindex
 ARG uid=1000
