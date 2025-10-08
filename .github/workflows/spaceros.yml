@@ -8,27 +8,21 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Setup Python
-        uses: actions/setup-python@v1
+      - uses: prefix-dev/setup-pixi@v0.9.1
         with:
-          python-version: 3.8
+          pixi-version: v0.56.0
+          cache: true
 
-      - name: Install dependencies with pip
-        run: |
-          pip install --no-warn-script-location --user -r requirements.txt -c constraints.txt
-
-      - name: Build
-        run: make html
-      - name: Test
-        run: make test
+      - name: Build and test
+        run: pixi run ci
 
   deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     permissions:
       contents: write
     needs: test
@@ -37,17 +31,13 @@ jobs:
       - name: Checkout sources
         uses: actions/checkout@v2
 
-      - name: Setup Python
-        uses: actions/setup-python@v1
+      - uses: prefix-dev/setup-pixi@v0.9.1
         with:
-          python-version: 3.8
+          pixi-version: v0.56.0
+          cache: true
 
-      - name: Install dependencies with pip
-        run: |
-          pip install --no-warn-script-location --user -r requirements.txt -c constraints.txt
-
-      - name: Build
-        run: make multiversion
+      - name: Build multiversion docs
+        run: pixi run deploy
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4

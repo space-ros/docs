@@ -2,3 +2,6 @@ build/
 _build/
 .idea/
 .vscode/
+
+# Pixi
+.pixi/
