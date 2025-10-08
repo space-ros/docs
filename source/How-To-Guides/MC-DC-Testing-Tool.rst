@@ -24,62 +24,25 @@ Here is an overview of what the MC/DC checker does:
 #. Generates BDD .dot files showing before and after reordering.
 
 
-Patch for the MC/DC checker
----------------------------
-
-Currently the MC/DC checker works for simple C programs but crashes when run against code in several ROS packages. A `patch <https://gist.githubusercontent.com/iche033/ef0d23c85f4d810fa26c722027894c91/raw/f0a9f48abffff0101b9e7f2a2fd94f79cafe360e/mcdc_checker.patch>`_ with minor code changes to checker code is needed to avoid the crash. See instructions below for applying the patch to the checker.
-
-
 How to run the MC/DC checker
 -----------------------------
 
-The recommended way of running the check is to use the upstream docker image as it requires a patched version of ``libclang``.
+The recommended way of running the check is to use the upstream docker image as it requires Clang 19 or newer.
 
-
-Pull their docker image
+Pull their docker image:
 
 .. code-block:: bash
 
    docker pull registry.gitlab.com/gtd-gmbh/mcdc-checker/mcdc-checker
 
-Launch the docker container and mount your source code that you would like to run MC/DC check on.
+Launch the docker container and mount your source code that you would like to run MC/DC check on:
 
 .. code-block:: bash
 
    cd <some_library>
-   # override entrypoint and run bash:
-   docker run -it -v $(pwd):/code --entrypoint /bin/bash registry.gitlab.com/gtd-gmbh/mcdc-checker/mcdc-checker
-
-
-In a separate terminal, download the original ``mcdc_checker.py`` script
-
-.. code-block:: bash
-
-   wget https://gitlab.com/gtd-gmbh/mcdc-checker/mcdc-checker/-/raw/master/src/mcdc_checker.py
-
-Download and apply the patch
-
-.. code-block:: bash
-
-   wget https://gist.githubusercontent.com/iche033/ef0d23c85f4d810fa26c722027894c91/raw/f0a9f48abffff0101b9e7f2a2fd94f79cafe360e/mcdc_checker.patch
-
-   patch mcdc_checker.py < mcdc_checker.patch
-
-Copy the modified ``mcdc_checker.py`` script into the container
-
-.. code-block:: bash
-
-   docker cp mcdc_checker.py `docker ps | grep mcdc-checker | awk '{print $1;}'`:/app/src/mcdc_checker.py
-
-
-Go back to the docker container and run the ``mcdc_checker`` cmd
-
-.. code-block:: bash
-
-   mcdc_checker -a
+   docker run -it -v $(pwd):/code registry.gitlab.com/gtd-gmbh/mcdc-checker/mcdc-checker -a
 
 The ``-a`` flag tells the check to run recursively on all files in this directory. You should see the script start processing the source code and generating output. See notes below for more info about possible error messages.
-
 
 Notes about the MC/DC checker
 -----------------------------
