@@ -9,11 +9,9 @@ They contain succinct steps to help you accomplish important tasks quickly.
 .. toctree::
    :maxdepth: 1
 
-   How-To-Guides/Use-Custom-Allocator
    How-To-Guides/Reproducing-CI-Results
    How-To-Guides/Use-Cobra
    How-To-Guides/MC-DC-Testing-Tool
    How-To-Guides/Use-VSCode-With-Docker
    How-To-Guides/Use-The-Dashboard
-   How-To-Guides/Use-Simulation-Assets
    How-To-Guides/Releasing-Space-ROS

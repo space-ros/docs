@@ -29,8 +29,6 @@ Doorstop, along with git, is used to ensure requirements tracking and traceabili
 To facilitate interoperability, FRET is able to import and export the Markdown-based requirements file format used by Doorstop.
 Requirements can be stored in a git repository and operated on by either FRET or Doorstop.
 
-To learn more about how FRET is used in Space ROS, please refer to this tutorial on the `Requirements Tools and Processes <../Tutorials/Requirements-Tools-And-Processes>`_ used in Space ROS.
-
 Additional References
 ---------------------
 

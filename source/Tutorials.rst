@@ -11,7 +11,3 @@ The following tutorials are specific to Space ROS.
    :maxdepth: 2
 
    Tutorials/First-Time-Building
-   Tutorials/Eventing-And-Telemetry
-   Tutorials/Requirements-Tools-And-Processes
-   Tutorials/Back-Porting-Requirements
-   Tutorials/Run-On-RTEMS

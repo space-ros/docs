@@ -17,8 +17,6 @@ The following sections describe the motivation for Space ROS, how Space ROS is d
 
    Introduction/About-Space-ROS
    Introduction/How-Space-ROS-Differs
-   Introduction/Dev-And-Release-Model
 
 .. image:: /images/viper-lights.png
    :alt: Artist's rendition of the VIPER rover on the surface of the moon
-
